@@ -122,7 +122,7 @@ function BookReservationModal() {
                                     </div>
                                     <div className="radio">
                                         <RadioButton
-                                            label="Drop In Visit"
+                                            label="Drop-In Visits"
                                             value={value}
                                             onChange={handleChange}
                                         />
@@ -168,7 +168,46 @@ function BookReservationModal() {
                                 <label className='reservationlabel'>
                                     Please Pick A Time Frame:
                                 </label>
-                                <input onChange={e => setTime(e.target.value)} type="radio" className="new-task-time" value={time} />
+                                <div>
+                                    <div className="radio">
+                                        <RadioButton
+                                            label="6:00AM-9:00AM"
+                                            value={value}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
+
+
+                                    <div className="radio">
+                                        <RadioButton
+                                            label="9:00AM-12:00PM"
+                                            value={value}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
+                                    <div className="radio">
+                                        <RadioButton
+                                            label="3:00PM-6:00PM"
+                                            value={value}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
+                                    <div className="radio">
+                                        <RadioButton
+                                            label="6:00PM-9:00PM"
+                                            value={value}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
+                                    <div className="radio">
+                                        <RadioButton
+                                            label="9:00PM-12:00AM"
+                                            value={value}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
+                                </div>
+                                {/* <input onChange={e => setTime(e.target.value)} type="radio" className="new-task-time" value={time} /> */}
                                 <button id="new-task-submit" type='submit' >Submit New Reservation</button>
                             </form>
                         </div>
