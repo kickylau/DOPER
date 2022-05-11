@@ -1,6 +1,6 @@
 from flask import Blueprint, request, render_template, redirect
 from ..forms import NewReservation, EditReservation
-from ..models import db, Pet, User, Reservation, Walker
+from ..models import db, Pet, User, Reservation, Walker, reservation_invites
 from datetime import date
 
 
@@ -73,4 +73,3 @@ def change_reservation(id):
         db.session.delete(reservation)
         db.session.commit()
         return {}
-

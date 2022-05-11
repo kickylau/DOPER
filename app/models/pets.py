@@ -1,4 +1,5 @@
 from .db import db
+from datetime import datetime
 
 class Pet(db.Model):
     __tablename__ = 'pets'
@@ -19,12 +20,13 @@ class Pet(db.Model):
     breed = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(255), nullable=False)
     vet_info = db.Column(db.String(255), nullable=False)
-    created_at = db.Column(db.Date, nullable=False)
-    updated_at = db.Column(db.Date, nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     user = db.relationship("User", back_populates="pets")
     reservations = db.relationship("Reservation", back_populates="pets", cascade="all, delete-orphan")
 
+    //invited_reservations = db.relationship("Reservation", secondary=shared_reservations, back_populates="invited_pets")
 
     @property
     def to_dict(self):

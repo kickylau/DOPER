@@ -65,6 +65,22 @@ def users_owned_pets(id):
 
 
 
+#Get routes for all reservations in a single pet
+@pet_routes.route('/<int:id>/reservations', methods=['GET'])
+def pet_reservations(id):
+    pet_reservations = Reservation.query.filter(Reservation.pet_id == id).all()
+    if pet_reservations:
+        all_reservations = {}
+        for reservation in pet_reservations:
+            all_reservations[reservation.id] = reservation.to_dict
+        return all_reservations
+    else:
+        return {'error': ['No Reservation found for this Pet']}
+
+
+
+
+
 
 @pet_routes.route("/<int:id>", methods=["GET", "PUT", "DELETE"])
 def change_pet(id):
