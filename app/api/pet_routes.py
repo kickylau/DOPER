@@ -1,6 +1,6 @@
 from flask import Blueprint, request, render_template, redirect
 from ..forms import NewPet, EditPet
-from ..models import db, Pet, User
+from ..models import db, Pet, User, Reservation, Walker
 
 
 

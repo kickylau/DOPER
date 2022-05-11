@@ -23,7 +23,7 @@ class Pet(db.Model):
     updated_at = db.Column(db.Date, nullable=False)
 
     user = db.relationship("User", back_populates="pets")
-    reservations = db.relationship("Reservation", back_populates="pet", cascade="all, delete-orphan")
+    reservations = db.relationship("Reservation", back_populates="pets", cascade="all, delete-orphan")
 
 
     @property

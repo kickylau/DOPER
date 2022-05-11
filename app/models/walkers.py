@@ -12,7 +12,7 @@ class Walker(db.Model):
     created_at = db.Column(db.Date, nullable=False)
     updated_at = db.Column(db.Date, nullable=False)
 
-    reservations = db.relationship("Reservation", back_populates="walker", cascade="all, delete-orphan")
+    reservations = db.relationship("Reservation", back_populates="walkers", cascade="all, delete-orphan")
 
 
     @property

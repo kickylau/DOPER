@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from app.models import Walker
+from app.models import db, Pet, User, Reservation, Walker
 
 walker_routes = Blueprint('walkers', __name__)
 

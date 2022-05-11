@@ -19,7 +19,7 @@ class Reservation(db.Model):
 
     user = db.relationship("User", back_populates="reservations")
     walkers = db.relationship("Walker", back_populates="reservations")
-    pets = db.relationship("Pet", back_populates="reservation")
+    pets = db.relationship("Pet", back_populates="reservations")
 
 
     @property

@@ -17,7 +17,7 @@ def seed_pets():
         sex="male",
         breed="german shepherd",
         description="say hi to georgie",
-        vet_info="Pure Paws at Hells Kitchen"
+        vet_info="Pure Paws at Hells Kitchen",
         created_at=today,
         updated_at=today )
 
