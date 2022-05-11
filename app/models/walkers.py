@@ -1,4 +1,5 @@
 from .db import db
+from datetime import datetime 
 
 class Walker(db.Model):
     __tablename__ = 'walkers'
@@ -9,8 +10,8 @@ class Walker(db.Model):
     description = db.Column(db.String(500), nullable=False)
     profile_image = db.Column(db.String, nullable=False)
     location = db.Column(db.String(100), nullable=False)
-    created_at = db.Column(db.Date, nullable=False)
-    updated_at = db.Column(db.Date, nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     reservations = db.relationship("Reservation", back_populates="walkers", cascade="all, delete-orphan")
 

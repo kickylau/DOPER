@@ -1,7 +1,9 @@
 from app.models import db, Pet
+from datetime import date
 
 
 def seed_pets():
+    today = date.today()
     pet1 = Pet(
         user_id=1,
         name="Georgie",
@@ -9,11 +11,11 @@ def seed_pets():
         size=85,
         age_year=2,
         age_month=2,
-        has_microchipped=true,
-        has_spayed=true,
-        has_trained=true,
-        is_friendly_with_children=true,
-        is_friendly_with_dogs=true,
+        has_microchipped=True,
+        has_spayed=True,
+        has_trained=True,
+        is_friendly_with_children=True,
+        is_friendly_with_dogs=True,
         sex="male",
         breed="german shepherd",
         description="say hi to georgie",

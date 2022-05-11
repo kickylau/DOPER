@@ -1,7 +1,9 @@
 from app.models import db, Walker
+from datetime import date
 
 
 def seed_walkers():
+    today = date.today()
     walker1 = Walker(
         name="Jenny G",
         summary="I grow up with German Shepherds!",
