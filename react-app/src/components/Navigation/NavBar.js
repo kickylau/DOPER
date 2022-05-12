@@ -1,9 +1,10 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
-import BookReservationModal from './BookReservationModal';
-import Walkers from './Walker';
+import LogoutButton from '../auth/LogoutButton';
+import BookReservationModal from '../BookReservationModal';
+import CreatePetModal from '../CreatePetModal';
+import Walkers from '../Walker';
 
 const NavBar = () => {
   return (
@@ -40,10 +41,14 @@ const NavBar = () => {
         <li >
           <BookReservationModal />
         </li>
+        <li >
+          <CreatePetModal />
+        </li>
+
         <li>
 
             <Walkers />
-         
+
         </li>
       </ul>
     </nav>

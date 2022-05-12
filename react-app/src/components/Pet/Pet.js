@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 function Pet() {
   const [pet, setPet] = useState({});
   const { petId }  = useParams();
+  console.log("PET", pet)
 
   useEffect(() => {
     if (!petId) {
@@ -24,12 +25,13 @@ function Pet() {
   return (
     <ul>
       <li>
-        <strong>Pet Id</strong> {petId}
+        <strong>Pet Id{petId}</strong>
       </li>
       <li>
-        <strong>Name</strong> {pet.name}
+        <strong>Name{pet.name}</strong>
       </li>
     </ul>
+    
   );
 }
 export default Pet;

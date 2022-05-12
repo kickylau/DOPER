@@ -4,7 +4,8 @@ import { useHistory } from "react-router-dom";
 import Walkers from "./Walker";
 import BookReservationModal from './BookReservationModal';
 import * as reservationActions from "../store/reservation"
-import * as petsActions from "../store/pet"
+import * as petsActions from "../store/pet";
+import CreatePetModal from "./CreatePetModal";
 
 function Home() {
     const dispatch = useDispatch();
@@ -12,13 +13,11 @@ function Home() {
     const sessionUser = useSelector(state => state.session.user);
     const walkersObj = useSelector(state => state.walkers)
     const walkers = Object.values(walkersObj)
-    const pet = useSelector(state => state.pet);
-    const [invitedPetReservations, setinvitedPetReservations] = useState();
 
     useEffect(() => {
         if (!sessionUser) history.push('/')
-             if (sessionUser) dispatch(petsActions.loadAllUserRelatedPets(pet.id))
-        // }, [sessionUser])
+        if (sessionUser) dispatch(reservationActions.loadAllUserRelatedReservations(sessionUser.id))
+    }, [sessionUser])
 
         return (
             <div className="page-container">
@@ -30,10 +29,11 @@ function Home() {
                     )}
                 </div>
                 <BookReservationModal/>
+                <CreatePetModal/>
             </div>
         );
     }
-    )
-}
+
+
 
 export default Home;
