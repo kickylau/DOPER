@@ -55,6 +55,11 @@ function App() {
           <h1>Home Page</h1>
           <Walkers/>
         </ProtectedRoute>
+        {/* <ProtectedRoute path='/walkers' >
+
+          <h1>Home !! Page</h1>
+
+        </ProtectedRoute> */}
 
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />

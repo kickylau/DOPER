@@ -13,7 +13,8 @@ function BookReservationModal() {
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
-    const walker = useSelector(state => state.walker);
+    const walkersObj = useSelector(state => state.walkers)
+    const walkers = Object.values(walkersObj)
     const [userId, setUserId] = useState(sessionUser?.id);
     //const [walkerId, setWalkerId] = useState(walker.id);
     const [taskType, setTaskType] = useState("");
@@ -41,12 +42,12 @@ function BookReservationModal() {
 
     useEffect(() => {
         let errors = [];
-        if (!taskType.length) errors.push("Please choose one task type.")
-        if (!taskLength.length) errors.push("Please choose the task length.")
+         if (!taskType.length) errors.push("Please choose one task type.")
+         if (!taskLength.length) errors.push("Please choose the task length.")
         if (!address.length) errors.push("Please enter an address.")
         if (!comment.length) errors.push("Please leave a message for the dog walker.")
         if (!date.length) errors.push("Please enter a date.")
-        if (!time.length) errors.push("Please enter a time frame.")
+         if (!time.length) errors.push("Please enter a time frame.")
 
         setErrors(errors)
     }, [taskType, taskLength, address, comment, date, time])
@@ -59,7 +60,7 @@ function BookReservationModal() {
         setUserId(sessionUser.id)
         //setWalkerId(walker.id)
         newReservationData.userId = userId
-        newReservationData.walkerId = 1
+        //newReservationData.walkerId = walkers.id
         newReservationData.taskType = taskType
         newReservationData.taskLength = taskLength
         newReservationData.address = address
@@ -97,29 +98,27 @@ function BookReservationModal() {
     // }
 
 
-    const taskSelectItems = [
-        { label: "Dog Walking", value: 1 },
-        { label: "Drop-In Visits", value: 2 },
+    // const taskSelectItems = [
+    //     { label: "Dog Walking", value: 1 },
+    //     { label: "Drop-In Visits", value: 2 },
 
-    ];
+    // ];
 
-    const lengthSelectItems = [
-        { label: "30 Minutes", value: 1 },
-        { label: "60 Minutes", value: 2 },
+    // const lengthSelectItems = [
+    //     { label: "30 Minutes", value: 1 },
+    //     { label: "60 Minutes", value: 2 },
 
-    ];
+    // ];
 
-    const timeSelectItems = [
-        { label: "6:00AM-9:00AM", value: 1 },
-        { label: "9:00AM-12:00PM", value: 2 },
-        { label: "12:00PM-3:00PM", value: 3 },
-        { label: "3:00PM-6:00PM", value: 4 },
-        { label: "6:00PM-9:00PM", value: 5 },
-        { label: "9:00PM-12:00AM", value: 6 },
+    // const timeSelectItems = [
+    //     { label: "6:00AM-9:00AM", value: 1 },
+    //     { label: "9:00AM-12:00PM", value: 2 },
+    //     { label: "12:00PM-3:00PM", value: 3 },
+    //     { label: "3:00PM-6:00PM", value: 4 },
+    //     { label: "6:00PM-9:00PM", value: 5 },
+    //     { label: "9:00PM-12:00AM", value: 6 },
 
-    ];
-
-
+    // ];
 
 
 
@@ -130,7 +129,7 @@ function BookReservationModal() {
 
 
             <button className="BookReservationButton" onClick={() => setShowModal(true)}>
-                Book a Walk
+                Book A Walk Now!
             </button>
             {
                 showModal && (
@@ -149,14 +148,31 @@ function BookReservationModal() {
                                         Please Pick A Task Type:
                                     </label>
                                     {/* <button onClick={onClick}>Will open Select</button> */}
-                                    <Select options={taskSelectItems} onChange={e => setTaskType(e.target.value)}/>
+                                    <select  onChange={e => setTaskType(e.target.value)} value={taskType} >
+                                        <option value="Dog Walking">
+                                            Dog Walking
+                                        </option>
+                                        <option value="Drop-In Visit">
+                                            Drop In Visit
+                                        </option>
+                                    </select>
+                                    {/* onChange={e => setTaskType(e.target.value) }*/}
                                     {/* openMenuOnFocus={true} ref={selectRef} value={selectValue} onChange={handleChange} */}
                                     {/* <SelectButton value={taskType} options={taskSelectItems} onChange={(e) => setValue(e.value)}></SelectButton> */}
                                     {/* <input onChange={e => setTaskType(e.target.value)} type="radio" className="new-task-type" placeholder='Task Type' value={taskType} /> */}
                                     <label className='reservationlabel'>
                                         Please Pick Your Task Length:
                                     </label>
-                                    <Select options={lengthSelectItems} onChange={e => setTaskLength(e.target.value)}/>
+                                    {/* <Select options={lengthSelectItems} /> */}
+                                    <select  onChange={e => setTaskLength(e.target.value)} value={taskLength} >
+                                        <option value="30 Minutes">
+                                            30 Minutes
+                                        </option>
+                                        <option value="60 Minutes">
+                                           60 Minutes
+                                        </option>
+                                    </select>
+                                    {/* onChange={e => setTaskLength(e.target.value)} */}
                                     {/* <SelectButton value={taskLength} options={lengthSelectItems} onChange={(e) => setValue(e.value)}></SelectButton> */}
 
                                     {/* <div>
@@ -194,7 +210,17 @@ function BookReservationModal() {
                                     <label className='reservationlabel'>
                                         Please Pick A Time Frame:
                                     </label>
-                                    <Select options={timeSelectItems} onChange={e => setTime(e.target.value)} />
+                                    {/* <Select options={timeSelectItems}  /> */}
+                                    <select  onChange={e => setTime(e.target.value)} value={time} >
+                                        <option value="6:00AM-9:00AM">
+                                          6-9
+                                        </option>
+                                        <option value="9:00AM-12:00PM">
+                                          9-12
+                                        </option>
+
+                                    </select>
+                                    {/* onChange={e => setTime(e.target.value)} */}
                                     {/* <SelectButton value={time} options={timeSelectItems} onChange={(e) => setValue(e.value)}></SelectButton> */}
                                     {/* <div>
                                         <div className="radio">

@@ -35,11 +35,14 @@ const deleteReservationAction = (id) => {
 
 export const newReservation = (newReservation) => async (dispatch) => {
     const { userId, walkerId, taskType, taskLength, address, comment, date, time } = newReservation
+    console.log("NEW RESERVATION HERE ", newReservation)
     const response = await fetch('/api/reservations/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId, walkerId, taskType, taskLength, address, comment, date, time })
+        body: JSON.stringify( { userId, walkerId, taskType, taskLength, address, comment, date, time })
     });
+
+    console.log("NEW RESERVATION!!!", response)
 
     if (response.ok) {
         const data = await response.json();

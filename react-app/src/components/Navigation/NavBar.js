@@ -44,12 +44,6 @@ const NavBar = () => {
         <li >
           <CreatePetModal />
         </li>
-
-        <li>
-
-            <Walkers />
-
-        </li>
       </ul>
     </nav>
   );
