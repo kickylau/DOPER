@@ -1,6 +1,6 @@
 from flask import Blueprint, request, render_template, redirect
 from ..forms import NewReservation, EditReservation
-from ..models import db, Pet, User, Reservation, Walker, reservation_invites
+from app.models import db, Pet, User, Reservation, Walker, reservation_invites
 from datetime import date
 
 
@@ -21,7 +21,8 @@ def validation_errors_to_error_messages(validation_errors):
 @reservation_routes.route('/', methods=['POST'])
 def reservations():
     form = NewReservation()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    print("..................")
+    #form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_reservation = Reservation(
             user_id=form.data["userId"],
@@ -33,9 +34,10 @@ def reservations():
             date=form.data["date"],
             time=form.data["time"],
         )
+        print("NEW RESERVATION", new_reservation)
         db.session.add(new_reservation)
         db.session.commit()
-        return new_reservation.to_dict
+        return new_reservation.to_dict()
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
