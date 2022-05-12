@@ -1,6 +1,6 @@
 from flask import Blueprint, request, render_template, redirect
 from ..forms import NewReservation, EditReservation
-from app.models import db, Pet, User, Reservation, Walker, reservation_invites
+from ..models import db, Pet, User, Reservation, Walker, reservation_invites
 from datetime import date
 
 
