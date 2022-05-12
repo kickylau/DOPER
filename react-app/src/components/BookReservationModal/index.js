@@ -3,6 +3,9 @@ import { Modal } from "../../context/Modal";
 import { useDispatch, useSelector } from 'react-redux';
 import * as reservationActions from "../../store/reservation"
 import { useHistory } from "react-router-dom";
+import { SelectButton } from 'primereact/selectbutton';
+import Select from 'react-select';
+
 
 
 function BookReservationModal() {
@@ -21,13 +24,18 @@ function BookReservationModal() {
     const [time, setTime] = useState("");
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
-    const [value, setValue] = useState("");
+    const [selectValue, setSelectValue] = useState("");
+    const selectRef = React.useRef();
 
+    const handleChange = (selectValue)=>{
+        setSelectValue(!selectValue);
+    }
 
-    const handleChange = () => {
-        setValue(!value);
-    };
-
+    const onClick = () => {
+        if (selectRef.current){
+            selectRef.current.focus();
+        }
+    }
 
 
 
@@ -78,15 +86,43 @@ function BookReservationModal() {
             });
     }
 
-    const RadioButton = ({ label, value, onChange }) => {
-        return (
-            <label>
-                <input type="radio" checked={value} onChange={onChange} />
-                {label}
-            </label>
-        );
+    // const RadioButton = ({ label, value, onChange }) => {
+    //     return (
+    //         <label>
+    //             <input type="radio" checked={value} onChange={onChange} />
+    //             {label}
+    //         </label>
+    //     );
 
-    }
+    // }
+
+
+    const taskSelectItems = [
+        { label: "Dog Walking", value: 1 },
+        { label: "Drop-In Visits", value: 2 },
+
+    ];
+
+    const lengthSelectItems = [
+        { label: "30 Minutes", value: 1 },
+        { label: "60 Minutes", value: 2 },
+
+    ];
+
+    const timeSelectItems = [
+        { label: "6:00AM-9:00AM", value: 1 },
+        { label: "9:00AM-12:00PM", value: 2 },
+        { label: "12:00PM-3:00PM", value: 3 },
+        { label: "3:00PM-6:00PM", value: 4 },
+        { label: "6:00PM-9:00PM", value: 5 },
+        { label: "9:00PM-12:00AM", value: 6 },
+
+    ];
+
+
+
+
+
 
     return (
 
@@ -108,68 +144,100 @@ function BookReservationModal() {
                                 <ul className="new-reservation-errors">
                                     {hasSubmitted && errors.map((error, idx) => <li key={idx}>{error}</li>)}
                                 </ul>
-                                <label className='reservationlabel'>
-                                    Please Pick A Task Type:
-                                </label>
                                 <div>
+                                    <label className='reservationlabel'>
+                                        Please Pick A Task Type:
+                                    </label>
+                                    {/* <button onClick={onClick}>Will open Select</button> */}
+                                    <Select options={taskSelectItems} />
+                                    {/* openMenuOnFocus={true} ref={selectRef} value={selectValue} onChange={handleChange} */}
+                                    {/* <SelectButton value={taskType} options={taskSelectItems} onChange={(e) => setValue(e.value)}></SelectButton> */}
+                                    {/* <input onChange={e => setTaskType(e.target.value)} type="radio" className="new-task-type" placeholder='Task Type' value={taskType} /> */}
+                                    <label className='reservationlabel'>
+                                        Please Pick Your Task Length:
+                                    </label>
+                                    <Select options={lengthSelectItems} />
+                                    {/* <SelectButton value={taskLength} options={lengthSelectItems} onChange={(e) => setValue(e.value)}></SelectButton> */}
 
-                                    <div className="radio">
-                                        <RadioButton
-                                            label="Dog Walking"
-                                            value={value}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                    <div className="radio">
-                                        <RadioButton
-                                            label="Drop In Visit"
-                                            value={value}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
+                                    {/* <div>
+                                        <div className="radio">
+                                            <RadioButton
+                                                label="30 Minutes"
+                                                value={value}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
 
+
+                                        <div className="radio">
+                                            <RadioButton
+                                                label="60 Minutes"
+                                                value={value}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                    </div> */}
+
+                                    {/* <input onChange={e => setTaskLength(e.target.value)} type="radio" className="new-task-length" placeholder='Task Length' value={taskLength} /> */}
+                                    <label className='reservationlabel'>
+                                        Your Address:
+                                    </label>
+                                    <input onChange={e => setAddress(e.target.value)} type="text" className="new-task-address" placeholder='Address' value={address} />
+                                    <label className='reservationlabel'>
+                                        Message for Dog Walker:
+                                    </label>
+                                    <input onChange={e => setComment(e.target.value)} type="text" className="new-task-comment" placeholder="Comment" value={comment} />
+                                    <label className='reservationlabel'>
+                                        Please Pick A Date:
+                                    </label>
+                                    <input onChange={e => setDate(e.target.value)} type="date" className="new-task-date" value={date} />
+                                    <label className='reservationlabel'>
+                                        Please Pick A Time Frame:
+                                    </label>
+                                    <Select options={timeSelectItems} />
+                                    {/* <SelectButton value={time} options={timeSelectItems} onChange={(e) => setValue(e.value)}></SelectButton> */}
+                                    {/* <div>
+                                        <div className="radio">
+                                            <RadioButton
+                                                label="6:00AM-9:00AM"
+                                                value={value}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+
+
+                                        <div className="radio">
+                                            <RadioButton
+                                                label="9:00AM-12:00PM"
+                                                value={value}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                        <div className="radio">
+                                            <RadioButton
+                                                label="3:00PM-6:00PM"
+                                                value={value}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                        <div className="radio">
+                                            <RadioButton
+                                                label="6:00PM-9:00PM"
+                                                value={value}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                        <div className="radio">
+                                            <RadioButton
+                                                label="9:00PM-12:00AM"
+                                                value={value}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                    </div> */}
+                                    {/* <input onChange={e => setTime(e.target.value)} type="radio" className="new-task-time" value={time} /> */}
+                                    <button id="new-task-submit" type='submit' >Submit</button>
                                 </div>
-                                {/* <input onChange={e => setTaskType(e.target.value)} type="radio" className="new-task-type" placeholder='Task Type' value={taskType} /> */}
-                                <label className='reservationlabel'>
-                                    Please Pick Your Task Length:
-                                </label>
-                                <div>
-                                    <div className="radio">
-                                        <RadioButton
-                                            label="30 Minutes"
-                                            value={value}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-
-
-                                    <div className="radio">
-                                        <RadioButton
-                                            label="60 Minutes"
-                                            value={value}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* <input onChange={e => setTaskLength(e.target.value)} type="radio" className="new-task-length" placeholder='Task Length' value={taskLength} /> */}
-                                <label className='reservationlabel'>
-                                    Your Address:
-                                </label>
-                                <input onChange={e => setAddress(e.target.value)} type="text" className="new-task-address" placeholder='Address' value={address} />
-                                <label className='reservationlabel'>
-                                    Message for Dog Walker:
-                                </label>
-                                <input onChange={e => setComment(e.target.value)} type="text" className="new-task-comment" placeholder="Comment" value={comment} />
-                                <label className='reservationlabel'>
-                                    Please Pick A Date:
-                                </label>
-                                <input onChange={e => setDate(e.target.value)} type="date" className="new-task-date" value={date} />
-                                <label className='reservationlabel'>
-                                    Please Pick A Time Frame:
-                                </label>
-                                <input onChange={e => setTime(e.target.value)} type="radio" className="new-task-time" value={time} />
-                                <button id="new-task-submit" type='submit' >Submit New Reservation</button>
                             </form>
                         </div>
                     </Modal >

@@ -1,5 +1,5 @@
 from .db import db
-from datetime import datetime 
+from datetime import datetime
 
 class Walker(db.Model):
     __tablename__ = 'walkers'
@@ -13,7 +13,7 @@ class Walker(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
-    reservations = db.relationship("Reservation", back_populates="walkers", cascade="all, delete-orphan")
+    reservations = db.relationship("Reservation", back_populates="walkers")
 
 
     @property

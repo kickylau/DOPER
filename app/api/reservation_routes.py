@@ -26,7 +26,6 @@ def reservations():
         new_reservation = Reservation(
             user_id=form.data["userId"],
             walker_id=form.data["walkerId"],
-            pet_id=form.data["petId"],
             task_type=form.data["taskType"],
             task_length=form.data["taskLength"],
             address=form.data["address"],
@@ -73,3 +72,19 @@ def change_reservation(id):
         db.session.delete(reservation)
         db.session.commit()
         return {}
+
+
+
+
+
+#??to check one reservation have all pets
+@reservation_routes.route("/<int:id>/pets", methods=["GET"])
+def reservation_pets(id):
+
+    if request.method == "GET":
+        reservstion = Reservation.query.get(id)
+        all_pets = reservation.invited_pets
+        pets = {}
+        for pet in all_pets:
+            pets[pet.id] = pet.to_dict()
+        return pets

@@ -2,6 +2,10 @@ from flask import Blueprint, request, render_template, redirect
 from flask_login import login_required
 from ..models import db, Pet, Reservation
 
+
+#this route necessary?
+
+
 invited_pets_routes = Blueprint('invited_pets', __name__)
 
 def validation_errors_to_error_messages(validation_errors):
@@ -17,7 +21,6 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 @invited_pets_routes.route('/', methods=["POST"])
-@login_required
 def pets():
     data = request.get_json(force=True)
     reservationId = data["reservsationId"]
@@ -32,7 +35,6 @@ def pets():
         }
 
 @invited_pets_routes.route('/<int:id>/reservations')
-@login_required
 def invited_pet_reservations(id):
     pet = Pet.query.get(id)
     all_reservations = pet.invited_reservations

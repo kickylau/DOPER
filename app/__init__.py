@@ -5,12 +5,13 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 
-from .models import db, User, Walker, Reservation, Pet
+from .models import db, User, Walker, Reservation, Pet, reservation_invites
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.reservation_routes import reservation_routes
 from .api.pet_routes import pet_routes
 from .api.walker_routes import walker_routes
+from .api.invited_pets_routes import invited_pets_routes
 
 from .seeds import seed_commands
 
@@ -37,6 +38,8 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(reservation_routes, url_prefix='/api/reservations')
 app.register_blueprint(pet_routes, url_prefix='/api/pets')
 app.register_blueprint(walker_routes, url_prefix='/api/walkers')
+app.register_blueprint(invited_pets_routes, url_prefix='/api/invited_pets')
+
 
 db.init_app(app)
 Migrate(app, db)
