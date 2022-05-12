@@ -24,13 +24,18 @@ function BookReservationModal() {
     const [time, setTime] = useState("");
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
-    const [value, setValue] = useState("");
+    const [selectValue, setSelectValue] = useState("");
+    const selectRef = React.useRef();
 
+    const handleChange = (selectValue)=>{
+        setSelectValue(!selectValue);
+    }
 
-    const handleChange = () => {
-        setValue(!value);
-    };
-
+    const onClick = () => {
+        if (selectRef.current){
+            selectRef.current.focus();
+        }
+    }
 
 
 
@@ -81,15 +86,15 @@ function BookReservationModal() {
             });
     }
 
-    const RadioButton = ({ label, value, onChange }) => {
-        return (
-            <label>
-                <input type="radio" checked={value} onChange={onChange} />
-                {label}
-            </label>
-        );
+    // const RadioButton = ({ label, value, onChange }) => {
+    //     return (
+    //         <label>
+    //             <input type="radio" checked={value} onChange={onChange} />
+    //             {label}
+    //         </label>
+    //     );
 
-    }
+    // }
 
 
     const taskSelectItems = [
@@ -143,7 +148,9 @@ function BookReservationModal() {
                                     <label className='reservationlabel'>
                                         Please Pick A Task Type:
                                     </label>
+                                    {/* <button onClick={onClick}>Will open Select</button> */}
                                     <Select options={taskSelectItems} />
+                                    {/* openMenuOnFocus={true} ref={selectRef} value={selectValue} onChange={handleChange} */}
                                     {/* <SelectButton value={taskType} options={taskSelectItems} onChange={(e) => setValue(e.value)}></SelectButton> */}
                                     {/* <input onChange={e => setTaskType(e.target.value)} type="radio" className="new-task-type" placeholder='Task Type' value={taskType} /> */}
                                     <label className='reservationlabel'>
