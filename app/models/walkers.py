@@ -16,7 +16,7 @@ class Walker(db.Model):
     reservations = db.relationship("Reservation", back_populates="walkers")
 
 
-    @property
+    # @property
     def to_dict(self):
         return {
             "id": self.id,
