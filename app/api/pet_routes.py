@@ -18,8 +18,16 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 
-@pet_routes.route('/', methods=['POST'])
+@pet_routes.route('/', methods=["GET", 'POST'])
 def pets():
+    if request.method == 'GET':
+        pets = Pet.query.all()
+        if pets:
+            return {"pets": [pet.to_dict() for pet in pets]}
+
+        else:
+            return {'error': ['No Pet Found']}
+
     form = NewPet()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -87,7 +95,7 @@ def change_pet(id):
     if request.method == 'GET':
         pet = Pet.query.get(id)
         if pet:
-            return pet.to_dict
+            return pet.to_dict()
         else:
             return {'error': ['No Pet Found']}
     if request.method == 'PUT':

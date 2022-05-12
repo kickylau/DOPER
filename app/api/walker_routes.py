@@ -18,7 +18,12 @@ def validation_errors_to_error_messages(validation_errors):
 @walker_routes.route('/')
 def walkers():
     walkers = Walker.query.all()
-    return {'walkers': [walker.to_dict() for walker in walkers]}
+    print("WALKERS", walkers)
+    every_walker = {}
+    for walker in walkers:
+        every_walker[walker.id] = walker.to_dict()
+    return every_walker
+    #return {'walkers': [walker.to_dict() for walker in walkers]}
 
 @walker_routes.route('/<int:id>')
 def walker(id):
