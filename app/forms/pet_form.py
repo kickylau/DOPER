@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField, SelectField, BooleanField, DateField
-from wtforms.validators import DataRequired
+from wtforms import StringField, IntegerField, SubmitField, SelectField, BooleanField, DateField, RadioField
+from wtforms.validators import DataRequired, InputRequired
 
 
 class NewPet(FlaskForm):
@@ -13,9 +13,9 @@ class NewPet(FlaskForm):
     hasMicrochipped = BooleanField("Has Microchipped?", validators=[DataRequired()])
     hasSpayed = BooleanField("Has Spayed?", validators=[DataRequired()])
     hasTrained = BooleanField("Has trained?", validators=[DataRequired()])
-    isFriendlyWithChildren = SelectField("Is it friendly with children?", choices=[(1,"Yes"),(2,"No"),(3,"Unsure"),(4,"Depends")], validators=[DataRequired()])
-    isFriendlyWithDogs = SelectField("Is it friendly with other dogs?", choices=[(1,"Yes"),(2,"No"),(3,"Unsure"),(4,"Depends")], validators=[DataRequired()])
-    sex = SelectField("Sex", choices=[(1,"Male"),(2,"Female")], validators=[DataRequired()])
+    isFriendlyWithChildren = SelectField("Is it friendly with children?", choices=[(1,"Yes"),(2,"No"),(3,"Unsure"),(4,"Depends")], coerce=int, validators=[InputRequired()])
+    isFriendlyWithDogs = SelectField("Is it friendly with other dogs?", choices=[(1,"Yes"),(2,"No"),(3,"Unsure"),(4,"Depends")],  coerce=int, validators=[InputRequired()])
+    sex = SelectField("Sex", choices=[(1,"Male"),(2,"Female")], coerce=int, validators=[InputRequired()])
     breed = StringField("Breed", validators=[DataRequired()])
     description = StringField("Description", validators=[DataRequired()])
     vetInfo = StringField("Vet Information", validators=[DataRequired()])
@@ -29,11 +29,11 @@ class EditPet(FlaskForm):
     ageYear = IntegerField("Age(Year)", validators=[DataRequired()])
     ageMonth = IntegerField("Age(Month)", validators=[DataRequired()])
     hasMicrochipped = BooleanField("Has Microchipped?", validators=[DataRequired()])
-    hasSpayed = BooleanField("Has Spayed?)", validators=[DataRequired()])
+    hasSpayed = BooleanField("Has Spayed?", validators=[DataRequired()])
     hasTrained = BooleanField("Has trained", validators=[DataRequired()])
-    isFriendlyWithChildren = SelectField("Is it friendly with children?", choices=[(1,"Yes"),(2,"No"),(3,"Unsure"),(4,"Depends")], validators=[DataRequired()])
-    isFriendlyWithDogs = SelectField("Is it friendly with other dogs?", choices=[(1,"Yes"),(2,"No"),(3,"Unsure"),(4,"Depends")], validators=[DataRequired()])
-    sex = SelectField("Sex", choices=[(1,"Male"),(2,"Female")], validators=[DataRequired()])
+    isFriendlyWithChildren = SelectField("Is it friendly with children?", choices=[(1,"Yes"),(2,"No"),(3,"Unsure"),(4,"Depends")], coerce=int, validators=[InputRequired()])
+    isFriendlyWithDogs = SelectField("Is it friendly with other dogs?", choices=[(1,"Yes"),(2,"No"),(3,"Unsure"),(4,"Depends")],  coerce=int, validators=[InputRequired()])
+    sex = SelectField("Sex", choices=[(1,"Male"),(2,"Female")], coerce=int, validators=[InputRequired()])
     breed = StringField("Breed", validators=[DataRequired()])
     description = StringField("Description", validators=[DataRequired()])
     vetInfo = StringField("Vet Information", validators=[DataRequired()])
