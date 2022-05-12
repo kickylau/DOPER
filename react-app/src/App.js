@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+import SignUpForm from './components/SignUpModal/SignUpForm';
+import NavBar from './components/Navigation/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import Home from './components/Home';
+import Pet from "./components/Pet/Pet";
 import Walkers from './components/Walker';
 //import SplashPage from './components/SplashPage/SplashPage';
 import { authenticate } from './store/session';
@@ -36,6 +37,7 @@ function App() {
         </Route>
         <Route path='/pets' exact={true}>
           <h1>PETS</h1>
+          <Pet/>
         </Route>
 
         <Route path='/sign-up' exact={true}>
