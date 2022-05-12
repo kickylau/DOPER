@@ -6,20 +6,20 @@ from wtforms.validators import DataRequired, InputRequired
 class NewReservation(FlaskForm):
     userId = IntegerField("User", validators=[DataRequired()])
     walkerId = IntegerField("Walker", validators=[DataRequired()])
-    taskType = SelectField("Task Type", choices=[(1,"Dog Walking"),(2,"Drop-In Visits")], coerce=int, validators=[InputRequired()])
-    taskLength = SelectField("Task Length", choices=[(1,"30 minutes"),(2,"60 minutes")], coerce=int, validators=[InputRequired()])
+    taskType = SelectField("Task Type", choices=[(1,"Dog Walking"),(2,"Drop-In Visits")], coerce=int)
+    taskLength = SelectField("Task Length", choices=[(1,"30 minutes"),(2,"60 minutes")], coerce=int)
     address = IntegerField("Address", validators=[DataRequired()])
     comment = IntegerField("Message", validators=[DataRequired()])
     date = DateField("Which Date?", validators=[DataRequired()])
-    time = SelectField("Between What Time?", choices=[(1,"6:00AM-9:00AM"),(2,"9:00AM-12:00PM"),(2,"12:00PM-3:00PM"),(3,"3:00PM-6:00PM"), (4,"6:00PM-9:00PM"), (5,"9:00PM-12:00AM")], coerce=int,validators=[InputRequired()])
+    time = SelectField("Between What Time?", choices=[(1,"6:00AM-9:00AM"),(2,"9:00AM-12:00PM"),(2,"12:00PM-3:00PM"),(3,"3:00PM-6:00PM"), (4,"6:00PM-9:00PM"), (5,"9:00PM-12:00AM")], coerce=int)
     submit = SubmitField("Submit")
 
 
 class EditReservation(FlaskForm):
-    taskType = SelectField("Task Type", choices=[(1,"Dog Walking"),(2,"Drop-In Visits")], coerce=int, validators=[InputRequired()])
-    taskLength = SelectField("Task Length", choices=[(1,"30 minutes"),(2,"60 minutes")], coerce=int, validators=[InputRequired()])
+    taskType = SelectField("Task Type", choices=[(1,"Dog Walking"),(2,"Drop-In Visits")], coerce=int)
+    taskLength = SelectField("Task Length", choices=[(1,"30 minutes"),(2,"60 minutes")], coerce=int)
     address = IntegerField("Address", validators=[DataRequired()])
     comment = IntegerField("Message", validators=[DataRequired()])
     date = DateField("Which Date?", validators=[DataRequired()])
-    time = SelectField("Between What Time?", choices=[(1,"6:00AM-9:00AM"),(2,"9:00AM-12:00PM"),(2,"12:00PM-3:00PM"),(3,"3:00PM-6:00PM"), (4,"6:00PM-9:00PM"), (5,"9:00PM-12:00AM")], coerce=int,validators=[InputRequired()])
+    time = SelectField("Between What Time?", choices=[(1,"6:00AM-9:00AM"),(2,"9:00AM-12:00PM"),(2,"12:00PM-3:00PM"),(3,"3:00PM-6:00PM"), (4,"6:00PM-9:00PM"), (5,"9:00PM-12:00AM")], coerce=int)
     submit = SubmitField("Submit")

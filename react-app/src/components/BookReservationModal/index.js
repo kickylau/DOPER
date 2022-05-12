@@ -149,14 +149,14 @@ function BookReservationModal() {
                                         Please Pick A Task Type:
                                     </label>
                                     {/* <button onClick={onClick}>Will open Select</button> */}
-                                    <Select options={taskSelectItems} />
+                                    <Select options={taskSelectItems} onChange={e => setTaskType(e.target.value)}/>
                                     {/* openMenuOnFocus={true} ref={selectRef} value={selectValue} onChange={handleChange} */}
                                     {/* <SelectButton value={taskType} options={taskSelectItems} onChange={(e) => setValue(e.value)}></SelectButton> */}
                                     {/* <input onChange={e => setTaskType(e.target.value)} type="radio" className="new-task-type" placeholder='Task Type' value={taskType} /> */}
                                     <label className='reservationlabel'>
                                         Please Pick Your Task Length:
                                     </label>
-                                    <Select options={lengthSelectItems} />
+                                    <Select options={lengthSelectItems} onChange={e => setTaskLength(e.target.value)}/>
                                     {/* <SelectButton value={taskLength} options={lengthSelectItems} onChange={(e) => setValue(e.value)}></SelectButton> */}
 
                                     {/* <div>
@@ -194,7 +194,7 @@ function BookReservationModal() {
                                     <label className='reservationlabel'>
                                         Please Pick A Time Frame:
                                     </label>
-                                    <Select options={timeSelectItems} />
+                                    <Select options={timeSelectItems} onChange={e => setTime(e.target.value)} />
                                     {/* <SelectButton value={time} options={timeSelectItems} onChange={(e) => setValue(e.value)}></SelectButton> */}
                                     {/* <div>
                                         <div className="radio">
