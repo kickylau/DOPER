@@ -1,14 +1,18 @@
 import { useDispatch } from "react-redux";
-import { deleteReservation } from '../../store/reservation'
+import { deleteReservation, loadAllUserRelatedReservations } from '../../store/reservation'
 //import './DeleteTrip.css';
 
 function DeleteReservationForm ({ hideModal, reservation }) {
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
+    //similar format for edit 
     e.preventDefault();
       dispatch(deleteReservation(reservation.id))
       //console.log("CHECK ID HERE ------", reservation.id)
+      .then(()=>{
+        dispatch((loadAllUserRelatedReservations()))
+      })
       .then(()=>{
          hideModal()
       })

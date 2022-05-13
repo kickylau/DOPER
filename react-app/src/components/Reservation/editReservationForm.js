@@ -102,22 +102,22 @@ function EditReservationForm({ hideModal, reservation }) {
                     </label>
                     <select onChange={e => setTime(e.target.value)} value={time} >
                         <option value="6:00AM-9:00AM">
-                            6-9am
+                        6:00AM-9:00AM
                         </option>
                         <option value="9:00AM-12:00PM">
-                            9-12
+                        9:00AM-12:00PM
                         </option>
                         <option value="12:00AM-3:00PM">
-                            12-3
+                        12:00AM-3:00PM
                         </option>
                         <option value="3:00PM-6:00PM">
-                            3-6
+                        3:00PM-6:00PM
                         </option>
                         <option value="6:00PM-9:00PM">
-                            6-9
+                        6:00PM-9:00PM
                         </option>
                         <option value="9:00PM-12:00AM">
-                            9pm-12
+                        9:00PM-12:00AM
                         </option>
                     </select>
                     <button id="new-task-submit" type='submit' >Submit</button>

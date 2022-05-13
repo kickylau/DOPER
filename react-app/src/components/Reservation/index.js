@@ -40,6 +40,13 @@ function Reservation() {
   }, [sessionUser]);
 
 
+  useEffect(() => {
+    // (async()=>{
+    console.log("-------- RESERVATION CHANGED -------")
+    console.log("---------",reservations)
+    // })();
+  }, [reservations]);
+
   // useEffect(() => {
   //   setReservation(Object.values(reservationsObj))
   // }, [reservationsObj])
