@@ -16,7 +16,7 @@ function Walkers() {
     const walkersObj = useSelector(state => state.walkers)
     const walkers = Object.values(walkersObj)
 
-    console.log("walker!!!", walkers)
+    //console.log("walker!!!", walkers)
 
     const [showBookModal, setShowBookModal] = useState(false)
 
@@ -33,9 +33,9 @@ function Walkers() {
     return (
 
         <>
-            {walkers?.map(walker => (
+            {walkers && walkers.map(walker => (
 
-                <div className="walker-container">
+                <div key={walker.id} className="walker-container">
 
                     <h2 className="walker-name">{walker.name}</h2>
                     <h3 className="walker-summary">{walker.summary}</h3>
@@ -48,7 +48,7 @@ function Walkers() {
                         {/* <button className="reserve-button" onClick={() => setShowBookModal(true)}>BOOK</button>
                         {showBookModal && ( */}
 
-                                <BookReservationModal hideModal={() => setShowBookModal(false)} walkers={walkers} />
+                                <BookReservationModal hideModal={() => setShowBookModal(false)} walker={walker} />
 
                         {/*  )} */}
                     </div>

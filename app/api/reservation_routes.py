@@ -21,8 +21,9 @@ def validation_errors_to_error_messages(validation_errors):
 @reservation_routes.route('/', methods=['POST'])
 def reservations():
     form = NewReservation()
-    print("..................")
+    #print("..................")
     form['csrf_token'].data = request.cookies['csrf_token']
+    #print("FORM OF THE WALKER ID-----------------------------", form.data)
     if form.validate_on_submit():
         new_reservation = Reservation(
             user_id=form.data["userId"],
