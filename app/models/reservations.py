@@ -25,7 +25,7 @@ class Reservation(db.Model):
 
     #secondary should be tne jointable name
 
-    @property
+    #@property
     #If use property do not invoke to_dict(!!)
     def to_dict(self):
         return {

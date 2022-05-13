@@ -16,7 +16,7 @@ function Home() {
 
     useEffect(() => {
         if (!sessionUser) history.push('/')
-        if (sessionUser) dispatch(reservationActions.loadAllUserRelatedReservations(sessionUser.id))
+        //if (sessionUser) dispatch(reservationActions.loadAllUserRelatedReservations(sessionUser.id))
     }, [sessionUser])
 
         return (

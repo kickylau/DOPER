@@ -18,29 +18,39 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 
-@reservation_routes.route('/', methods=['POST'])
+@reservation_routes.route('/', methods=["GET", 'POST'])
 def reservations():
-    form = NewReservation()
-    #print("..................")
-    form['csrf_token'].data = request.cookies['csrf_token']
-    #print("FORM OF THE WALKER ID-----------------------------", form.data)
-    if form.validate_on_submit():
-        new_reservation = Reservation(
-            user_id=form.data["userId"],
-            walker_id=form.data["walkerId"],
-            task_type=form.data["taskType"],
-            task_length=form.data["taskLength"],
-            address=form.data["address"],
-            comment=form.data["comment"],
-            date=form.data["date"],
-            time=form.data["time"],
-        )
-        print("NEW RESERVATION", new_reservation)
-        db.session.add(new_reservation)
-        db.session.commit()
-        return new_reservation.to_dict
-    else:
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    if request.method == 'GET':
+        reservations = Reservation.query.all()
+        if reservations:
+            return {"reservations": [reservation.to_dict() for reservation in reservations]}
+            #return reservation.to_dict
+        #else:
+        #FOR GET, DONT RETURN ANY ERROR SINCE NO AVAILABLE RESERVATION 
+            #return {'error': ['No Reservation Found']}
+
+    if request.method == "POST":
+        form = NewReservation()
+        #print("..................")
+        form['csrf_token'].data = request.cookies['csrf_token']
+        #print("FORM OF THE WALKER ID-----------------------------", form.data)
+        if form.validate_on_submit():
+            new_reservation = Reservation(
+                user_id=form.data["userId"],
+                walker_id=form.data["walkerId"],
+                task_type=form.data["taskType"],
+                task_length=form.data["taskLength"],
+                address=form.data["address"],
+                comment=form.data["comment"],
+                date=form.data["date"],
+                time=form.data["time"],
+            )
+            #print("NEW RESERVATION", new_reservation)
+            db.session.add(new_reservation)
+            db.session.commit()
+            return new_reservation.to_dict()
+        else:
+            return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 
@@ -70,7 +80,8 @@ def change_reservation(id):
             return reservation.to_dict
         else:
             return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-    else:
+
+    if request.method == "DELETE":
         reservation = Reservation.query.get(id)
         db.session.delete(reservation)
         db.session.commit()

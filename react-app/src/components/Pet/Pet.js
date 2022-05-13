@@ -16,15 +16,7 @@ function Pet() {
 
   const dispatch = useDispatch()
 
-  // const showPets = () => {
-  //   const allPets = {}
 
-
-  //   dispatch(petActions.loadAllPets(allPets))
-
-
-
-  // }
 
 
   useEffect(()=>{
