@@ -5,12 +5,14 @@ import { deleteReservation } from '../../store/reservation'
 function DeleteReservationForm ({ hideModal, reservation }) {
   const dispatch = useDispatch();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
       dispatch(deleteReservation(reservation.id))
       //console.log("CHECK ID HERE ------", reservation.id)
+      .then(()=>{
+         hideModal()
+      })
 
-      hideModal();
   }
   const handleCancelClick = (e) => {
     e.preventDefault()

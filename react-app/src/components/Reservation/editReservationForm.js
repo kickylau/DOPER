@@ -66,7 +66,6 @@ function EditReservationForm({ hideModal, reservation }) {
                     <label className='reservationlabel'>
                         Please Pick A Task Type:
                     </label>
-                    {/* <button onClick={onClick}>Will open Select</button> */}
                     <select onChange={e => setTaskType(e.target.value)} value={taskType} >
                         <option value="Dog Walking">
                             Dog Walking

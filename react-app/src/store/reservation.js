@@ -73,12 +73,13 @@ export const loadAllUserRelatedReservations = () => async (dispatch) => {
 // }
 
 export const editReservation = (editedReservation) => async (dispatch) => {
+    const { userId, walkerId, taskType, taskLength, address, comment, date, time } = editedReservation
     const id = parseInt(editedReservation.id, 10)
     console.log("SO WHAT IS THIS EDIT RESERVAITON ID HERE ", id )
     const res = await fetch(`/api/reservations/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(editedReservation)
+    body: JSON.stringify({ userId, walkerId, taskType, taskLength, address, comment, date, time })
     });
 
     if(res.ok) {
@@ -96,7 +97,8 @@ export const deleteReservation = (id) => async (dispatch) => {
     })
 
     if(res.ok) {
-        dispatch(deleteReservationAction(id))
+        console.log("\n\n\n\n\n\n\n DISPATCH THE REDUCER HERE V------------\n\n\n\n\n"  )
+        await dispatch(deleteReservationAction(id))
     }
 }
 
@@ -131,7 +133,7 @@ const reservationsReducer = (state = initialState, action) => {
         case DELETE_RESERVATION:
             console.log("THIS IS THE DELETE REDUCER --------", action.payload)
             delete newState[action.payload]
-            return newState
+            return {...newState }
         default:
             return state;
     }

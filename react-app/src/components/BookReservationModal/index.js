@@ -149,11 +149,10 @@ function BookReservationModal({walker}) {
                                     {hasSubmitted && errors.map((error, idx) => <li key={idx}>{error}</li>)}
                                 </ul>
                                 <div>
-                                    <h1>THIS IS WALKER ID: {walker?.id}</h1>
+                                    {/* <h1>THIS IS WALKER ID: {walker?.id}</h1> */}
                                     <label className='reservationlabel'>
                                         Please Pick A Task Type:
                                     </label>
-                                    {/* <button onClick={onClick}>Will open Select</button> */}
                                     <select  onChange={e => setTaskType(e.target.value)} value={taskType} >
                                         <option value="Dog Walking">
                                             Dog Walking

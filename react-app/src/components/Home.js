@@ -19,6 +19,13 @@ function Home() {
         //if (sessionUser) dispatch(reservationActions.loadAllUserRelatedReservations(sessionUser.id))
     }, [sessionUser])
 
+    useEffect(() => {
+        // (async()=>{
+        if (sessionUser) dispatch(reservationActions.loadAllUserRelatedReservations());
+        // })();
+      }, [sessionUser]);
+
+      
         return (
             <div className="page-container">
                 <h1 className="all-walkers"> All Walkers !!!!!</h1>

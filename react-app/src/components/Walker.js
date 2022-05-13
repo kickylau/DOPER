@@ -5,6 +5,7 @@ import { Modal } from "../context/Modal"
 import { useParams } from 'react-router-dom';
 import BookReservationModal from "./BookReservationModal";
 import * as walkersActions from "../store/walker";
+import * as reservationActions from "../store/reservation";
 
 
 
@@ -28,6 +29,8 @@ function Walkers() {
     useEffect(() => {
         dispatch(walkersActions.loadAllWalkers())
     }, [dispatch])
+
+ 
 
 
     return (
