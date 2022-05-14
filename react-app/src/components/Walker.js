@@ -1,23 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { Modal } from "../context/Modal"
 import { useParams } from 'react-router-dom';
 import BookReservationModal from "./BookReservationModal";
+import * as walkersActions from "../store/walker";
+import * as reservationActions from "../store/reservation";
+
 
 
 
 function Walkers() {
     const history = useHistory()
+    const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user);
-    //const {id} = useParams()
+    const walkersObj = useSelector(state => state.walkers)
+    const walkers = Object.values(walkersObj)
 
-
-    // const [walker, setWalker] = useState({});
-    // const { walkerId } = useParams();
-    const walkers = useSelector(state => state.walker)
-    console.log("walker", walkers)
-    //const walker = walkers.find(walkerObj => walkerObj.id === +id)
+    //console.log("walker!!!", walkers)
 
     const [showBookModal, setShowBookModal] = useState(false)
 
@@ -25,47 +25,39 @@ function Walkers() {
         if (!sessionUser) history.push('/')
     }, [sessionUser])
 
-   //console.log(currentWalker);
+
+    useEffect(() => {
+        dispatch(walkersActions.loadAllWalkers())
+    }, [dispatch])
+
+ 
 
 
     return (
+
         <>
-        <div className="walker-container">
+            {walkers && walkers.map(walker => (
 
-            <h2 className="walker-name">HEY</h2>
-            <h3 className="walker-summary">"HI"</h3>
-            <h4 className="walker-description">"Jenny G"</h4>
-            <h5 className="walker-image">"Jenny G"</h5>
-            <h5 className="walker-location">"Jenny G"</h5>
+                <div key={walker.id} className="walker-container">
 
-
-            <div>
-                <button className="reserve-button" onClick={e => setShowBookModal(!showBookModal)}>BOOK</button>
-                {showBookModal && (
-                    <Modal onClose={() => setShowBookModal(false)}>
-                        <BookReservationModal hideModal={() => setShowBookModal(false)} walkers={walkers} />
-                    </Modal>
-                )}
-            </div>
-        </div>
-        <div className="walker-container">
-            <h2 className="walker-name">Jenny G</h2>
-            <h3 className="walker-summary">"HI"</h3>
-            <h4 className="walker-description">"Jenny G"</h4>
-            <h5 className="walker-image">"Jenny G"</h5>
-            <h5 className="walker-location">"Jenny G"</h5>
+                    <h2 className="walker-name">{walker.name}</h2>
+                    <h3 className="walker-summary">{walker.summary}</h3>
+                    <h4 className="walker-description">{walker.description}</h4>
+                    {/* <h5 className="walker-image">"Jenny G"</h5> */}
+                    <h5 className="walker-location">{walker.locaiton}</h5>
 
 
-            <div>
-                <button className="reserve-button" onClick={e => setShowBookModal(!showBookModal)}>BOOK</button>
-                {showBookModal && (
-                    <Modal onClose={() => setShowBookModal(false)}>
-                        <BookReservationModal hideModal={() => setShowBookModal(false)} walkers={walkers} />
-                    </Modal>
-                )}
-            </div>
-        </div>
-</>
+                    <div>
+                        {/* <button className="reserve-button" onClick={() => setShowBookModal(true)}>BOOK</button>
+                        {showBookModal && ( */}
+
+                                <BookReservationModal hideModal={() => setShowBookModal(false)} walker={walker} />
+
+                        {/*  )} */}
+                    </div>
+                </div>
+            ))}
+        </>
     )
 }
 

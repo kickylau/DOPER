@@ -7,7 +7,7 @@ class Walker(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     summary = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(500), nullable=False)
+    description = db.Column(db.String(1000), nullable=False)
     profile_image = db.Column(db.String, nullable=False)
     location = db.Column(db.String(100), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
@@ -16,7 +16,7 @@ class Walker(db.Model):
     reservations = db.relationship("Reservation", back_populates="walkers")
 
 
-    @property
+    # @property
     def to_dict(self):
         return {
             "id": self.id,

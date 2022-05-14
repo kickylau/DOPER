@@ -1,4 +1,3 @@
-
 const LOAD_ALL_WALKERS = "walker/loadAllWalkers"
 const LOAD_SINGLE_WALKER = "walker/loadSingleWalker"
 
@@ -38,6 +37,7 @@ export const newWalker = (newWalker) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
+        console.log("DATA", data)
         dispatch(addWalker(data))
     } else if (response.status < 500) {
         const data = await response.json();
@@ -45,8 +45,9 @@ export const newWalker = (newWalker) => async (dispatch) => {
     } else return ['An error occurred. Please try again.']
 }
 
-export const loadAllWalkers = (walkerId) => async (dispatch) => {
+export const loadAllWalkers = () => async (dispatch) => {
     const res = await fetch(`/api/walkers/`)
+    console.log("RES----------",res)
     if (res.ok) {
         const walkers = await res.json();
         dispatch(loadWalkers(walkers))
@@ -57,7 +58,7 @@ export const loadAllWalkers = (walkerId) => async (dispatch) => {
 
 export const loadAWalker = (id) => async (dispatch) => {
     const res = await fetch(`/api/walkers/${id}`);
-
+    console.log("walker id", id)
     if (res.ok) {
         const data = await res.json();
         if (data.errors) return data.errors

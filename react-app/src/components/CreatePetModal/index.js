@@ -14,7 +14,7 @@ function CreatePetModal() {
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const [userId, setUserId] = useState(sessionUser?.id);
-    const pet = useSelector(state => state.pet);
+    //const pet = useSelector(state => state.pet);
     //const [petId, setPetId] = useState(pet.id);
     const [name, setName] = useState("");
     const [profileImage, setProfileImage] = useState("");
@@ -76,8 +76,8 @@ function CreatePetModal() {
         if (errors.length > 0) return;
 
         const newPetData = {};
+        setUserId(sessionUser.id)
         //setPetId(pet.id)
-
         newPetData.userId = userId
 =       newPetData.name = name
         newPetData.profileImage = profileImage
@@ -126,30 +126,30 @@ function CreatePetModal() {
 
 
 
-    const childrenSelectItems = [
-        { label: "Yes", value: 1 },
-        { label: "No", value: 2 },
-        { label: "Unsure", value: 3 },
-        { label: "Depends", value: 4 }
+    // const childrenSelectItems = [
+    //     { label: "Yes", value: 1 },
+    //     { label: "No", value: 2 },
+    //     { label: "Unsure", value: 3 },
+    //     { label: "Depends", value: 4 }
 
-    ];
+    // ];
 
-    const dogSelectItems = [
-        { label: "Yes", value: 1 },
-        { label: "No", value: 2 },
-        { label: "Unsure", value: 3 },
-        { label: "Depends", value: 4 }
-
-
-    ];
+    // const dogSelectItems = [
+    //     { label: "Yes", value: 1 },
+    //     { label: "No", value: 2 },
+    //     { label: "Unsure", value: 3 },
+    //     { label: "Depends", value: 4 }
 
 
-    const sexSelectItems = [
-        { label: "Male", value: 1 },
-        { label: "Female", value: 2 }
+    // ];
 
 
-    ];
+    // const sexSelectItems = [
+    //     { label: "Male", value: 1 },
+    //     { label: "Female", value: 2 }
+
+
+    // ];
 
 
 
@@ -209,15 +209,15 @@ function CreatePetModal() {
                                     <label className='petlabel'>
                                         Is it friendly with children?
                                     </label>
-                                    <Select options={childrenSelectItems} />
+                                    {/* <Select options={childrenSelectItems} /> */}
                                     <label className='petlabel'>
                                         Is it friendly with dogs?
                                     </label>
-                                    <Select options={dogSelectItems} />
+                                    {/* <Select options={dogSelectItems} /> */}
                                     <label className='petlabel'>
                                         Sex:
                                     </label>
-                                    <Select options={sexSelectItems} />
+                                    {/* <Select options={sexSelectItems} /> */}
                                     <label className='petlabel'>
                                        Breed:
                                     </label>

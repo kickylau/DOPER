@@ -28,7 +28,7 @@ class Pet(db.Model):
 
     invited_reservations = db.relationship("Reservation", secondary=reservation_invites, back_populates="invited_pets")
 
-    @property
+    # @property
     def to_dict(self):
         return {
             "id": self.id,

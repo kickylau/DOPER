@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import Home from './components/Home';
+import Reservation from "./components/Reservation";
 import Pet from "./components/Pet/Pet";
 import Walkers from './components/Walker';
 //import SplashPage from './components/SplashPage/SplashPage';
@@ -32,6 +33,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -46,15 +48,20 @@ function App() {
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
-        <ProtectedRoute path='/reservations' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-
+        <Route path='/reservations' exact={true} >
+          <Reservation/>
+        </Route>
         <ProtectedRoute path='/Home' >
           {/* <Home/> */}
           <h1>Home Page</h1>
           <Walkers/>
         </ProtectedRoute>
+        {/* <ProtectedRoute path='/walkers' >
+
+          <h1>Home !! Page</h1>
+
+        </ProtectedRoute> */}
+
 
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />

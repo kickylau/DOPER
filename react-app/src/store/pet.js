@@ -1,7 +1,8 @@
 
-const LOAD_ALL_USER_RELATED_PETS = "pet/loadAllUserRelatedPets"
+//const LOAD_ALL_USER_RELATED_PETS = "pet/loadAllUserRelatedPets"
 const LOAD_SINGLE_PET = "pet/loadSinglePet"
 const DELETE_PET = "pet/deletePet"
+const LOAD_ALL_PETS = "pet/loadAllPets"
 
 // CONSTANTS display text in actions log
 /////////////////////////////////////////
@@ -15,12 +16,23 @@ const addPet = (pet) => {
     };
 }
 
-const loadPets = (pets) => {
+// const loadPets = (pets) => {
+//     return {
+//         type: LOAD_ALL_USER_RELATED_PETS,
+//         payload: pets
+//     };
+// };
+
+
+const loadAllThePets = (pets) => {
     return {
-        type: LOAD_ALL_USER_RELATED_PETS,
+        type: LOAD_ALL_PETS,
         payload: pets
-    };
-};
+    }
+}
+
+
+
 
 const deletePet = (id) => {
     return {
@@ -51,11 +63,20 @@ export const newPet = (newPet) => async (dispatch) => {
     } else return ['An error occurred. Please try again.']
 }
 
-export const loadAllUserRelatedPets = (petId) => async (dispatch) => {
-    const res = await fetch(`/api/pets/${petId}`)
+//COULD BE WRONG
+// export const loadAllUserRelatedPets = (petId) => async (dispatch) => {
+//     const res = await fetch(`/api/pets/${petId}`)
+//     if (res.ok) {
+//         const pets = await res.json();
+//         dispatch(loadPets(pets))
+//     }
+// }
+
+export const loadAllPets = () => async (dispatch) => {
+    const res = await fetch(`/api/pets/`)
     if (res.ok) {
         const pets = await res.json();
-        dispatch(loadPets(pets))
+        dispatch(loadAllThePets(pets))
     }
 }
 
@@ -100,8 +121,11 @@ const petsReducer = (state = initialState, action) => {
         case LOAD_SINGLE_PET:
             newState[action.payload.id] = action.payload
             return newState
-        case LOAD_ALL_USER_RELATED_PETS:
-            newState = action.payload
+        // case LOAD_ALL_USER_RELATED_PETS:
+        //     newState = action.payload
+        //     return newState
+        case LOAD_ALL_PETS:
+            newState = action.payload.pets
             return newState
         case DELETE_PET:
             delete newState[action.payload]
