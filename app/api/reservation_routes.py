@@ -26,7 +26,7 @@ def reservations():
             return {"reservations": [reservation.to_dict() for reservation in reservations]}
             #return reservation.to_dict
         #else:
-        #FOR GET, DONT RETURN ANY ERROR SINCE NO AVAILABLE RESERVATION 
+        #FOR GET, DONT RETURN ANY ERROR SINCE NO AVAILABLE RESERVATION
             #return {'error': ['No Reservation Found']}
 
     if request.method == "POST":
@@ -77,7 +77,7 @@ def change_reservation(id):
 
             db.session.add(reservation)
             db.session.commit()
-            return reservation.to_dict
+            return reservation.to_dict()
         else:
             return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

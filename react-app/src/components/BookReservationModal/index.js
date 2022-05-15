@@ -22,12 +22,12 @@ function BookReservationModal({walker}) {
     //console.log("walkers", walkers)
     const [userId, setUserId] = useState(sessionUser?.id);
     const [walkerId, setWalkerId] = useState(walker?.id);
-    const [taskType, setTaskType] = useState("");
-    const [taskLength, setTaskLength] = useState("");
+    const [taskType, setTaskType] = useState("Dog Walking");
+    const [taskLength, setTaskLength] = useState("30 Minutes");
     const [address, setAddress] = useState("");
     const [comment, setComment] = useState("");
     const [date, setDate] = useState("");
-    const [time, setTime] = useState("");
+    const [time, setTime] = useState("6:00AM-9:00AM");
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [selectValue, setSelectValue] = useState("");
@@ -218,22 +218,22 @@ function BookReservationModal({walker}) {
                                     {/* <Select options={timeSelectItems}  /> */}
                                     <select  onChange={e => setTime(e.target.value)} value={time} >
                                         <option value="6:00AM-9:00AM">
-                                          6-9am
+                                          6:00AM-9:00AM
                                         </option>
                                         <option value="9:00AM-12:00PM">
-                                          9-12
+                                          9:00AM-12:00PM
                                         </option>
-                                        <option value="12:00AM-3:00PM">
-                                          12-3
+                                        <option value="12:00PM-3:00PM">
+                                          12:00PM-3:00OM
                                         </option>
                                         <option value="3:00PM-6:00PM">
-                                          3-6
+                                          3:00PM-6:00PM
                                         </option>
                                         <option value="6:00PM-9:00PM">
-                                          6-9
+                                          6:00PM-9:00PM
                                         </option>
                                         <option value="9:00PM-12:00AM">
-                                          9pm-12
+                                          9:00PM-12:00AM
                                         </option>
 
 
