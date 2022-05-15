@@ -5,8 +5,8 @@ import { deleteReservation, loadAllUserRelatedReservations } from '../../store/r
 function DeleteReservationForm ({ hideModal, reservation }) {
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
-    //similar format for edit 
+  const handleSubmit = async (e) => {
+    //similar format for edit
     e.preventDefault();
       dispatch(deleteReservation(reservation.id))
       //console.log("CHECK ID HERE ------", reservation.id)

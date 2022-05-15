@@ -53,9 +53,10 @@ function Pet() {
      {/* <h3>{pet.profileImage}</h3> */}
      <h4>Size: {pet.size} pounds </h4>
      <h5>Age: {pet.ageYear} Years {pet.ageMonth} Months</h5>
-     <h6> Is it microchipped? {pet.hasMicrochipped ? "True":"False"} </h6>
-     <h6> Is it spayed? {pet.hasSpayed ? "True":"False"} </h6>
-     <h6> Is it trained? {pet.hasTrained ? "True":"False"} </h6>
+     <h6> Is it microchipped? {pet.hasMicrochipped } </h6>
+     <h6> Is it spayed? {pet.hasSpayed } </h6>
+     <h6> Is it trained? {pet.hasTrained } </h6>
+     {/* ? "True":"False" */}
      <h6> Is it friendly with children? {pet.isFriendlyWithChildren} </h6>
      <h6> Is it friendly with dogs? {pet.isFriendlyWithDogs}</h6>
      <h6> Sex: {pet.sex}</h6>

@@ -60,7 +60,7 @@ def change_reservation(id):
     if request.method == 'GET':
         reservation = Reservation.query.get(id)
         if reservation:
-            return reservation.to_dict
+            return reservation.to_dict()
         else:
             return {'error': ['No Reservation Found']}
     if request.method == 'PUT':
