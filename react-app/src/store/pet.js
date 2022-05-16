@@ -99,7 +99,7 @@ export const editPet = (editedPet) => async (dispatch) => {
 export const removePet = (idString) => async (dispatch) => {
     const id = parseInt(idString, 10)
     console.log("THIS IS THE PET ID -----", id)
-    const res = await fetch(`/api/pet/${id}`, {
+    const res = await fetch(`/api/pets/${id}`, {
         method: 'DELETE',
     })
 
