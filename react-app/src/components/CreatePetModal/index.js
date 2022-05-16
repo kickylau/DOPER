@@ -54,9 +54,9 @@ function CreatePetModal() {
         let errors = [];
         if (!name.length) errors.push("Please enter your pet name.")
         if (!(profileImage.match(url))) errors.push("Please enter a valid Image URL.")
-        if (!size.length) errors.push("Please enter your pet size.")
-        if (!ageYear.length) errors.push("Please enter your pet age.")
-        if (!ageMonth.length) errors.push("Please enter your pet age.")
+        if (size.length === 0) errors.push("Please enter your pet size and it should be above 0.")
+        if (!ageYear.length) errors.push("Please enter your pet age and it should not be nagative.")
+        if (!ageMonth.length) errors.push("Please enter your pet age and it should not be negative.")
         if (!hasMicrochipped.length) errors.push("Please respond microchip question.")
         if (!hasSpayed.length) errors.push("Please respond spay question")
         if (!hasTrained.length) errors.push("Please respond training question")
@@ -187,15 +187,15 @@ function CreatePetModal() {
                                     <label className='petlabel'>
                                         Pet Size:
                                     </label>
-                                    <input onChange={e => setSize(e.target.value)} type="number" className="new-pet-size" placeholder='Size' value={size} />
+                                    <input onChange={e => setSize(e.target.value)} type="number" className="new-pet-size" placeholder='Size' value={size && Math.max(0,size)} />
                                     <label className='petlabel'>
                                        Your Dog Age in Year:
                                     </label>
-                                    <input onChange={e => setAgeYear(e.target.value)} type="number" className="new-pet-age-year" placeholder="Age Year" value={ageYear} />
+                                    <input onChange={e => setAgeYear(e.target.value)} type="number" className="new-pet-age-year" placeholder="Age Year" value={ageYear && Math.max(0,ageYear)} />
                                     <label className='petlabel'>
                                        Your Dog Age in Month:
                                     </label>
-                                    <input onChange={e => setAgeMonth(e.target.value)} type="number" className="new-pet-age-month" placeholder="Age Month" value={ageMonth} />
+                                    <input onChange={e => setAgeMonth(e.target.value)} type="number" className="new-pet-age-month" placeholder="Age Month" value={ageMonth && Math.max(0,ageMonth)} />
                                     <label className='petlabel'>
                                         Is it microchipped?
                                     </label>
