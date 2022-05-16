@@ -60,7 +60,7 @@ function Pet() {
 
   return (
     <>
-          <h1> All Pet Profiles </h1>
+          <h1> All Pet Profiles! </h1>
 
       {pets?.map(pet => (
         <>
