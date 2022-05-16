@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect} from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { Modal } from "../../context/Modal"
 import { useParams } from 'react-router-dom';
@@ -9,6 +9,7 @@ import DeleteReservationForm from "./deleteReservationForm";
 import EditReservationForm from "./editReservationForm";
 import * as reservationActions from "../../store/reservation";
 import * as petActions from "../../store/pet";
+import BookReservationModal from "../BookReservationModal";
 
 //import "./TripCard.css";
 
@@ -75,6 +76,11 @@ function Reservation() {
   // }
 
 
+  const routeChange = () => {
+    let path = "/home";
+    history.push(path);
+  }
+
   return (
     <>
       <h1> All Reservations </h1>
@@ -109,6 +115,13 @@ function Reservation() {
         </>
       )
       }
+      {(reservations.length === 0) &&
+                <div className="trip-container">
+                    <h3 id="no-trip">Oops You have no current available reservations</h3>
+                    {/* <img id="trip-image" src="/static/travel.png" alt="Where to?" className="image"/> */}
+                    <button onClick={routeChange}> Make a reservation now!</button>
+                </div>
+                }
     </>
   )
 }
