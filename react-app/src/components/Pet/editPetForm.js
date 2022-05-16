@@ -34,9 +34,9 @@ function EditPetForm({ hideModal, pet }) {
         let errors = [];
         if (!name.length) errors.push("Please edit your pet name.")
         if (!profileImage.length) errors.push("Please choose your pet image.")
-        if (!size.length) errors.push("Please enter your pet weight.")
-        if (!ageYear.length) errors.push("Please enter your pet age in year.")
-        if (!ageMonth.length) errors.push("Please enter your pet age in month.")
+        if (size.length === 0) errors.push("Please enter your pet weight.")
+        if (ageYear.length === 0) errors.push("Please enter your pet age in year.")
+        if (ageMonth.length === 0) errors.push("Please enter your pet age in month.")
         if (!hasSpayed.length) errors.push("Please enter if you pet has spayed.")
         if (!hasMicrochipped.length) errors.push("Please enter if you pet has microchipped.")
         if (!hasTrained.length) errors.push("Please enter if your pet has trained.")
