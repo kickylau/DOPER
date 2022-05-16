@@ -21,35 +21,47 @@ function Pet() {
   const [showEditModal, setShowEditModal] = useState(false)
 
 
-
+  useEffect(() => {
+    if (!sessionUser) history.push('/')
+  }, [sessionUser])
 
   useEffect(() => {
-    (async () => {
-      await dispatch(petActions.loadAllPets());
-    })();
+    // (async () => {
+      if (sessionUser) dispatch(petActions.loadAllPets());
+    // })();
 
-  }, [dispatch]);
-
-
+  }, [sessionUser]);
 
   useEffect(() => {
-    if (!petId) {
-      return;
-    }
-    (async () => {
-      const response = await fetch(`/api/pets/${petId}`);
-      const pet = await response.json();
-      setPet(pet);
-      //console.log(pet)
-    })();
-  }, [petId]);
+    // (async()=>{
+    //console.log("-------- RESERVATION CHANGED -------")
+    //console.log("---------",reservations)
+    // })();
+  }, [pets]);
 
-  if (!pet) {
-    return null;
-  }
+
+
+
+  // useEffect(() => {
+  //   if (!petId) {
+  //     return;
+  //   }
+  //   (async () => {
+  //     const response = await fetch(`/api/pets/${petId}`);
+  //     const pet = await response.json();
+  //     setPet(pet);
+  //     //console.log(pet)
+  //   })();
+  // }, [petId]);
+
+  // if (!pet) {
+  //   return null;
+  // }
 
   return (
     <>
+          <h1> All Pet Profiles </h1>
+
       {pets?.map(pet => (
         <>
 
