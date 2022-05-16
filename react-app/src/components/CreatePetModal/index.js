@@ -19,7 +19,6 @@ function CreatePetModal() {
     const [name, setName] = useState("");
     const [profileImage, setProfileImage] = useState("");
     const [size, setSize] = useState("");
-    //const [comment, setComment] = useState("");
     const [ageYear, setAgeYear] = useState("");
     const [ageMonth, setAgeMonth] = useState("");
     const [hasMicrochipped, setHasMicrochipped] = useState("Yes");
@@ -65,7 +64,6 @@ function CreatePetModal() {
         if (!isFriendlyWithDogs.length) errors.push("Please respond if hang along with dogs")
         if (!sex.length) errors.push("Please enter your pet sexuality.")
         if (!breed.length) errors.push("Please enter your pet breed.")
-        //if (!comment.length) errors.push("Please leave a comment.")
         if (!description.length) errors.push("Please leave a description for your dog.")
         if (!vetInfo.length) errors.push("Please leave any vet information.")
 
@@ -101,7 +99,6 @@ function CreatePetModal() {
                 setName("");
                 setProfileImage("");
                 setSize("");
-                //setComment("");
                 setAgeYear("");
                 setAgeMonth("");
                 setHasMicrochipped("");

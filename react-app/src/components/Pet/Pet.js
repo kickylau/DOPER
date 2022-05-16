@@ -8,7 +8,7 @@ import EditPetForm from './editPetForm';
 import * as petActions from "../../store/pet";
 
 function Pet() {
-  const [pet, setPet] = useState({});
+  //const [pet, setPet] = useState({});
   const { petId } = useParams();
   const history = useHistory()
   const sessionUser = useSelector(state => state.session.user);
