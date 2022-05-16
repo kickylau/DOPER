@@ -131,7 +131,7 @@ const reservationsReducer = (state = initialState, action) => {
             newState = action.payload.reservations
             return newState
         case DELETE_RESERVATION:
-            //console.log("THIS IS THE DELETE REDUCER --------", action.payload)
+            console.log("THIS IS THE DELETE REDUCER --------", action.payload)
             delete newState[action.payload]
             return {...newState }
         default:

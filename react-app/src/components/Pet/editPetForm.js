@@ -13,9 +13,9 @@ function EditPetForm({ hideModal, pet }) {
     const [size, setSize] = useState(pet.size);
     const [ageYear, setAgeYear] = useState(pet.ageYear);
     const [ageMonth, setAgeMonth] = useState(pet.ageMonth);
-    const [hasMicrochipped, setHasMicrochipped] = useState(pet.hasMicrochipped);
-    const [hasSpayed, setHasSpayed] = useState(pet.hasSpayed);
-    const [hasTrained, setHasTrained] = useState(pet.hasTrained);
+    const [hasMicrochipped, setHasMicrochipped] = useState(pet.hasMicrochipped? "Yes":"No");
+    const [hasSpayed, setHasSpayed] = useState(pet.hasSpayed? "Yes":"No");
+    const [hasTrained, setHasTrained] = useState(pet.hasTrained? "Yes":"No");
     const [isFriendlyWithChildren, setIsFriendlyWithChildren] = useState(pet.isFriendlyWithChildren);
     const [isFriendlyWithDogs, setIsFriendlyWithDogs] = useState(pet.isFriendlyWithDogs);
     const [sex,setSex]= useState(pet.sex)
@@ -32,14 +32,14 @@ function EditPetForm({ hideModal, pet }) {
 
     useEffect(() => {
         let errors = [];
-        if (!name.length) errors.push("Please edit your pet name.")
+        if (name.length === 0) errors.push("Please edit your pet name.")
         if (!profileImage.length) errors.push("Please choose your pet image.")
         if (size.length === 0) errors.push("Please enter your pet weight.")
         if (ageYear.length === 0) errors.push("Please enter your pet age in year.")
         if (ageMonth.length === 0) errors.push("Please enter your pet age in month.")
-        if (!hasSpayed.length) errors.push("Please enter if you pet has spayed.")
-        if (!hasMicrochipped.length) errors.push("Please enter if you pet has microchipped.")
-        if (!hasTrained.length) errors.push("Please enter if your pet has trained.")
+        if (hasSpayed.length === 0) errors.push("Please enter if you pet has spayed.")
+        if (hasMicrochipped.length === 0) errors.push("Please enter if you pet has microchipped.")
+        if (hasTrained.length === 0) errors.push("Please enter if your pet has trained.")
         if (!isFriendlyWithChildren.length) errors.push("Please enter if your pet is friendly with children.")
         if (!isFriendlyWithDogs.length) errors.push("Please enter if your pet is friendly with dogs.")
         if (!sex.length) errors.push("Please enter your pet sex.")

@@ -98,7 +98,7 @@ export const editPet = (editedPet) => async (dispatch) => {
 
 export const removePet = (idString) => async (dispatch) => {
     const id = parseInt(idString, 10)
-    console.log("THIS IS THE PET ID -----", id)
+    //console.log("THIS IS THE PET ID -----", id)
     const res = await fetch(`/api/pets/${id}`, {
         method: 'DELETE',
     })
@@ -115,7 +115,7 @@ export const removePet = (idString) => async (dispatch) => {
 // reducer
 
 
-const initialState = {};
+const initialState = {pets:[]};
 const petsReducer = (state = initialState, action) => {
     let newState = Object.assign({}, state)
     switch (action.type) {
@@ -126,7 +126,8 @@ const petsReducer = (state = initialState, action) => {
         //     newState = action.payload
         //     return newState
         case LOAD_ALL_PETS:
-            newState = action.payload.pets
+            newState = {...action.payload.pets}
+            //newState.pets = [...action.payload.pets]
             return newState
         case DELETE_PET:
             delete newState[action.payload]

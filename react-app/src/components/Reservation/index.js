@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import DeleteReservationForm from "./deleteReservationForm";
 import EditReservationForm from "./editReservationForm";
 import * as reservationActions from "../../store/reservation";
+import * as petActions from "../../store/pet";
 
 //import "./TripCard.css";
 
@@ -35,7 +36,10 @@ function Reservation() {
 
   useEffect(() => {
     // (async()=>{
-    if (sessionUser) dispatch(reservationActions.loadAllUserRelatedReservations());
+    if (sessionUser){
+    dispatch(reservationActions.loadAllUserRelatedReservations());
+    dispatch(petActions.loadAllPets());
+    }
     // })();
   }, [sessionUser]);
 
@@ -94,6 +98,7 @@ function Reservation() {
                 </Modal>
               )}
               <button className="button6" onClick={e => setShowDeleteModal(true)}>Cancel Reservation</button>
+
               {showDeleteModal && (
                 <Modal onClose={() => setShowDeleteModal(false)}>
                   <DeleteReservationForm hideModal={() => setShowDeleteModal(false)} reservation={reservation} />

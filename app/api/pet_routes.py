@@ -22,8 +22,8 @@ def validation_errors_to_error_messages(validation_errors):
 def pets():
     if request.method == 'GET':
         pets = Pet.query.all()
-        if pets:
-            return {"pets": [pet.to_dict() for pet in pets]}
+
+        return {"pets": [pet.to_dict() for pet in pets]}
 
         #else:
             #return {'error': ['No Pet Found']}
@@ -109,9 +109,13 @@ def change_pet(id):
             pet.size=form.data["size"]
             pet.age_year=form.data["ageYear"]
             pet.age_month=form.data["ageMonth"]
+            #print("\n\n\n MADE IT age_month\n\n\n")
             pet.has_microchipped=form.data["hasMicrochipped"]
+            #print("\n\n\n MADE IT has_microchipped\n\n\n")
             pet.has_spayed=form.data["hasSpayed"]
+            #print("\n\n\n MADE IT has_spayed\n\n\n")
             pet.has_trained=form.data["hasTrained"]
+            #print("\n\n\n MADE IT has_trained\n\n\n")
             pet.is_friendly_with_children=form.data["isFriendlyWithChildren"]
             pet.is_friendly_with_dogs=form.data["isFriendlyWithDogs"]
             pet.sex=form.data["sex"]
