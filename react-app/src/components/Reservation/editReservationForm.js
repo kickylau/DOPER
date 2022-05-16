@@ -27,7 +27,7 @@ function EditReservationForm({ hideModal, reservation }) {
     useEffect(() => {
         let errors = [];
         if (!taskType.length) errors.push("Please choose one task type.")
-        if (!taskLength.length) errors.push("Please choose the task length.")
+        if (taskLength.length === 0) errors.push("Please choose the task length.")
         if (!address.length) errors.push("Please enter an address.")
         if (!comment.length) errors.push("Please leave a message for the dog walker.")
         if (!date.length) errors.push("Please enter a date.")
