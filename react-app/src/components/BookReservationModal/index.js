@@ -84,7 +84,7 @@ function BookReservationModal({walker}) {
                 setTime("");
                 setErrors([]);
                 setShowModal(false)
-                history.push('/Home')
+                history.push('/reservations')
                 // need a .then and redirect IF you add a new trip while on another trip details page
             })
             .catch(async (res) => {
