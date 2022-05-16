@@ -64,6 +64,7 @@ function BookReservationModal({walker}) {
         const newReservationData = {};
         setUserId(sessionUser.id)
         setWalkerId(walker.id)
+        console.log("WALKER HERE", walker)
         newReservationData.userId = userId
         newReservationData.walkerId = walkerId
         newReservationData.taskType = taskType

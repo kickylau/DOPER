@@ -124,7 +124,8 @@ def change_pet(id):
             return pet.to_dict()
         else:
             return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-    else:
+
+    if request.method == "DELETE":
         pet = Pet.query.get(id)
         db.session.delete(pet)
         db.session.commit()

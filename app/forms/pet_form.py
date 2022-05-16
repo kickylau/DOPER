@@ -35,6 +35,5 @@ class EditPet(FlaskForm):
     isFriendlyWithDogs = SelectField("Is it friendly with other dogs?", choices=["Yes","No","Unsure","Depends"], validators=[InputRequired()])
     sex = SelectField("Sex", choices=["Male","Female"], validators=[InputRequired()])
     breed = StringField("Breed", validators=[DataRequired()])
-    breed = StringField("Breed", validators=[DataRequired()])
     description = StringField("Description", validators=[DataRequired()])
     vetInfo = StringField("Vet Information", validators=[DataRequired()])
