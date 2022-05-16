@@ -25,34 +25,35 @@ def pets():
         if pets:
             return {"pets": [pet.to_dict() for pet in pets]}
 
-        else:
-            return {'error': ['No Pet Found']}
+        #else:
+            #return {'error': ['No Pet Found']}
 
-    form = NewPet()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        new_pet = Pet(
-            user_id=form.data["userId"],
-            name=form.data["name"],
-            profile_image=form.data["profileImage"],
-            size=form.data["size"],
-            age_year=form.data["ageYear"],
-            age_month=form.data["ageMonth"],
-            has_microchipped=form.data["hasMicrochipped"],
-            has_spayed=form.data["hasSpayed"],
-            has_trained=form.data["hasTrained"],
-            is_friendly_with_children=form.data["isFriendlyWithChildren"],
-            is_friendly_with_dogs=form.data["isFriendlyWithDogs"],
-            sex=form.data["sex"],
-            breed=form.data["breed"],
-            description=form.data["description"],
-            vet_info=form.data["vetInfo"],
-        )
-        db.session.add(new_pet)
-        db.session.commit()
-        return new_pet.to_dict
-    else:
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    if request.method =="POST":
+        form = NewPet()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            new_pet = Pet(
+                user_id=form.data["userId"],
+                name=form.data["name"],
+                profile_image=form.data["profileImage"],
+                size=form.data["size"],
+                age_year=form.data["ageYear"],
+                age_month=form.data["ageMonth"],
+                has_microchipped=form.data["hasMicrochipped"],
+                has_spayed=form.data["hasSpayed"],
+                has_trained=form.data["hasTrained"],
+                is_friendly_with_children=form.data["isFriendlyWithChildren"],
+                is_friendly_with_dogs=form.data["isFriendlyWithDogs"],
+                sex=form.data["sex"],
+                breed=form.data["breed"],
+                description=form.data["description"],
+                vet_info=form.data["vetInfo"],
+            )
+            db.session.add(new_pet)
+            db.session.commit()
+            return new_pet.to_dict()
+        else:
+            return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 #? how to show user have how many pets?
 @pet_routes.route("/users/<int:id>")
@@ -120,10 +121,11 @@ def change_pet(id):
 
             db.session.add(pet)
             db.session.commit()
-            return pet.to_dict
+            return pet.to_dict()
         else:
             return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-    else:
+
+    if request.method == "DELETE":
         pet = Pet.query.get(id)
         db.session.delete(pet)
         db.session.commit()

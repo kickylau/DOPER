@@ -42,8 +42,8 @@ function Reservation() {
 
   useEffect(() => {
     // (async()=>{
-    console.log("-------- RESERVATION CHANGED -------")
-    console.log("---------",reservations)
+    //console.log("-------- RESERVATION CHANGED -------")
+    //console.log("---------",reservations)
     // })();
   }, [reservations]);
 

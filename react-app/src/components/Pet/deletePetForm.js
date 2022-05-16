@@ -1,17 +1,16 @@
 import { useDispatch } from "react-redux";
-import { deleteReservation, loadAllUserRelatedReservations } from '../../store/reservation'
+import { removePet, loadAllPets } from '../../store/pet'
 //import './DeleteTrip.css';
 
-function DeleteReservationForm ({ hideModal, reservation }) {
+function DeletePetForm ({ hideModal, pet }) {
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     //similar format for edit
     e.preventDefault();
-      dispatch(deleteReservation(reservation.id))
-      //console.log("CHECK ID HERE ------", reservation.id)
+      dispatch(removePet(pet.id))
       .then(()=>{
-        dispatch((loadAllUserRelatedReservations()))
+        dispatch((loadAllPets()))
       })
       .then(()=>{
          hideModal()
@@ -25,9 +24,9 @@ function DeleteReservationForm ({ hideModal, reservation }) {
 
   return (
     <div className="formContainer6">
-      <form id="delete_reservation_form" onSubmit={handleSubmit}>
-        <h3>Are you sure you want to delete this reservation?</h3>
-        <div id="delete_reservation_buttons">
+      <form id="delete_pet_form" onSubmit={handleSubmit}>
+        <h3>Are you sure you want to delete this pet profile?</h3>
+        <div id="delete_pet_buttons">
           <button id="delete" className="deleteButton" type="submit">Confirm Delete</button>
           <button id="delete" className="cancelDelete" onClick={handleCancelClick}>Cancel</button>
         </div>
@@ -36,4 +35,4 @@ function DeleteReservationForm ({ hideModal, reservation }) {
   )
 }
 
-export default DeleteReservationForm;
+export default DeletePetForm;
