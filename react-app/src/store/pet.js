@@ -16,12 +16,12 @@ const addPet = (pet) => {
     };
 }
 
-// const loadPets = (pets) => {
-//     return {
-//         type: LOAD_ALL_USER_RELATED_PETS,
-//         payload: pets
-//     };
-// };
+const loadOnePet = (pet) => {
+    return {
+        type: LOAD_SINGLE_PET,
+        payload: pet
+    };
+}
 
 
 const loadAllThePets = (pets) => {
@@ -30,6 +30,7 @@ const loadAllThePets = (pets) => {
         payload: pets
     }
 }
+
 
 
 
@@ -72,6 +73,17 @@ export const newPet = (newPet) => async (dispatch) => {
 //     }
 // }
 
+export const loadSinglePet = (pet) => async (dispatch) => {
+    const id = parseInt(pet.id,10)
+    const res = await fetch(`/api/pets/${id}`)
+    if (res.ok) {
+        const pet = await res.json();
+        dispatch(loadOnePet(pet))
+    }
+}
+
+
+
 export const loadAllPets = () => async (dispatch) => {
     const res = await fetch(`/api/pets/`)
     if (res.ok) {
@@ -93,12 +105,20 @@ export const editPet = (editedPet) => async (dispatch) => {
     if(res.ok) {
         const pet = await res.json()
         dispatch(addPet(pet))
+        return null;
     }
+    else if (res.status<500){
+        const data = await res.json()
+        if (data.errors){
+            return data.errors
+        }
+    }
+    else return ["errors: failed" ]
 }
 
 export const removePet = (idString) => async (dispatch) => {
     const id = parseInt(idString, 10)
-    console.log("THIS IS THE PET ID -----", id)
+    //console.log("THIS IS THE PET ID -----", id)
     const res = await fetch(`/api/pets/${id}`, {
         method: 'DELETE',
     })
@@ -115,7 +135,7 @@ export const removePet = (idString) => async (dispatch) => {
 // reducer
 
 
-const initialState = {};
+const initialState = {pets:[]};
 const petsReducer = (state = initialState, action) => {
     let newState = Object.assign({}, state)
     switch (action.type) {
@@ -126,7 +146,8 @@ const petsReducer = (state = initialState, action) => {
         //     newState = action.payload
         //     return newState
         case LOAD_ALL_PETS:
-            newState = action.payload.pets
+            newState = {...action.payload.pets}
+            //newState.pets = [...action.payload.pets]
             return newState
         case DELETE_PET:
             delete newState[action.payload]

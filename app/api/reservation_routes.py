@@ -22,8 +22,8 @@ def validation_errors_to_error_messages(validation_errors):
 def reservations():
     if request.method == 'GET':
         reservations = Reservation.query.all()
-        if reservations:
-            return {"reservations": [reservation.to_dict() for reservation in reservations]}
+        # if reservations:
+        return {"reservations": [reservation.to_dict() for reservation in reservations]}
             #return reservation.to_dict
         #else:
         #FOR GET, DONT RETURN ANY ERROR SINCE NO AVAILABLE RESERVATION

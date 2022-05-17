@@ -13,8 +13,10 @@ function EditReservationForm({ hideModal, reservation }) {
     const [taskLength, setTaskLength] = useState(reservation.taskLength);
     const [address, setAddress] = useState(reservation.address);
     const [comment, setComment] = useState(reservation.comment);
-    const [date, setDate] = useState(holder.getFullYear()+"-"+(holder.getMonth()+1)+"-"+(holder.getDate()+1));
     //const [date, setDate] = useState(reservation.date);
+
+    const [date, setDate] = useState(+holder.getFullYear()+"-"+(holder.getMonth()+1)+"-"+(holder.getDate()+1));
+    console.log("TYPE OF DATE",typeof[date])
     const [time, setTime] = useState(reservation.time);
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [errors, setErrors] = useState([]);

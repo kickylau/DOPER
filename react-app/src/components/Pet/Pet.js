@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import DeletePetForm from './deletePetForm';
 import EditPetForm from './editPetForm';
 import * as petActions from "../../store/pet";
+import CreatePetModal from '../CreatePetModal';
 
 function Pet() {
   //const [pet, setPet] = useState({});
@@ -60,13 +61,14 @@ function Pet() {
 
   return (
     <>
-          <h1> All Pet Profiles! </h1>
+    <CreatePetModal/>
+
 
       {pets?.map(pet => (
         <>
 
           <h3> Name: {pet.name} </h3>
-          {/* <h3>{pet.profileImage}</h3> */}
+           <img src={pet.profileImage} height={200} width={200}/>
           <h4>Size: {pet.size} pounds </h4>
           <h5>Age: {pet.ageYear} Years {pet.ageMonth} Months</h5>
           <h6> Is it microchipped? {pet.hasMicrochipped} </h6>
@@ -112,6 +114,11 @@ function Pet() {
 
 
       )}
+      {(pets.length === 0) &&
+                <div className="trip-container">
+                    <h3 id="no-trip">Oops You have not created a pet profile yet</h3>
+                </div>
+                }
 
 
     </>

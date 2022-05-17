@@ -34,12 +34,12 @@ const deleteReservationAction = (id) => {
 // thunks return a function that returns an action
 
 export const newReservation = (newReservation) => async (dispatch) => {
-    const { userId, walkerId, taskType, taskLength, address, comment, date, time } = newReservation
+    const { userId, walkerId, taskType, taskLength, address, comment, date, time , petName } = newReservation
     //console.log("NEW RESERVATION HERE ", newReservation)
     const response = await fetch('/api/reservations/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify( { userId, walkerId, taskType, taskLength, address, comment, date, time })
+        body: JSON.stringify( { userId, walkerId, taskType, taskLength, address, comment, date, time, petName })
     });
 
     //console.log("NEW RESERVATION!!!", response)
@@ -131,7 +131,7 @@ const reservationsReducer = (state = initialState, action) => {
             newState = action.payload.reservations
             return newState
         case DELETE_RESERVATION:
-            //console.log("THIS IS THE DELETE REDUCER --------", action.payload)
+            console.log("THIS IS THE DELETE REDUCER --------", action.payload)
             delete newState[action.payload]
             return {...newState }
         default:

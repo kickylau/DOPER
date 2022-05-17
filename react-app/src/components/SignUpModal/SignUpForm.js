@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './SignUpForm.css'
+
+//different from group project
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -19,8 +22,10 @@ const SignUpForm = () => {
       if (data) {
         setErrors(data)
       }
-    }
+    }  else setErrors(["Password did not match. Please try again."]);
   };
+
+  if (user) return <Redirect to="/Home" />;
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -38,9 +43,7 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to='/' />;
-  }
+
 
   return (
     <form onSubmit={onSignUp}>
