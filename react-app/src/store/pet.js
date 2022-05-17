@@ -93,7 +93,15 @@ export const editPet = (editedPet) => async (dispatch) => {
     if(res.ok) {
         const pet = await res.json()
         dispatch(addPet(pet))
+        return null;
     }
+    else if (res.status<500){
+        const data = await res.json()
+        if (data.errors){
+            return data.errors
+        }
+    }
+    else return ["errors: failed" ]
 }
 
 export const removePet = (idString) => async (dispatch) => {

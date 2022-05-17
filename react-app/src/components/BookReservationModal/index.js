@@ -5,6 +5,8 @@ import * as reservationActions from "../../store/reservation"
 import { useHistory, useParams } from "react-router-dom";
 import { SelectButton } from 'primereact/selectbutton';
 import Select from 'react-select';
+import * as petActions from "../../store/pet";
+
 
 
 
@@ -22,7 +24,8 @@ function BookReservationModal({walker}) {
     //console.log("walkers", walkers)
     const [userId, setUserId] = useState(sessionUser?.id);
     const [walkerId, setWalkerId] = useState(walker?.id);
-    //const pet = useSelector(state => state.pet)
+    const pets = useSelector(state => state.pets);
+    const [pet, setPet] = useState("");
     const [taskType, setTaskType] = useState("Dog Walking");
     const [taskLength, setTaskLength] = useState("30 Minutes");
     const [address, setAddress] = useState("");
@@ -34,6 +37,12 @@ function BookReservationModal({walker}) {
     const [selectValue, setSelectValue] = useState("");
     const selectRef = React.useRef();
 
+
+    const updatePet = e => {
+        {pets.map(pet => {
+            <option value={pet.name}>{pet.name}</option>
+        })}
+    }
     const handleChange = (selectValue)=>{
         setSelectValue(!selectValue);
     }
@@ -43,6 +52,14 @@ function BookReservationModal({walker}) {
             selectRef.current.focus();
         }
     }
+
+    useEffect(() => {
+        // (async()=>{
+        if (sessionUser){
+        dispatch(petActions.loadAllPets());
+        }
+        // })();
+      }, [sessionUser]);
 
 
 
@@ -239,6 +256,17 @@ function BookReservationModal({walker}) {
                                         </option>
 
 
+                                    </select>
+                                    <label className='reservationlabel'>
+                                        Pick A Pet:
+                                    </label>
+                                    <select  onChange={updatePet} value={pet} >
+                                        <option value="30 Minutes">
+                                            30 Minutes
+                                        </option>
+                                        <option value="60 Minutes">
+                                           60 Minutes
+                                        </option>
                                     </select>
                                     {/* onChange={e => setTime(e.target.value)} */}
                                     {/* <SelectButton value={time} options={timeSelectItems} onChange={(e) => setValue(e.value)}></SelectButton> */}

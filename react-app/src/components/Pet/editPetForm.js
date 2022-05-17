@@ -30,30 +30,30 @@ function EditPetForm({ hideModal, pet }) {
     }, [sessionUser])
 
 
-    useEffect(() => {
-        let errors = [];
-        if (name.length === 0) errors.push("Please edit your pet name.")
-        if (!profileImage.length) errors.push("Please choose your pet image.")
-        if (size.length === 0) errors.push("Please enter your pet weight and it should be above 0.")
-        if (ageYear.length === 0) errors.push("Please enter your pet age in year and it should not be nagative.")
-        if (ageMonth.length === 0) errors.push("Please enter your pet age in month and it should not be nagative.")
-        if (hasSpayed.length === 0) errors.push("Please enter if you pet has spayed.")
-        if (hasMicrochipped.length === 0) errors.push("Please enter if you pet has microchipped.")
-        if (hasTrained.length === 0) errors.push("Please enter if your pet has trained.")
-        if (!isFriendlyWithChildren.length) errors.push("Please enter if your pet is friendly with children.")
-        if (!isFriendlyWithDogs.length) errors.push("Please enter if your pet is friendly with dogs.")
-        if (!sex.length) errors.push("Please enter your pet sex.")
-        if (!breed.length) errors.push("Please enter your pet breed.")
-        if (!description.length) errors.push("Please describe something about your pet.")
-        if (!vetInfo.length) errors.push("Please enter your pet vet information.")
+    // useEffect(() => {
+    //     let errors = [];
+    //     if (name.length === 0) errors.push("Please edit your pet name.")
+    //     if (!profileImage.length) errors.push("Please choose your pet image.")
+    //     if (size.length === 0 && +size<0) errors.push("Please enter your pet weight and it should be above 0.")
+    //     if (ageYear.length === 0) errors.push("Please enter your pet age in year and it should not be nagative.")
+    //     if (ageMonth.length === 0) errors.push("Please enter your pet age in month and it should not be nagative.")
+    //     if (hasSpayed.length === 0) errors.push("Please enter if you pet has spayed.")
+    //     if (hasMicrochipped.length === 0) errors.push("Please enter if you pet has microchipped.")
+    //     if (hasTrained.length === 0) errors.push("Please enter if your pet has trained.")
+    //     if (!isFriendlyWithChildren.length) errors.push("Please enter if your pet is friendly with children.")
+    //     if (!isFriendlyWithDogs.length) errors.push("Please enter if your pet is friendly with dogs.")
+    //     if (!sex.length) errors.push("Please enter your pet sex.")
+    //     if (!breed.length) errors.push("Please enter your pet breed.")
+    //     if (!description.length) errors.push("Please describe something about your pet.")
+    //     if (!vetInfo.length) errors.push("Please enter your pet vet information.")
 
-        setErrors(errors)
-    }, [name, profileImage, size, ageYear,ageMonth, hasMicrochipped, hasSpayed, hasTrained, isFriendlyWithDogs,isFriendlyWithChildren, sex, breed, vetInfo, description])
+    //     setErrors(errors)
+    // }, [name, profileImage, size, ageYear,ageMonth, hasMicrochipped, hasSpayed, hasTrained, isFriendlyWithDogs,isFriendlyWithChildren, sex, breed, vetInfo, description])
 
-    const submitPetEdits = (e) => {
+    const submitPetEdits = async (e) => {
         e.preventDefault();
-        setHasSubmitted(true)
-        if (errors.length > 0) return;
+        //setHasSubmitted(true)
+        //if (errors.length > 0) return;
 
         const editedPetData = pet
         editedPetData.name = name
@@ -73,15 +73,22 @@ function EditPetForm({ hideModal, pet }) {
 
 
 
-        dispatch(editPet(editedPetData))
-            .then(() => {
-                dispatch((loadAllPets()))
-            })
-            .then(() => hideModal())
-            .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
-            });
+        const data = await dispatch(editPet(editedPetData))
+
+            // .then(() => {
+            //     dispatch((loadAllPets()))
+            // })
+            //.then(() => hideModal())
+            if (data) setErrors(data)
+            else {
+                setErrors([])
+                await dispatch(loadAllPets())
+                hideModal()
+            }
+            // .catch( (res) => {
+            //     const data =  res.json();
+            //     if (data && data.errors) setErrors(data.errors);
+            // });
     };
 
     const handleCancelClick = (e) => {
@@ -95,7 +102,7 @@ function EditPetForm({ hideModal, pet }) {
             <form
                 onSubmit={submitPetEdits}>
                 <ul className="new-reservation-errors">
-                    {hasSubmitted && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
                 <div>
 
@@ -110,7 +117,7 @@ function EditPetForm({ hideModal, pet }) {
                     <label className='petlabel'>
                         Size:
                     </label>
-                    <input onChange={e => setSize(e.target.value)} type="integer" className="new-pet-size" value={size} />
+                    <input onChange={e => setSize(e.target.value)} type="integer" className="new-pet-size" value={size} min={0}/>
                     <label className='petlabel'>
                         Age in Year:
                     </label>
