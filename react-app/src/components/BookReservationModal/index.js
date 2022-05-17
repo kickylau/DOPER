@@ -3,14 +3,14 @@ import { Modal } from "../../context/Modal";
 import { useDispatch, useSelector } from 'react-redux';
 import * as reservationActions from "../../store/reservation"
 import { useHistory, useParams } from "react-router-dom";
-import { SelectButton } from 'primereact/selectbutton';
-import Select from 'react-select';
+//import { SelectButton } from 'primereact/selectbutton';
+//import Select from 'react-select';
 import * as petActions from "../../store/pet";
 
 
 
 
-function BookReservationModal({walker}) {
+function BookReservationModal({ walker }) {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -25,7 +25,9 @@ function BookReservationModal({walker}) {
     const [userId, setUserId] = useState(sessionUser?.id);
     const [walkerId, setWalkerId] = useState(walker?.id);
     const pets = useSelector(state => state.pets);
-    const [pet, setPet] = useState("");
+    const [petsArr, setPetsArr] = useState([]);
+    //console.log("PET SHOW ANYTHING???", Object.values(pets))
+    //const [pet, setPet] = useState("");
     const [taskType, setTaskType] = useState("Dog Walking");
     const [taskLength, setTaskLength] = useState("30 Minutes");
     const [address, setAddress] = useState("");
@@ -34,46 +36,53 @@ function BookReservationModal({walker}) {
     const [time, setTime] = useState("6:00AM-9:00AM");
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
-    const [selectValue, setSelectValue] = useState("");
-    const selectRef = React.useRef();
+    const [petName, setPetName] = useState("");
+    const [loaded, setLoaded] = useState(false);
+    //const selectRef = React.useRef();
 
 
     const updatePet = e => {
-        {pets.map(pet => {
-            <option value={pet.name}>{pet.name}</option>
-        })}
-    }
-    const handleChange = (selectValue)=>{
-        setSelectValue(!selectValue);
+        setPetName(e.target.value)
     }
 
-    const onClick = () => {
-        if (selectRef.current){
-            selectRef.current.focus();
-        }
-    }
 
     useEffect(() => {
-        // (async()=>{
-        if (sessionUser){
-        dispatch(petActions.loadAllPets());
+        if (sessionUser) {
+            dispatch(petActions.loadAllPets());
         }
-        // })();
-      }, [sessionUser]);
+    }, [sessionUser]);
 
+
+    useEffect(() => {
+        let petsObj = { ...pets }
+        let array = [];
+        Object.keys(petsObj).forEach((key) => {
+            let pet = petsObj[key]
+            array.push(pet)
+        })
+        //console.log("PETHERE  ---", pet)
+        //console.log("PET IS HERE ------", pet)
+
+        //console.log("CHECKOUT THIS PAT ARRAY???----", array)
+        setPetsArr(array)
+        setLoaded(true)
+    }, [])
 
 
     useEffect(() => {
         let errors = [];
-         if (!taskType.length) errors.push("Please choose one task type.")
-         if (!taskLength.length) errors.push("Please choose the task length.")
-         if (!address.length) errors.push("Please enter an address.")
-         if (!comment.length) errors.push("Please leave a message for the dog walker.")
-         if (!date.length) errors.push("Please enter a date.")
-         if (!time.length) errors.push("Please enter a time frame.")
+        if (!taskType.length) errors.push("Please choose one task type.")
+        if (!taskLength.length) errors.push("Please choose the task length.")
+        if (!address.length) errors.push("Please enter an address.")
+        if (!comment.length) errors.push("Please leave a message for the dog walker.")
+        if (!date.length) errors.push("Please enter a date.")
+        if (!time.length) errors.push("Please enter a time frame.")
+        //if (!petName.length) errors.push("Please choose one pet for this reservstion")
 
         setErrors(errors)
     }, [taskType, taskLength, address, comment, date, time])
+
+
 
     const submitNewReservation = () => {
         setHasSubmitted(true)
@@ -91,6 +100,8 @@ function BookReservationModal({walker}) {
         newReservationData.comment = comment
         newReservationData.date = date
         newReservationData.time = time
+        newReservationData.petName = petName
+        console.log("WHAT IS THE PET NAME HERE", petName)
 
         dispatch(reservationActions.newReservation(newReservationData))
             .then(() => {
@@ -100,6 +111,7 @@ function BookReservationModal({walker}) {
                 setComment("");
                 setDate("");
                 setTime("");
+                setPetName("")
                 setErrors([]);
                 setShowModal(false)
                 history.push('/reservations')
@@ -111,41 +123,8 @@ function BookReservationModal({walker}) {
             });
     }
 
-    // const RadioButton = ({ label, value, onChange }) => {
-    //     return (
-    //         <label>
-    //             <input type="radio" checked={value} onChange={onChange} />
-    //             {label}
-    //         </label>
-    //     );
 
-    // }
-
-
-    // const taskSelectItems = [
-    //     { label: "Dog Walking", value: 1 },
-    //     { label: "Drop-In Visits", value: 2 },
-
-    // ];
-
-    // const lengthSelectItems = [
-    //     { label: "30 Minutes", value: 1 },
-    //     { label: "60 Minutes", value: 2 },
-
-    // ];
-
-    // const timeSelectItems = [
-    //     { label: "6:00AM-9:00AM", value: 1 },
-    //     { label: "9:00AM-12:00PM", value: 2 },
-    //     { label: "12:00PM-3:00PM", value: 3 },
-    //     { label: "3:00PM-6:00PM", value: 4 },
-    //     { label: "6:00PM-9:00PM", value: 5 },
-    //     { label: "9:00PM-12:00AM", value: 6 },
-
-    // ];
-
-
-
+    if (!loaded) return null
 
     return (
 
@@ -172,7 +151,7 @@ function BookReservationModal({walker}) {
                                     <label className='reservationlabel'>
                                         Please Pick A Task Type:
                                     </label>
-                                    <select  onChange={e => setTaskType(e.target.value)} value={taskType} >
+                                    <select onChange={e => setTaskType(e.target.value)} value={taskType} >
                                         <option value="Dog Walking">
                                             Dog Walking
                                         </option>
@@ -180,45 +159,17 @@ function BookReservationModal({walker}) {
                                             Drop In Visit
                                         </option>
                                     </select>
-                                    {/* onChange={e => setTaskType(e.target.value) }*/}
-                                    {/* openMenuOnFocus={true} ref={selectRef} value={selectValue} onChange={handleChange} */}
-                                    {/* <SelectButton value={taskType} options={taskSelectItems} onChange={(e) => setValue(e.value)}></SelectButton> */}
-                                    {/* <input onChange={e => setTaskType(e.target.value)} type="radio" className="new-task-type" placeholder='Task Type' value={taskType} /> */}
                                     <label className='reservationlabel'>
                                         Please Pick Your Task Length:
                                     </label>
-                                    {/* <Select options={lengthSelectItems} /> */}
-                                    <select  onChange={e => setTaskLength(e.target.value)} value={taskLength} >
+                                    <select onChange={e => setTaskLength(e.target.value)} value={taskLength} >
                                         <option value="30 Minutes">
                                             30 Minutes
                                         </option>
                                         <option value="60 Minutes">
-                                           60 Minutes
+                                            60 Minutes
                                         </option>
                                     </select>
-                                    {/* onChange={e => setTaskLength(e.target.value)} */}
-                                    {/* <SelectButton value={taskLength} options={lengthSelectItems} onChange={(e) => setValue(e.value)}></SelectButton> */}
-
-                                    {/* <div>
-                                        <div className="radio">
-                                            <RadioButton
-                                                label="30 Minutes"
-                                                value={value}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-
-
-                                        <div className="radio">
-                                            <RadioButton
-                                                label="60 Minutes"
-                                                value={value}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-                                    </div> */}
-
-                                    {/* <input onChange={e => setTaskLength(e.target.value)} type="radio" className="new-task-length" placeholder='Task Length' value={taskLength} /> */}
                                     <label className='reservationlabel'>
                                         Your Address:
                                     </label>
@@ -234,82 +185,38 @@ function BookReservationModal({walker}) {
                                     <label className='reservationlabel'>
                                         Please Pick A Time Frame:
                                     </label>
-                                    {/* <Select options={timeSelectItems}  /> */}
-                                    <select  onChange={e => setTime(e.target.value)} value={time} >
+                                    <select onChange={e => setTime(e.target.value)} value={time} >
                                         <option value="6:00AM-9:00AM">
-                                          6:00AM-9:00AM
+                                            6:00AM-9:00AM
                                         </option>
                                         <option value="9:00AM-12:00PM">
-                                          9:00AM-12:00PM
+                                            9:00AM-12:00PM
                                         </option>
                                         <option value="12:00PM-3:00PM">
-                                          12:00PM-3:00OM
+                                            12:00PM-3:00OM
                                         </option>
                                         <option value="3:00PM-6:00PM">
-                                          3:00PM-6:00PM
+                                            3:00PM-6:00PM
                                         </option>
                                         <option value="6:00PM-9:00PM">
-                                          6:00PM-9:00PM
+                                            6:00PM-9:00PM
                                         </option>
                                         <option value="9:00PM-12:00AM">
-                                          9:00PM-12:00AM
+                                            9:00PM-12:00AM
                                         </option>
-
-
                                     </select>
                                     <label className='reservationlabel'>
                                         Pick A Pet:
                                     </label>
-                                    <select  onChange={updatePet} value={pet} >
-                                        <option value="30 Minutes">
-                                            30 Minutes
-                                        </option>
-                                        <option value="60 Minutes">
-                                           60 Minutes
-                                        </option>
+                                    <select onChange={updatePet} value={petName} >
+                                        {
+                                            Object.values(pets)?.map(pet => {
+                                                return (
+                                                    <option value={pet.name}>{pet.name}</option>
+                                                )
+                                            })
+                                        }
                                     </select>
-                                    {/* onChange={e => setTime(e.target.value)} */}
-                                    {/* <SelectButton value={time} options={timeSelectItems} onChange={(e) => setValue(e.value)}></SelectButton> */}
-                                    {/* <div>
-                                        <div className="radio">
-                                            <RadioButton
-                                                label="6:00AM-9:00AM"
-                                                value={value}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-
-
-                                        <div className="radio">
-                                            <RadioButton
-                                                label="9:00AM-12:00PM"
-                                                value={value}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-                                        <div className="radio">
-                                            <RadioButton
-                                                label="3:00PM-6:00PM"
-                                                value={value}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-                                        <div className="radio">
-                                            <RadioButton
-                                                label="6:00PM-9:00PM"
-                                                value={value}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-                                        <div className="radio">
-                                            <RadioButton
-                                                label="9:00PM-12:00AM"
-                                                value={value}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-                                    </div> */}
-                                    {/* <input onChange={e => setTime(e.target.value)} type="radio" className="new-task-time" value={time} /> */}
                                     <button id="new-task-submit" type='submit' >Submit</button>
                                 </div>
                             </form>
@@ -322,16 +229,6 @@ function BookReservationModal({walker}) {
         </>
     )
 
-
-    // const RadioButton = ({ label, value, onChange }) => {
-    //     return (
-    //         <label>
-    //             <input type="radio" checked={value} onChange={onChange} />
-    //             {label}
-    //         </label>
-    //     );
-
-    // }
 };
 
 

@@ -16,12 +16,12 @@ const addPet = (pet) => {
     };
 }
 
-// const loadPets = (pets) => {
-//     return {
-//         type: LOAD_ALL_USER_RELATED_PETS,
-//         payload: pets
-//     };
-// };
+const loadOnePet = (pet) => {
+    return {
+        type: LOAD_SINGLE_PET,
+        payload: pet
+    };
+}
 
 
 const loadAllThePets = (pets) => {
@@ -30,6 +30,7 @@ const loadAllThePets = (pets) => {
         payload: pets
     }
 }
+
 
 
 
@@ -71,6 +72,17 @@ export const newPet = (newPet) => async (dispatch) => {
 //         dispatch(loadPets(pets))
 //     }
 // }
+
+export const loadSinglePet = (pet) => async (dispatch) => {
+    const id = parseInt(pet.id,10)
+    const res = await fetch(`/api/pets/${id}`)
+    if (res.ok) {
+        const pet = await res.json();
+        dispatch(loadOnePet(pet))
+    }
+}
+
+
 
 export const loadAllPets = () => async (dispatch) => {
     const res = await fetch(`/api/pets/`)

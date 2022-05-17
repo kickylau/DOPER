@@ -55,22 +55,22 @@ def pets():
         else:
             return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-#? how to show user have how many pets?
-@pet_routes.route("/users/<int:id>")
-def users_owned_pets(id):
-    pets = Pet.query.filter(Pet.user_id == id).all()
-    user = User.query.get(id)
+# #? how to show user have how many pets?
+# @pet_routes.route("/users/<int:id>")
+# def users_owned_pets(id):
+#     pets = Pet.query.filter(Pet.user_id == id).all()
+#     user = User.query.get(id)
 
 
-    if pets:
-        owned_pets={}
-        for pet in pets:
-            owned_pets[pet.id] = pet.to_dict
-        for invited_trip in invited_on_trips:
-            other_trips[invited_trip.id] = invited_trip.to_dict
-        return {**owned_pets}
-    else:
-        return {'error': ['No Pets found for this User']}
+#     if pets:
+#         owned_pets={}
+#         for pet in pets:
+#             owned_pets[pet.id] = pet.to_dict
+#         for invited_trip in invited_on_trips:
+#             other_trips[invited_trip.id] = invited_trip.to_dict
+#         return {**owned_pets}
+#     else:
+#         return {'error': ['No Pets found for this User']}
 
 
 

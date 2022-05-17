@@ -6,6 +6,7 @@ import BookReservationModal from './BookReservationModal';
 import * as reservationActions from "../store/reservation"
 import * as petsActions from "../store/pet";
 import CreatePetModal from "./CreatePetModal";
+import * as walkersActions from "../store/walker";
 
 function Home() {
     const dispatch = useDispatch();
@@ -13,6 +14,7 @@ function Home() {
     const sessionUser = useSelector(state => state.session.user);
     const walkersObj = useSelector(state => state.walkers)
     const walkers = Object.values(walkersObj)
+    //console.log("WHERE IS THE WALKERS??", walkers)
 
     useEffect(() => {
         if (!sessionUser) history.push('/')
@@ -21,22 +23,18 @@ function Home() {
 
     useEffect(() => {
         // (async()=>{
-        if (sessionUser) dispatch(reservationActions.loadAllUserRelatedReservations());
+        if (sessionUser)
+        dispatch(reservationActions.loadAllUserRelatedReservations());
+        dispatch(walkersActions.loadAllWalkers());
         // })();
       }, [sessionUser]);
 
-      
+
         return (
             <div className="page-container">
-                <h1 className="all-walkers"> All Walkers !!!!!</h1>
                 <div className="walkers-gallery">
-
-                    {walkers && walkers.map(walker =>
-                        <Walkers key={walker.id} walker={walker} />
-                    )}
+                        <Walkers/>
                 </div>
-                <BookReservationModal/>
-                <CreatePetModal/>
             </div>
         );
     }

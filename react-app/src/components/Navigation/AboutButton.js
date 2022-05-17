@@ -21,8 +21,8 @@ function AboutButton() {
 
     return (
         <>
-            <button className="about-us" onClick={() => setShowModal(true)}>
-                About Us
+            <button src={githublogo} className="about-us" onClick={() => setShowModal(true)}>
+                About Me
             </button>
             {showModal && (
                 <AboutModal onClose={() => setShowModal(false)}>
@@ -30,9 +30,9 @@ function AboutButton() {
 
                         <div className="github">
                             <img src={githublogo} alt="Github"/>
-                            <a href="https://github.com/kickylau" target="_blank" rel="noreferrer noopener">Kicky</a>
+                            <a href="https://github.com/kickylau" target="_blank" rel="noreferrer noopener">Kicky Liu</a>
                         </div>
-                       
+
                     </div>
                 </AboutModal>
             )}

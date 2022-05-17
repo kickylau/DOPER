@@ -121,11 +121,11 @@ function EditPetForm({ hideModal, pet }) {
                     <label className='petlabel'>
                         Age in Year:
                     </label>
-                    <input onChange={e => setAgeYear(e.target.value)} type="integer" className="new-pet-age-year" value={ageYear} />
+                    <input onChange={e => setAgeYear(e.target.value)} type="integer" className="new-pet-age-year" min={0} value={ageYear} />
                     <label className='petlabel'>
                         Age in Month:
                     </label>
-                    <input onChange={e => setAgeMonth(e.target.value)} type="integer" className="new-pet-age-month" value={ageMonth} />
+                    <input onChange={e => setAgeMonth(e.target.value)} type="number" className="new-pet-age-month" min="0" value={ageMonth} />
                     <label className='petlabel'>
                         Has Microchipped:
                     </label>

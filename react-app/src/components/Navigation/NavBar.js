@@ -25,9 +25,20 @@ const NavBar = () => {
         {/* <li className="nav button1">
           <CreatePetModal/>
         </li> */}
+
         <li className="nav button2">
-          <NavLink to="/Home" exact={true} className="reservations">
+          <NavLink to="/Home" exact={true} className="home">
             Home
+          </NavLink>
+        </li>
+        <li className="nav button2">
+          <NavLink to="/reservations" exact={true} className="reservations">
+            Reservations
+          </NavLink>
+        </li>
+        <li className="nav button2">
+          <NavLink to="/pets" exact={true} className="pets">
+            Pet Profile
           </NavLink>
         </li>
 
@@ -58,18 +69,33 @@ const NavBar = () => {
 
   return (
     <nav className="nav-container">
-      <ul className="nav-bar-left">
+        <ul className="nav-bar-left">
         <li className="nav-list">
-          <NavLink to='/' exact={true} className="nav-link">
-            {/* <img src="/static/icon.png" className="icon" alt="Travel Bucket Icon" /> */}
-            <h2 id="travel">Home</h2>
+          <NavLink to='/Home' exact={true} className="nav-link">
+            <img src="/static/doper.png" className="icon" alt="Doper Icon" />
+            <h1 className="doper">Doper</h1>
           </NavLink>
         </li>
       </ul>
+
+
       <ul className="nav-bar-right">
         <li>{sessionLinks}</li>
       </ul>
     </nav>
+    //    <ul className="nav-bar-left">
+    //<li className="nav-list">
+    //<NavLink to='/' exact={true} className="nav-link">
+      //{/* <img src="/static/icon.png" className="icon" alt="Travel Bucket Icon" /> */}
+     // <h2 id="travel">Home</h2>
+   // </NavLink>
+  //</li>
+//</ul>
+
+
+
+
+
     // <nav>
     //   <ul>
     //     <li>

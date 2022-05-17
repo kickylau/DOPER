@@ -34,16 +34,13 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/pets' exact={true}>
           <h1>PETS</h1>
           <Pet/>
-          {/* <CreatePetModal/> */}
         </Route>
-
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
@@ -54,17 +51,8 @@ function App() {
           <Reservation/>
         </Route>
         <ProtectedRoute path='/Home' >
-          {/* <Home/> */}
-          <h1>Home Page</h1>
-          <Walkers/>
+          <Home/>
         </ProtectedRoute>
-        {/* <ProtectedRoute path='/walkers' >
-
-          <h1>Home !! Page</h1>
-
-        </ProtectedRoute> */}
-
-
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>

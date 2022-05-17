@@ -84,11 +84,15 @@ function Reservation() {
   return (
     <>
       <h1> All Reservations </h1>
+      <h1> All Reservations </h1>
+      <h1> All Reservations </h1>
+
 
       {reservations?.map(reservation =>
 
         <>
           <div className="reservation-container">
+            <h2 id="task-type">{reservation.petName}</h2>
             <h2 id="task-type">{reservation.taskType}</h2>
             <h3 id="task-length">{reservation.taskLength}</h3>
             <h3 id="task-length">{reservation.address}</h3>
