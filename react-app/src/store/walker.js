@@ -47,7 +47,7 @@ export const newWalker = (newWalker) => async (dispatch) => {
 
 export const loadAllWalkers = () => async (dispatch) => {
     const res = await fetch(`/api/walkers/`)
-    console.log("RES----------",res)
+    //console.log("RES----------",res)
     if (res.ok) {
         const walkers = await res.json();
         dispatch(loadWalkers(walkers))

@@ -18,7 +18,7 @@ function BookReservationModal({ walker }) {
     const [walkerId, setWalkerId] = useState(walker?.id);
     const petsObj = useSelector(state => state.pets)
     const pets = Object.values(petsObj)
-    console.log("TRY OUT THIS PET ID ----", pets[0]?.id)
+    //console.log("TRY OUT THIS PET ID ----", pets[0]?.id)
     const [petId, setPetId] = useState(pets[0]?.id);
     const [taskType, setTaskType] = useState("Dog Walking");
     const [taskLength, setTaskLength] = useState("30 Minutes");
