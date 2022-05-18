@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import BookReservationModal from "./BookReservationModal";
 import * as walkersActions from "../store/walker";
 import * as reservationActions from "../store/reservation";
+//import woman from "./woman.png";
 
 
 
@@ -30,7 +31,7 @@ function Walkers() {
         dispatch(walkersActions.loadAllWalkers())
     }, [dispatch])
 
- 
+
 
 
     return (
@@ -40,20 +41,20 @@ function Walkers() {
 
                 <div key={walker.id} className="walker-container">
 
-                    <h2 className="walker-name">{walker.name}</h2>
-                    <h3 className="walker-summary">{walker.summary}</h3>
-                    <h4 className="walker-description">{walker.description}</h4>
-                    {/* <h5 className="walker-image">"Jenny G"</h5> */}
-                    <h5 className="walker-location">{walker.locaiton}</h5>
+                    <div className="walker-image-container">
+                        <img className="walker-image" src={walker.profileImage} width="100" height="100" />
+                    </div>
+                    <div className="walker-info-container">
+                        <h2 className="walker-name">{walker.name}</h2>
+                        <h3 className="walker-summary">{walker.summary}</h3>
 
-
+                        <h5 className="walker-location">{walker.location}</h5>
+                    </div>
+                    <div className="walker-info2-container">
+                        <h4 className="walker-description">{walker.description}</h4>
+                    </div>
                     <div>
-                        {/* <button className="reserve-button" onClick={() => setShowBookModal(true)}>BOOK</button>
-                        {showBookModal && ( */}
-
-                                <BookReservationModal hideModal={() => setShowBookModal(false)} walker={walker} />
-
-                        {/*  )} */}
+                        <BookReservationModal hideModal={() => setShowBookModal(false)} walker={walker} />
                     </div>
                 </div>
             ))}

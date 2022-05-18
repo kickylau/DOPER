@@ -34,28 +34,28 @@ function App() {
     <BrowserRouter>
       <NavBar/>
       <Switch>
-        <Route path='/login' exact={true}>
+        {/* <Route path='/login' exact={true}>
           <LoginForm />
-        </Route>
-        <Route path='/pets' exact={true}>
+        </Route> */}
+        <ProtectedRoute path='/pets' exact={true}>
           <h1>PETS</h1>
           <Pet />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList />
         </ProtectedRoute>
-        <Route path='/reservations' exact={true} >
+        {/* <Route path='/sign-up' exact={true}>
+          <SignUpForm />
+        </Route> */}
+        {/* <ProtectedRoute path='/users' exact={true} >
+          <UsersList />
+        </ProtectedRoute> */}
+        <ProtectedRoute path='/reservations' exact={true} >
           <Reservation />
-        </Route>
+        </ProtectedRoute>
         <ProtectedRoute path='/Home' >
           <Home />
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <Route path='/'  >
           <SplashPage />
         </Route>

@@ -44,7 +44,7 @@ function SplashPage() {
                             </div>
                         </div>
 
-                        <div href="https://google.com" className="card card2">
+                        <div className="card card2">
                             <div className="inner">
                                 <p className="title2">My sitter took great care of my dog, above and beyond my expectations. I would book with Doper again in a heartbeat!</p>
                                 <div className="subtitle">– Danielle H.</div>
