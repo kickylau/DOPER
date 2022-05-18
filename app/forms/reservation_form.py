@@ -16,7 +16,7 @@ class NewReservation(FlaskForm):
 
 
 class EditReservation(FlaskForm):
-   taskType = SelectField("Task Type", choices=["Dog Walking","Drop-In Visit"],validators=[InputRequired(message="Please provide the task type for your walker")])
+    taskType = SelectField("Task Type", choices=["Dog Walking","Drop-In Visit"],validators=[InputRequired(message="Please provide the task type for your walker")])
     taskLength = SelectField("Task Length", choices=["30 Minutes","60 Minutes"],validators=[InputRequired(message="Please provide the task length for your walker")])
     address = StringField("Address", validators=[InputRequired(message="Please provide the address to pick up your pet")])
     comment = StringField("Message", validators=[InputRequired(message="Please leave a note for your walker")])
