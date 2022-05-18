@@ -25,7 +25,7 @@ function Reservation() {
   const sessionUser = useSelector(state => state.session.user);
   const petsObj = useSelector(state => state.pets);
   const pets = Object.values(petsObj)
-  console.log("IF THERE IS ANY PET HERE ----", pets)
+  //console.log("IF THERE IS ANY PET HERE ----", pets)
 
 
   //const { currentReservation, setCurrentReservation } = useContext(TripContext);
@@ -79,12 +79,10 @@ function Reservation() {
   // }
 
   const findPetName = (petId) => {
+    console.log("WHAT IS THE PETID HERE", petId)
     let pet = pets.find(pet => {
-
-
       return pet.id === petId
     })
-
     return pet?.name
   }
 

@@ -63,10 +63,8 @@ function Pet() {
     <>
     <CreatePetModal/>
 
-
       {pets?.map(pet => (
         <>
-
           <h3> Name: {pet.name} </h3>
            <img src={pet.profileImage} height={200} width={200}/>
           <h4>Size: {pet.size} pounds </h4>

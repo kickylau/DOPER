@@ -35,7 +35,8 @@ const deleteReservationAction = (id) => {
 
 export const newReservation = (newReservation) => async (dispatch) => {
     const { userId, walkerId, taskType, taskLength, address, comment, date, time , petId } = newReservation
-    //console.log("NEW RESERVATION HERE ", newReservation)
+    console.log("DOES IT GOT AN PET ID ??", petId)
+    console.log("NEW RESERVATION HERE ", newReservation)
     const response = await fetch('/api/reservations/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -131,7 +132,7 @@ const reservationsReducer = (state = initialState, action) => {
             newState = action.payload.reservations
             return newState
         case DELETE_RESERVATION:
-            console.log("THIS IS THE DELETE REDUCER --------", action.payload)
+            //console.log("THIS IS THE DELETE REDUCER --------", action.payload)
             delete newState[action.payload]
             return {...newState }
         default:

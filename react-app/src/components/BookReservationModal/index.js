@@ -25,10 +25,17 @@ function BookReservationModal({ walker }) {
     //console.log("walkers", walkers)
     const [userId, setUserId] = useState(sessionUser?.id);
     const [walkerId, setWalkerId] = useState(walker?.id);
-    const pets = useSelector(state => state.pets);
+    //const pets = useSelector(state => state.pets);
+
+    const petsObj = useSelector(state => state.pets)
+    const pets = Object.values(petsObj)
+    //const pet = pets[]
+    const [petId, setPetId] = useState(pet?.id)
+    console.log("PETs",pets)
+    console.log("PETID HERE?", petId)
     const [petsArr, setPetsArr] = useState([]);
     //console.log("PET SHOW ANYTHING???", Object.values(pets))
-    //const [pet, setPet] = useState("");
+    const [pet, setPet] = useState("");
     const [taskType, setTaskType] = useState("Dog Walking");
     const [taskLength, setTaskLength] = useState("30 Minutes");
     const [address, setAddress] = useState("");
@@ -44,6 +51,10 @@ function BookReservationModal({ walker }) {
 
     const updatePet = e => {
         setPetName(e.target.value)
+
+        
+
+        //got a petname --> for loop ggo threough all pets in pet array -->
     }
 
 
@@ -57,6 +68,8 @@ function BookReservationModal({ walker }) {
     useEffect(() => {
         let petsObj = { ...pets }
         let array = [];
+        let array2 = Object.values(petsObj)
+        console.log("CHECK WHAT THIS PAT LOOK LIKE", array2)
         Object.keys(petsObj).forEach((key) => {
             let pet = petsObj[key]
             array.push(pet)
@@ -94,6 +107,7 @@ function BookReservationModal({ walker }) {
         setWalkerId(walker.id)
         //console.log("WALKER HERE", walker)
         newReservationData.userId = userId
+        newReservationData.petId = petId
         newReservationData.walkerId = walkerId
         newReservationData.taskType = taskType
         newReservationData.taskLength = taskLength
