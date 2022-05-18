@@ -7,6 +7,7 @@ def seed_reservations():
     reservation1 = Reservation(
         user_id=1,
         walker_id=1,
+        pet_id=1,
         task_type="Dog Walking",
         task_length="30 minutes",
         address="15 hudson yards, new york, #78c",

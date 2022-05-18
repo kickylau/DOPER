@@ -8,7 +8,13 @@ import AboutButton from './AboutButton';
 import SignUpFormModal from '../SignUpModal';
 import CreatePetModal from '../CreatePetModal';
 import BookReservationModal from '../BookReservationModal';
-
+import { SiDatadog } from "react-icons/si";
+import { CgProfile } from "react-icons/cg";
+import { FaUserCircle } from "react-icons/fa";
+import booking from "./booking.png";
+import dog from "./dog.png";
+import profile from "./profile.png";
+import me from "./me.png";
 import Walkers from '../Walker';
 
 
@@ -18,58 +24,57 @@ const NavBar = () => {
   let sessionLinks;
   if (user) {
     sessionLinks = (
-      <ul className="logged-in-nav">
-        <li className="nav button4">
-          <AboutButton />
-        </li>
-        {/* <li className="nav button1">
-          <CreatePetModal/>
-        </li> */}
+      <header>
+        <ul className="logged-in-nav">
+          <li className="nav button4">
+            <img src={me} alt="Me" className="icon-me" />
+            <AboutButton />
+          </li>
+          <li className="nav button2">
+            <img src={booking} alt="Booking" className="icon-booking" />
+            <NavLink to="/reservations" exact={true} className="reservations">
+              Reservations
+            </NavLink>
+          </li>
+          <li className="nav button2">
+            <img src={dog} alt="Dog" className="icon-dog" />
+            <NavLink to="/pets" exact={true} className="pets">
+              Your Pets
+            </NavLink>
+          </li>
 
-        <li className="nav button2">
-          <NavLink to="/Home" exact={true} className="home">
-            Home
-          </NavLink>
-        </li>
-        <li className="nav button2">
-          <NavLink to="/reservations" exact={true} className="reservations">
-            Reservations
-          </NavLink>
-        </li>
-        <li className="nav button2">
-          <NavLink to="/pets" exact={true} className="pets">
-            Pet Profile
-          </NavLink>
-        </li>
-
-        <li className="nav button3">
-          <ProfileButton/>
-        </li>
-      </ul>
+          <li className="nav button3">
+            <img src={profile} alt="Profile" className="icon-profile" />
+            <ProfileButton />
+          </li>
+        </ul>
+      </header>
     );
   } else {
     sessionLinks = (
-      <ul className="logged-out-nav">
-        <li className="nav button4">
-          <AboutButton />
-        </li>
-        <li className="nav button1">
-          <DemoButton />
-        </li>
-        <li className="nav button2">
-          <LoginFormModal />
-        </li>
-        <li className="nav button3">
-          <SignUpFormModal/>
-        </li>
-      </ul>
+      <header>
+        <ul className="logged-out-nav">
+          <li className="nav button4">
+            <AboutButton />
+          </li>
+          <li className="nav button1">
+            <DemoButton />
+          </li>
+          <li className="nav button2">
+            <LoginFormModal />
+          </li>
+          <li className="nav button3">
+            <SignUpFormModal />
+          </li>
+        </ul>
+      </header>
     );
   }
 
 
   return (
     <nav className="nav-container">
-        <ul className="nav-bar-left">
+      <ul className="nav-bar-left">
         <li className="nav-list">
           <NavLink to='/Home' exact={true} className="nav-link">
             <img src="/static/doper.png" className="icon" alt="Doper Icon" />
@@ -86,11 +91,11 @@ const NavBar = () => {
     //    <ul className="nav-bar-left">
     //<li className="nav-list">
     //<NavLink to='/' exact={true} className="nav-link">
-      //{/* <img src="/static/icon.png" className="icon" alt="Travel Bucket Icon" /> */}
-     // <h2 id="travel">Home</h2>
-   // </NavLink>
-  //</li>
-//</ul>
+    //{/* <img src="/static/icon.png" className="icon" alt="Travel Bucket Icon" /> */}
+    // <h2 id="travel">Home</h2>
+    // </NavLink>
+    //</li>
+    //</ul>
 
 
 

@@ -7,15 +7,19 @@
 
 /* Nav bar styling -> to be inherited across site */
 
+/* body{
+    padding-top: 60px;
+} */
+
 .nav-container {
     width: 100%;
+    height:60px;
     top: 0;
     position: fixed;
     display: flex;
     overflow: hidden;
     justify-content: space-between;
     background-color: white;
-    border-bottom: 3px solid rgb(99,174,170);
     z-index: 1;
     -webkit-box-shadow: 0 4px 6px -6px #222;
     -moz-box-shadow: 0 4px 6px -6px #222;

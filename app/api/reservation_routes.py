@@ -44,6 +44,7 @@ def reservations():
                 comment=form.data["comment"],
                 date=form.data["date"],
                 time=form.data["time"],
+                pet_id=form.data["petId"]
             )
             #print("NEW RESERVATION", new_reservation)
             db.session.add(new_reservation)
@@ -74,6 +75,7 @@ def change_reservation(id):
             reservation.comment = form.data["comment"]
             reservation.date = form.data["date"]
             reservation.time = form.data["time"]
+            
 
             db.session.add(reservation)
             db.session.commit()

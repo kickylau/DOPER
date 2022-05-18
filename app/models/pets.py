@@ -1,6 +1,6 @@
 from .db import db
 from datetime import datetime
-from .reservation_invites import reservation_invites
+# from .reservation_invites import reservation_invites
 
 class Pet(db.Model):
     __tablename__ = 'pets'
@@ -25,8 +25,9 @@ class Pet(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     user = db.relationship("User", back_populates="pets")
+    reservations = db.relationship("Reservation", back_populates="pets", cascade="delete, all")
 
-    invited_reservations = db.relationship("Reservation", secondary=reservation_invites, back_populates="invited_pets")
+    # invited_reservations = db.relationship("Reservation", secondary=reservation_invites, back_populates="invited_pets")
 
     # @property
     def to_dict(self):

@@ -11,7 +11,7 @@ import Home from './components/Home';
 import Reservation from "./components/Reservation";
 import Pet from "./components/Pet/Pet";
 import Walkers from './components/Walker';
-//import SplashPage from './components/SplashPage/SplashPage';
+import SplashPage from './components/SplashPage/SplashPage';
 import { authenticate } from './store/session';
 import CreatePetModal from './components/CreatePetModal';
 
@@ -20,7 +20,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -32,32 +32,32 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar/>
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/pets' exact={true}>
           <h1>PETS</h1>
-          <Pet/>
+          <Pet />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <Route path='/reservations' exact={true} >
-          <Reservation/>
+          <Reservation />
         </Route>
         <ProtectedRoute path='/Home' >
-          <Home/>
+          <Home />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
         <Route path='/'  >
-          <h1>My Home Page</h1>
+          <SplashPage />
         </Route>
       </Switch>
     </BrowserRouter>

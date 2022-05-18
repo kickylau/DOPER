@@ -11,7 +11,7 @@ from .api.auth_routes import auth_routes
 from .api.pet_routes import pet_routes
 from .api.walker_routes import walker_routes
 from .api.reservation_routes import reservation_routes
-from .api.invited_pets_routes import invited_pets_routes
+# from .api.invited_pets_routes import invited_pets_routes
 
 from .seeds import seed_commands
 
@@ -38,7 +38,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(pet_routes, url_prefix='/api/pets')
 app.register_blueprint(walker_routes, url_prefix='/api/walkers')
 app.register_blueprint(reservation_routes, url_prefix='/api/reservations')
-app.register_blueprint(invited_pets_routes, url_prefix='/api/invited_pets')
+# app.register_blueprint(invited_pets_routes, url_prefix='/api/invited_pets')
 
 
 db.init_app(app)

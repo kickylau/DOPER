@@ -35,15 +35,15 @@ function CreatePetModal() {
     const [selectValue, setSelectValue] = useState("");
     const selectRef = React.useRef();
 
-    const handleChange = (selectValue) => {
-        setSelectValue(!selectValue);
-    }
+    // const handleChange = (selectValue) => {
+    //     setSelectValue(!selectValue);
+    // }
 
-    const onClick = () => {
-        if (selectRef.current) {
-            selectRef.current.focus();
-        }
-    }
+    // const onClick = () => {
+    //     if (selectRef.current) {
+    //         selectRef.current.focus();
+    //     }
+    // }
 
     const url = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
 
@@ -127,38 +127,6 @@ function CreatePetModal() {
         //     if (data && data.errors) setErrors(data.errors);
         // });
     }
-
-
-
-
-    // const childrenSelectItems = [
-    //     { label: "Yes", value: 1 },
-    //     { label: "No", value: 2 },
-    //     { label: "Unsure", value: 3 },
-    //     { label: "Depends", value: 4 }
-
-    // ];
-
-    // const dogSelectItems = [
-    //     { label: "Yes", value: 1 },
-    //     { label: "No", value: 2 },
-    //     { label: "Unsure", value: 3 },
-    //     { label: "Depends", value: 4 }
-
-
-    // ];
-
-
-    // const sexSelectItems = [
-    //     { label: "Male", value: 1 },
-    //     { label: "Female", value: 2 }
-
-
-    // ];
-
-
-
-
 
 
 

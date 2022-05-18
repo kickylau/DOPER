@@ -3,7 +3,7 @@ from .users import seed_users, undo_users
 from .pets import seed_pets, undo_pets
 from .walkers import seed_walkers, undo_walkers
 from .reservations import seed_reservations, undo_reservations
-from .invited_pets import seed_invited_pets, undo_invited_pets
+# from .invited_pets import seed_invited_pets, undo_invited_pets
 
 
 # Creates a seed group to hold our commands
@@ -18,7 +18,7 @@ def seed():
     seed_pets()
     seed_walkers()
     seed_reservations()
-    seed_invited_pets()
+    # seed_invited_pets()
 
 
 
@@ -31,7 +31,7 @@ def undo():
     undo_pets()
     undo_walkers()
     undo_reservations()
-    undo_invited_pets()
+    # undo_invited_pets()
 
     # Add other undo functions here
 
