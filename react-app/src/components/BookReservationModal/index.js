@@ -35,7 +35,7 @@ function BookReservationModal({ walker }) {
 
     const updatePet = e => {
         setPetId(e.target.value)
-        console.log("check the value here in pet reserevation ----", e.target.value)
+        //console.log("check the value here in pet reserevation ----", e.target.value)
     }
 
 

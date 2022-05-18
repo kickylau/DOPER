@@ -68,9 +68,7 @@ function Reservation({ reservation }) {
   return (
     <>
       <div className="trip-container">
-        <h1> All Reservations </h1>
-        <h1> All Reservations </h1>
-        <h1> All Reservations </h1>
+
 
         <div key={reservation.id} className="reservation-container">
           <h2 id="task-type">{findPetName(reservation.petId)}</h2>
