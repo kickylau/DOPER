@@ -74,7 +74,7 @@ function EditPetForm({ hideModal, pet }) {
 
 
         const data = await dispatch(editPet(editedPetData))
-
+        console.log("THIS IS DATA------", data)
             // .then(() => {
             //     dispatch((loadAllPets()))
             // })

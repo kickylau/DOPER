@@ -1,3 +1,22 @@
+.logged-out-nav1{
+    padding: 8px 10px 0;
+    margin-right: 20px;
+    font-size: 25px;
+    font-weight: var(--weight1);
+    color: var(--varyDarkBlue);
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+
+
+
+
+
+
+
 .formContainer11 {
     height: auto;
     width: 240px;
@@ -75,15 +94,4 @@
 .logout:active {
     color: rgb(255, 255, 255);
     background-color: #ff0000;
-}
-
-.about-us {
-    border-bottom: 4px solid transparent;
-    display: inline;
-    margin: 0 auto;
-}
-
-.about-us.active,
-.about-us:hover {
-    border-color: #f3fd40;
 }

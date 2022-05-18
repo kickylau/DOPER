@@ -31,6 +31,8 @@ def reservations():
 
     if request.method == "POST":
         form = NewReservation()
+        #this way is to grab data from the json body in the front end since the petId is not in the backend form data
+        reservation_data = request.get_json(force=True)
         #print("..................")
         form['csrf_token'].data = request.cookies['csrf_token']
         #print("FORM OF THE WALKER ID-----------------------------", form.data)
@@ -44,6 +46,7 @@ def reservations():
                 comment=form.data["comment"],
                 date=form.data["date"],
                 time=form.data["time"],
+                pet_id=reservation_data["petId"]
             )
             #print("NEW RESERVATION", new_reservation)
             db.session.add(new_reservation)
@@ -74,6 +77,7 @@ def change_reservation(id):
             reservation.comment = form.data["comment"]
             reservation.date = form.data["date"]
             reservation.time = form.data["time"]
+
 
             db.session.add(reservation)
             db.session.commit()

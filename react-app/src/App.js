@@ -11,16 +11,18 @@ import Home from './components/Home';
 import Reservation from "./components/Reservation";
 import Pet from "./components/Pet/Pet";
 import Walkers from './components/Walker';
-//import SplashPage from './components/SplashPage/SplashPage';
+import SplashPage from './components/SplashPage/SplashPage';
 import { authenticate } from './store/session';
 import CreatePetModal from './components/CreatePetModal';
+import PetPage from "./components/Pet/index"
+import ReservationPage from './components/Reservation/Reservation';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -32,32 +34,31 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar/>
       <Switch>
-        <Route path='/login' exact={true}>
+        {/* <Route path='/login' exact={true}>
           <LoginForm />
-        </Route>
-        <Route path='/pets' exact={true}>
-          <h1>PETS</h1>
-          <Pet/>
-        </Route>
-        <Route path='/sign-up' exact={true}>
+        </Route> */}
+        <ProtectedRoute path='/pets' exact={true}>
+          <PetPage />
+        </ProtectedRoute>
+        {/* <Route path='/sign-up' exact={true}>
           <SignUpForm />
-        </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+        </Route> */}
+        {/* <ProtectedRoute path='/users' exact={true} >
+          <UsersList />
+        </ProtectedRoute> */}
+        <ProtectedRoute path='/reservations' exact={true} >
+          <ReservationPage />
         </ProtectedRoute>
-        <Route path='/reservations' exact={true} >
-          <Reservation/>
-        </Route>
         <ProtectedRoute path='/Home' >
-          <Home/>
+          <Home />
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <Route path='/'  >
-          <h1>My Home Page</h1>
+          <SplashPage />
         </Route>
       </Switch>
     </BrowserRouter>

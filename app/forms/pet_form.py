@@ -10,7 +10,7 @@ class NewPet(FlaskForm):
     size = IntegerField("Size", validators=[DataRequired(), NumberRange(min=0,message="Size has to be a positive number")])
     ageYear = IntegerField("Age(Year)", validators=[DataRequired(), NumberRange(min=0,message="Size has to be a positive number")])
     ageMonth = IntegerField("Age(Month)", validators=[DataRequired(), NumberRange(min=0,message="Size has to be a positive number")])
-    hasMicrochipped = SelectField("Has Microchipped?", choices=["Yes","No"], validators=[DataRequired()])
+    hasMicrochipped = SelectField("Has Microchipped?", choices=["Yes","No"], validators=[DataRequired(message="Size has to be a positive number")])
     hasSpayed = SelectField("Has Spayed?", choices=["Yes","No"], validators=[DataRequired()])
     hasTrained = SelectField("Has trained?", choices=["Yes","No"], validators=[DataRequired()])
     isFriendlyWithChildren = SelectField("Is it friendly with children?", choices=["Yes","No","Unsure","Depends"],  validators=[InputRequired()])

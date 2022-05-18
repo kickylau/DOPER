@@ -21,7 +21,7 @@ function AboutButton() {
 
     return (
         <>
-            <button src={githublogo} className="about-us" onClick={() => setShowModal(true)}>
+            <button src={githublogo} className="about-me" onClick={() => setShowModal(true)}>
                 About Me
             </button>
             {showModal && (

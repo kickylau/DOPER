@@ -34,12 +34,13 @@ const deleteReservationAction = (id) => {
 // thunks return a function that returns an action
 
 export const newReservation = (newReservation) => async (dispatch) => {
-    const { userId, walkerId, taskType, taskLength, address, comment, date, time , petName } = newReservation
+    const { userId, walkerId, taskType, taskLength, address, comment, date, time , petId } = newReservation
+    //console.log("DOES IT GOT AN PET ID ??", petId)
     //console.log("NEW RESERVATION HERE ", newReservation)
     const response = await fetch('/api/reservations/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify( { userId, walkerId, taskType, taskLength, address, comment, date, time, petName })
+        body: JSON.stringify( { userId, walkerId, taskType, taskLength, address, comment, date, time, petId })
     });
 
     //console.log("NEW RESERVATION!!!", response)
@@ -73,13 +74,13 @@ export const loadAllUserRelatedReservations = () => async (dispatch) => {
 // }
 
 export const editReservation = (editedReservation) => async (dispatch) => {
-    const { userId, walkerId, taskType, taskLength, address, comment, date, time } = editedReservation
+    const { userId, walkerId, taskType, taskLength, address, comment, date, time, petId } = editedReservation
     const id = parseInt(editedReservation.id, 10)
     //console.log("SO WHAT IS THIS EDIT RESERVAITON ID HERE ", id )
     const res = await fetch(`/api/reservations/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userId, walkerId, taskType, taskLength, address, comment, date, time })
+    body: JSON.stringify({ userId, walkerId, taskType, taskLength, address, comment, date, time, petId })
     });
 
     if(res.ok) {
@@ -131,7 +132,7 @@ const reservationsReducer = (state = initialState, action) => {
             newState = action.payload.reservations
             return newState
         case DELETE_RESERVATION:
-            console.log("THIS IS THE DELETE REDUCER --------", action.payload)
+            //console.log("THIS IS THE DELETE REDUCER --------", action.payload)
             delete newState[action.payload]
             return {...newState }
         default:
