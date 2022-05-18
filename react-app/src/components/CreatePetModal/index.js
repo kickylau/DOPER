@@ -33,18 +33,7 @@ function CreatePetModal() {
     const [vetInfo, setVetInfo] = useState("");
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
-    const [selectValue, setSelectValue] = useState("");
-    const selectRef = React.useRef();
 
-    // const handleChange = (selectValue) => {
-    //     setSelectValue(!selectValue);
-    // }
-
-    // const onClick = () => {
-    //     if (selectRef.current) {
-    //         selectRef.current.focus();
-    //     }
-    // }
 
     const url = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
 
@@ -171,7 +160,7 @@ function CreatePetModal() {
                                     <label className='label'>
                                         Your Dog Age in Month:
                                     </label>
-                                    <input onChange={e => setAgeMonth(e.target.value)} type="number" min="0" className="input" placeholder="Age Month" value={ageMonth} />
+                                    <input onChange={e => setAgeMonth(e.target.value)} type="integer" min={0} className="input" placeholder="Age Month" value={ageMonth} />
                                     <label className='label'>
                                         Is it microchipped?
                                     </label>
