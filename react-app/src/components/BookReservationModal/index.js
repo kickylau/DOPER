@@ -18,7 +18,8 @@ function BookReservationModal({ walker }) {
     const [walkerId, setWalkerId] = useState(walker?.id);
     const petsObj = useSelector(state => state.pets)
     const pets = Object.values(petsObj)
-    const [petId, setPetId] = useState("");
+    console.log("TRY OUT THIS PET ID ----", pets[0]?.id)
+    const [petId, setPetId] = useState(pets[0]?.id);
     const [taskType, setTaskType] = useState("Dog Walking");
     const [taskLength, setTaskLength] = useState("30 Minutes");
     const [address, setAddress] = useState("");
@@ -34,7 +35,7 @@ function BookReservationModal({ walker }) {
 
     const updatePet = e => {
         setPetId(e.target.value)
-        //console.log("check the value here in pet reserevation ----", e.target.value)
+        console.log("check the value here in pet reserevation ----", e.target.value)
     }
 
 
@@ -109,6 +110,7 @@ function BookReservationModal({ walker }) {
 
 
     if (!loaded) return null
+
 
     return (
 
@@ -191,11 +193,11 @@ function BookReservationModal({ walker }) {
                                     <label className='label'>
                                         Please Pick A Pet:
                                     </label>
-                                    <select onChange={updatePet} className="option" value={petName} >
+                                    <select onChange={updatePet} className="option" value={petsObj[petId]?.name} >
                                         {
-                                            Object.values(pets)?.map(pet => {
+                                            pets?.map(pet => {
                                                 return (
-                                                    <option value={pet.id}>{pet.name}</option>
+                                                    <option ket={pet.id} value={pet.id}>{pet.name}</option>
                                                 )
                                             })
                                         }
