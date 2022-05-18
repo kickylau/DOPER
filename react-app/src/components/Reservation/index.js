@@ -76,7 +76,7 @@ function Reservation({ reservation }) {
           <h3 id="task-length">{reservation.taskLength}</h3>
           <h3 id="task-length">{reservation.address}</h3>
           <h3 id="task-length">{reservation.comment}</h3>
-          <h3 id="task-length">{reservation.date}</h3>
+          <h3 id="task-length">{reservation.date.slice(0, 17)}</h3>
           <h3 id="task-length">{reservation.time}</h3>
 
           <div>

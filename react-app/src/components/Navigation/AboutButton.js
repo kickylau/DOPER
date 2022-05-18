@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AboutModal } from "../../context/AboutModal";
 import githublogo from "./githublogo.png";
+import linkedinlogo from "./linkedin.png";
 import './Navigation.css';
 
 function AboutButton() {
@@ -27,10 +28,16 @@ function AboutButton() {
             {showModal && (
                 <AboutModal onClose={() => setShowModal(false)}>
                     <div className="formContainer12">
-
                         <div className="github">
-                            <img src={githublogo} alt="Github"/>
-                            <a href="https://github.com/kickylau" target="_blank" rel="noreferrer noopener">Kicky Liu</a>
+                            <a>Kicky Liu : </a>
+                        </div>
+                        <div className="github">
+                            <img src={githublogo} alt="Github" />
+                            <a href="https://github.com/kickylau" target="_blank" rel="noreferrer noopener"></a>
+                        </div>
+                        <div className="github">
+                            <img src={linkedinlogo} alt="LinkedIn" />
+                            <a href="https://www.linkedin.com/in/kickyliu/" target="_blank" rel="noreferrer noopener"></a>
                         </div>
 
                     </div>
