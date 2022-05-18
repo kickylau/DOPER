@@ -115,7 +115,7 @@ function BookReservationModal({ walker }) {
         <>
 
             <button className="BookReservationButton" onClick={() => setShowModal(true)}>
-                Book a walk with {walker.name} now!
+                Book a walk now!
             </button>
             {
                 showModal && (

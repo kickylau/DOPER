@@ -15,6 +15,7 @@ import SplashPage from './components/SplashPage/SplashPage';
 import { authenticate } from './store/session';
 import CreatePetModal from './components/CreatePetModal';
 import PetPage from "./components/Pet/index"
+import ReservationPage from './components/Reservation/Reservation';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,7 +49,7 @@ function App() {
           <UsersList />
         </ProtectedRoute> */}
         <ProtectedRoute path='/reservations' exact={true} >
-          <Reservation />
+          <ReservationPage />
         </ProtectedRoute>
         <ProtectedRoute path='/Home' >
           <Home />
