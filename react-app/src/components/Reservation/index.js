@@ -79,7 +79,7 @@ function Reservation() {
   // }
 
   const findPetName = (petId) => {
-    console.log("WHAT IS THE PETID HERE", petId)
+    //console.log("WHAT IS THE PETID HERE", petId)
     let pet = pets.find(pet => {
       return pet.id === petId
     })

@@ -3,8 +3,6 @@ import { Modal } from "../../context/Modal";
 import { useDispatch, useSelector } from 'react-redux';
 import * as reservationActions from "../../store/reservation"
 import { useHistory, useParams } from "react-router-dom";
-//import { SelectButton } from 'primereact/selectbutton';
-//import Select from 'react-select';
 import * as petActions from "../../store/pet";
 import "./BookReservation.css"
 
@@ -15,27 +13,12 @@ function BookReservationModal({ walker }) {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
-    //const walkerId = walker.id
-    // console.log("WALKER ID------", walkerId)
-    //console.log("WHICH WALKER?", walker)
-    //it only works when you have url for walkerId
     const sessionUser = useSelector(state => state.session.user);
-    //const walkersObj = useSelector(state => state.walkers)
-    //const walkers = Object.values(walkersObj)
-    //console.log("walkers", walkers)
     const [userId, setUserId] = useState(sessionUser?.id);
     const [walkerId, setWalkerId] = useState(walker?.id);
-    //const pets = useSelector(state => state.pets);
-
     const petsObj = useSelector(state => state.pets)
     const pets = Object.values(petsObj)
-    //const pet = pets[]
-    const [petId, setPetId] = useState(pet?.id)
-    console.log("PETs",pets)
-    console.log("PETID HERE?", petId)
-    const [petsArr, setPetsArr] = useState([]);
-    //console.log("PET SHOW ANYTHING???", Object.values(pets))
-    const [pet, setPet] = useState("");
+    const [petId, setPetId] = useState("");
     const [taskType, setTaskType] = useState("Dog Walking");
     const [taskLength, setTaskLength] = useState("30 Minutes");
     const [address, setAddress] = useState("");
@@ -46,15 +29,12 @@ function BookReservationModal({ walker }) {
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [petName, setPetName] = useState("");
     const [loaded, setLoaded] = useState(false);
-    //const selectRef = React.useRef();
+
 
 
     const updatePet = e => {
-        setPetName(e.target.value)
-
-        
-
-        //got a petname --> for loop ggo threough all pets in pet array -->
+        setPetId(e.target.value)
+        //console.log("check the value here in pet reserevation ----", e.target.value)
     }
 
 
@@ -68,17 +48,10 @@ function BookReservationModal({ walker }) {
     useEffect(() => {
         let petsObj = { ...pets }
         let array = [];
-        let array2 = Object.values(petsObj)
-        console.log("CHECK WHAT THIS PAT LOOK LIKE", array2)
         Object.keys(petsObj).forEach((key) => {
             let pet = petsObj[key]
             array.push(pet)
         })
-        //console.log("PETHERE  ---", pet)
-        //console.log("PET IS HERE ------", pet)
-
-        //console.log("CHECKOUT THIS PAT ARRAY???----", array)
-        setPetsArr(array)
         setLoaded(true)
     }, [])
 
@@ -91,7 +64,6 @@ function BookReservationModal({ walker }) {
         if (!comment.length) errors.push("Please leave a message for the dog walker.")
         if (!date.length) errors.push("Please enter a date.")
         if (!time.length) errors.push("Please enter a time frame.")
-        //if (!petName.length) errors.push("Please choose one pet for this reservstion")
 
         setErrors(errors)
     }, [taskType, taskLength, address, comment, date, time])
@@ -105,7 +77,6 @@ function BookReservationModal({ walker }) {
         const newReservationData = {};
         setUserId(sessionUser.id)
         setWalkerId(walker.id)
-        //console.log("WALKER HERE", walker)
         newReservationData.userId = userId
         newReservationData.petId = petId
         newReservationData.walkerId = walkerId
@@ -116,7 +87,6 @@ function BookReservationModal({ walker }) {
         newReservationData.date = date
         newReservationData.time = time
         newReservationData.petName = petName
-        console.log("WHAT IS THE PET NAME HERE", petName)
 
         dispatch(reservationActions.newReservation(newReservationData))
             .then(() => {
@@ -130,7 +100,6 @@ function BookReservationModal({ walker }) {
                 setErrors([]);
                 setShowModal(false)
                 history.push('/reservations')
-                // need a .then and redirect IF you add a new trip while on another trip details page
             })
             .catch(async (res) => {
                 const data = await res.json();
@@ -162,7 +131,6 @@ function BookReservationModal({ walker }) {
                                     {hasSubmitted && errors.map((error, idx) => <li key={idx}>{error}</li>)}
                                 </ul>
                                 <div>
-                                    {/* <h1>THIS IS WALKER ID: {walker?.id}</h1> */}
                                     <label className='label'>
                                         Please Pick A Task Type:
                                     </label>
@@ -227,7 +195,7 @@ function BookReservationModal({ walker }) {
                                         {
                                             Object.values(pets)?.map(pet => {
                                                 return (
-                                                    <option value={pet.name}>{pet.name}</option>
+                                                    <option value={pet.id}>{pet.name}</option>
                                                 )
                                             })
                                         }

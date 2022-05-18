@@ -14,6 +14,7 @@ import Walkers from './components/Walker';
 import SplashPage from './components/SplashPage/SplashPage';
 import { authenticate } from './store/session';
 import CreatePetModal from './components/CreatePetModal';
+import PetPage from "./components/Pet/index"
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,8 +39,7 @@ function App() {
           <LoginForm />
         </Route> */}
         <ProtectedRoute path='/pets' exact={true}>
-          <h1>PETS</h1>
-          <Pet />
+          <PetPage />
         </ProtectedRoute>
         {/* <Route path='/sign-up' exact={true}>
           <SignUpForm />
