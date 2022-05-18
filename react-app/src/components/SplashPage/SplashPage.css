@@ -24,7 +24,12 @@
     font-weight: var(--weight1);
     color: var(--varyDarkBlue);
     font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+
 }
+
+h1.doper:link{  text-decoration: none;}
+h1.doper:visited{text-decoration: none;}
 
 
 @media only screen and (max-width: 900px) {
@@ -278,7 +283,7 @@ h2 {
     transition: 2s ease;
 }
 
-.button5,
+/* .button5,
 .button6 {
     border-bottom: 4px solid transparent;
 }
@@ -291,7 +296,7 @@ h2 {
 .button6.active,
 .button6:hover {
     border-color: #f63d43;
-}
+} */
 
 .grow img{
     transition: 1s ease;

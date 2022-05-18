@@ -58,8 +58,8 @@ function SplashPage() {
                                 </div>
 
                                 <div className="foooter2">
-                                    <div className="footerLink">All sitters pass a background checks</div>
-                                    <div className="footerLink" > And provide a detailed personal information</div>
+                                    <div className="footerLink">All sitters pass a background check</div>
+                                    <div className="footerLink" > And provide detailed personal information</div>
                                 </div>
 
                             </div>

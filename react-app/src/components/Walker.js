@@ -40,24 +40,26 @@ function Walkers() {
             {walkers && walkers.map(walker => (
 
                 <div key={walker.id} className="walker-container">
+                    <div className="walker--container">
 
-                    <div className="walker-image-container">
-                        <img className="walker-image" src={walker.profileImage} width="100" height="100" />
-                    </div>
-                    <div className="walker-info-container">
-                        <h2 className="walker-name">{walker.name}</h2>
-                        <h3 className="walker-summary">{walker.summary}</h3>
-
-                        <h5 className="walker-location">{walker.location}</h5>
-                    </div>
-                    <div className="walker-info2-container">
-                        <h4 className="walker-description">{walker.description}</h4>
-                    </div>
-                    <div>
-                        <BookReservationModal hideModal={() => setShowBookModal(false)} walker={walker} />
+                        <div className="walker-info-container">
+                            <img className="walker-image" src={walker.profileImage} width="100" height="100" />
+                            <a className="walker-name">{walker.name}</a>
+                        </div>
+                        <div className="walker-info1-container">
+                            <div className="walker-info2-container">
+                                <a className="walker-summary">{walker.summary}</a>
+                                <h5 className="walker-location">{walker.location}</h5>
+                                <h4 className="walker-description">{walker.description}</h4>
+                            </div>
+                            <div className="walker-info3-container">
+                                <BookReservationModal hideModal={() => setShowBookModal(false)} walker={walker} />
+                            </div>
+                        </div>
                     </div>
                 </div>
-            ))}
+            ))
+            }
         </>
     )
 }

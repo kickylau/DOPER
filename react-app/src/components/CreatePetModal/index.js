@@ -5,6 +5,7 @@ import * as petActions from "../../store/pet"
 import { useHistory } from "react-router-dom";
 import { SelectButton } from 'primereact/selectbutton';
 import Select from 'react-select';
+import "./CreatePet.css"
 
 
 
@@ -144,41 +145,38 @@ function CreatePetModal() {
             {
                 showModal && (
                     <Modal onClose={() => setShowModal(false)}>
-                        <div className="formContainer3">
+                        <div className="formContainer">
                             <h1> Create A Pet Profile </h1>
-                            <form className="new-pet-form" onSubmit={
-                                //e.preventDefault();
-                                submitNewPet
-                            }>
-                                <ul className="new-pet-errors">
+                            <form className="form" onSubmit={submitNewPet}>
+                                <div className="new-pet-errors">
                                     {hasSubmitted && errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                                </ul>
+                                </div>
                                 <div>
-                                    <label className='petlabel'>
+                                    <label className='label'>
                                         Pet Name:
                                     </label>
-                                    <input onChange={e => setName(e.target.value)} type="text" className="new-pet-name" placeholder='Name' value={name} />
-                                    <label className='petlabel'>
+                                    <input onChange={e => setName(e.target.value)} type="text" className="input" placeholder='Name' value={name} />
+                                    <label className='label'>
                                         Please upload your pet image:
                                     </label>
-                                    <input onChange={e => setProfileImage(e.target.value)} type="text" className="new-pet-image" placeholder='Profile Image' value={profileImage} />
-                                    <label className='petlabel'>
+                                    <input onChange={e => setProfileImage(e.target.value)} type="text" className="input" placeholder='Profile Image' value={profileImage} />
+                                    <label className='label'>
                                         Pet Size:
                                     </label>
-                                    <input onChange={e => setSize(e.target.value)} type="integer" min={0} className="new-pet-size" placeholder='Size' value={size} />
-                                    <label className='petlabel'>
+                                    <input onChange={e => setSize(e.target.value)} type="integer" min={0} className="input" placeholder='Size' value={size} />
+                                    <label className='label'>
                                         Your Dog Age in Year:
                                     </label>
-                                    <input onChange={e => setAgeYear(e.target.value)} type="integer" min={0} className="new-pet-age-year" placeholder="Age Year" value={ageYear} />
-                                    <label className='petlabel'>
+                                    <input onChange={e => setAgeYear(e.target.value)} type="integer" min={0} className="input" placeholder="Age Year" value={ageYear} />
+                                    <label className='label'>
                                         Your Dog Age in Month:
                                     </label>
-                                    <input onChange={e => setAgeMonth(e.target.value)} type="number" min="0" className="new-pet-age-month" placeholder="Age Month" value={ageMonth} />
-                                    <label className='petlabel'>
+                                    <input onChange={e => setAgeMonth(e.target.value)} type="number" min="0" className="input" placeholder="Age Month" value={ageMonth} />
+                                    <label className='label'>
                                         Is it microchipped?
                                     </label>
                                     {/* <input onChange={e => setHasMicrochipped(e.target.value)} type="boolean" className="new-pet-micro" value={hasMicrochipped} /> */}
-                                    <select onChange={e => setHasMicrochipped(e.target.value)} value={hasMicrochipped} >
+                                    <select className="options" onChange={e => setHasMicrochipped(e.target.value)} value={hasMicrochipped} >
                                         <option value="Yes">
                                             Yes
                                         </option>
@@ -186,11 +184,11 @@ function CreatePetModal() {
                                             No
                                         </option>
                                     </select>
-                                    <label className='petlabel'>
+                                    <label className='label'>
                                         Is it spayed?
                                     </label>
                                     {/* <input onChange={e => setHasMicrochipped(e.target.value)} type="boolean" className="new-pet-micro" value={hasMicrochipped} /> */}
-                                    <select onChange={e => setHasSpayed(e.target.value)} value={hasSpayed} >
+                                    <select onChange={e => setHasSpayed(e.target.value)} className="options" value={hasSpayed} >
                                         <option value="Yes">
                                             Yes
                                         </option>
@@ -198,7 +196,7 @@ function CreatePetModal() {
                                             No
                                         </option>
                                     </select>
-                                    <label className='petlabel'>
+                                    <label className='label'>
                                         Is it trained?
                                     </label>
                                     {/* <input onChange={e => setHasTrained(e.target.value)} type="boolean" className="new-pet-trained" value={hasTrained} /> */}
@@ -210,7 +208,7 @@ function CreatePetModal() {
                                             No
                                         </option>
                                     </select>
-                                    <label className='petlabel'>
+                                    <label className='label'>
                                         Is it friendly with children?
                                     </label>
                                     <select onChange={e => setIsFriendlyWithChildren(e.target.value)} value={isFriendlyWithChildren} >
@@ -228,7 +226,7 @@ function CreatePetModal() {
                                         </option>
                                     </select>
                                     {/* <Select options={childrenSelectItems} /> */}
-                                    <label className='petlabel'>
+                                    <label className='label'>
                                         Is it friendly with dogs?
                                     </label>
                                     <select onChange={e => setIsFriendlyWithDogs(e.target.value)} value={isFriendlyWithDogs} >
@@ -246,10 +244,10 @@ function CreatePetModal() {
                                         </option>
                                     </select>
                                     {/* <Select options={dogSelectItems} /> */}
-                                    <label className='petlabel'>
+                                    <label className='label'>
                                         Sex:
                                     </label>
-                                    <select onChange={e => setSex(e.target.value)} value={sex} >
+                                    <select className="options" onChange={e => setSex(e.target.value)} value={sex} >
                                         <option value="Male">
                                             Male
                                         </option>
@@ -258,20 +256,20 @@ function CreatePetModal() {
                                         </option>
                                     </select>
                                     {/* <Select options={sexSelectItems} /> */}
-                                    <label className='petlabel'>
+                                    <label className='label'>
                                         Breed:
                                     </label>
                                     <input onChange={e => setBreed(e.target.value)} type="text" className="new-pet-breed" placeholder="Breed" value={breed} />
-                                    <label className='petlabel'>
+                                    <label className='label'>
                                         Tell us a bit about your dog!
                                     </label>
                                     <input onChange={e => setDescription(e.target.value)} type="text" className="new-pet-description" placeholder="Description" value={description} />
-                                    <label className='petlabel'>
+                                    <label className='label'>
                                         Tell us about your pet's vet info:
                                     </label>
                                     <input onChange={e => setVetInfo(e.target.value)} type="text" className="new-pet-vet" placeholder="Vet Info" value={vetInfo} />
 
-                                    <button id="new-pet-submit" type='submit' >Submit</button>
+                                    <button id="loginButton" type='submit' >Submit</button>
                                 </div>
                             </form>
                         </div>

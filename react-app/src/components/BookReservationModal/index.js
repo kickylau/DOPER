@@ -6,6 +6,7 @@ import { useHistory, useParams } from "react-router-dom";
 //import { SelectButton } from 'primereact/selectbutton';
 //import Select from 'react-select';
 import * as petActions from "../../store/pet";
+import "./BookReservation.css"
 
 
 
@@ -131,15 +132,15 @@ function BookReservationModal({ walker }) {
         <>
 
             <button className="BookReservationButton" onClick={() => setShowModal(true)}>
-                Book A Walk with {walker.name} Now!
+                Book a walk with {walker.name} now!
             </button>
             {
                 showModal && (
                     <Modal onClose={() => setShowModal(false)}>
-                        <div className="formContainer3">
+                        <div className="formContainer">
                             <h1> Book A Walk </h1>
 
-                            <form className="new-reservation-form" onSubmit={e => {
+                            <form className="form" onSubmit={e => {
                                 e.preventDefault();
                                 submitNewReservation();
                             }}>
@@ -148,10 +149,10 @@ function BookReservationModal({ walker }) {
                                 </ul>
                                 <div>
                                     {/* <h1>THIS IS WALKER ID: {walker?.id}</h1> */}
-                                    <label className='reservationlabel'>
+                                    <label className='label'>
                                         Please Pick A Task Type:
                                     </label>
-                                    <select onChange={e => setTaskType(e.target.value)} value={taskType} >
+                                    <select onChange={e => setTaskType(e.target.value)} className="option"  value={taskType} >
                                         <option value="Dog Walking">
                                             Dog Walking
                                         </option>
@@ -159,10 +160,10 @@ function BookReservationModal({ walker }) {
                                             Drop In Visit
                                         </option>
                                     </select>
-                                    <label className='reservationlabel'>
+                                    <label className='label'>
                                         Please Pick Your Task Length:
                                     </label>
-                                    <select onChange={e => setTaskLength(e.target.value)} value={taskLength} >
+                                    <select onChange={e => setTaskLength(e.target.value)} className="option" value={taskLength} >
                                         <option value="30 Minutes">
                                             30 Minutes
                                         </option>
@@ -170,22 +171,22 @@ function BookReservationModal({ walker }) {
                                             60 Minutes
                                         </option>
                                     </select>
-                                    <label className='reservationlabel'>
+                                    <label className='label'>
                                         Your Address:
                                     </label>
-                                    <input onChange={e => setAddress(e.target.value)} type="text" className="new-task-address" placeholder='Address' value={address} />
-                                    <label className='reservationlabel'>
-                                        Message for Dog Walker:
+                                    <input onChange={e => setAddress(e.target.value)} type="text" className="input" placeholder='Address' value={address} />
+                                    <label className='label'>
+                                        Message For Dog Walker:
                                     </label>
-                                    <input onChange={e => setComment(e.target.value)} type="text" className="new-task-comment" placeholder="Comment" value={comment} />
-                                    <label className='reservationlabel'>
+                                    <input onChange={e => setComment(e.target.value)} type="text" className="input" placeholder="Comment" value={comment} />
+                                    <label className='label'>
                                         Please Pick A Date:
                                     </label>
-                                    <input onChange={e => setDate(e.target.value)} type="date" className="new-task-date" value={date} />
-                                    <label className='reservationlabel'>
+                                    <input onChange={e => setDate(e.target.value)} type="date" className="input" value={date} />
+                                    <label className='label'>
                                         Please Pick A Time Frame:
                                     </label>
-                                    <select onChange={e => setTime(e.target.value)} value={time} >
+                                    <select onChange={e => setTime(e.target.value)} className="option" value={time} >
                                         <option value="6:00AM-9:00AM">
                                             6:00AM-9:00AM
                                         </option>
@@ -193,7 +194,7 @@ function BookReservationModal({ walker }) {
                                             9:00AM-12:00PM
                                         </option>
                                         <option value="12:00PM-3:00PM">
-                                            12:00PM-3:00OM
+                                            12:00PM-3:00PM
                                         </option>
                                         <option value="3:00PM-6:00PM">
                                             3:00PM-6:00PM
@@ -205,10 +206,10 @@ function BookReservationModal({ walker }) {
                                             9:00PM-12:00AM
                                         </option>
                                     </select>
-                                    <label className='reservationlabel'>
-                                        Pick A Pet:
+                                    <label className='label'>
+                                        Please Pick A Pet:
                                     </label>
-                                    <select onChange={updatePet} value={petName} >
+                                    <select onChange={updatePet} className="option" value={petName} >
                                         {
                                             Object.values(pets)?.map(pet => {
                                                 return (
@@ -217,7 +218,7 @@ function BookReservationModal({ walker }) {
                                             })
                                         }
                                     </select>
-                                    <button id="new-task-submit" type='submit' >Submit</button>
+                                    <button id="loginButton" type='submit' >Submit</button>
                                 </div>
                             </form>
                         </div>

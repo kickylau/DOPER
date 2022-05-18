@@ -42,6 +42,7 @@
     display: flex;
     text-decoration: none;
     list-style-type: none;
+
 }
 
 .logged-out-nav {
@@ -54,47 +55,40 @@
 .nav {
     color: #666666;
     border-bottom: 4px solid transparent;
-    font-size: 18px;
+    font-size: 15px;
 }
 
-.button1.active,
-.button1:hover {
-    border-color: #33CCFF;
-}
-
-.button2.active,
-.button2:hover {
-    border-color: #FF6666;
-}
-
-.button3.active,
-.button3:hover {
-    border-color: #33CC66;
-}
-
-.addATripButton.active,
-.addATripButton:hover {
-    border-color: #CC66CC;
-}
 
 
 .button {
-    padding: 19px 56px 9px 18px;
+    padding: 0 56px 9px 0;
     margin: 5px;
     text-decoration: none;
-    background-color: #18A558;
     border-radius: 7px;
     font-weight: bold;
 }
 
-a,
-a:link {
+
+
+#buttonbutton{
+    border-radius: 3px;
+    padding: 15px 15px 0 15px;
     text-decoration: none;
+    /* background: none; */
+	color: inherit;
+	border: none;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    font-weight: bold;
+    /* margin-top:50px; */
+    top:50px;
 }
 
 button {
+    margin-top: 10px;
     border-radius: 3px;
-    padding: 15px;
+    padding: 15px 15px 0 15px;
     text-decoration: none;
     background: none;
 	color: inherit;
@@ -102,9 +96,8 @@ button {
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
-    color: rgb(99,174,170);
     font-weight: bold;
-
+    color:rgb(112, 109, 109);
 }
 
 .profile-dropdown {
@@ -192,3 +185,154 @@ h2{
     justify-content: flex-start;
     flex-wrap: wrap;
 }
+
+
+
+
+
+/* HERE IS THE WALKER PAGE CSS */
+
+.walker-container{
+     background-color: rgb(191, 208, 214);
+     padding:50px;
+     border-radius: 3px;
+     box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+     position: relative;
+     overflow: hidden;
+     justify-content: center;
+     align-items: center;
+     display:flex;
+     flex-direction: row;
+     max-width: 65%;
+     width:750px;
+     height: 450px;
+     margin:auto auto 40px auto;
+   }
+   .walker--container{
+    background: rgba(247, 247, 247, 0.6);
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-direction: column;
+    padding: 0 24px 24px 114px;
+   }
+
+   .walker-info-container{
+
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    justify-content: center;
+    align-items: center;
+    font-size:25px;
+    color:grey;
+    left:0;
+    position:absolute;
+    margin-left: 25px;
+   }
+
+   .walker-name {
+       margin-top:30px;
+       color:rgb(112, 109, 109);
+
+   }
+
+
+   .walker-info1-container{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    max-width: 400px;
+    margin-right: -60px;
+ }
+
+ @media only screen and (max-width: 950px) {
+    .walker--container{
+        background: rgba(247, 247, 247, 0.6);
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-direction: column;
+        padding: 0 24px 24px 114px;
+       }
+
+     .walker-container{
+        padding: 50px;
+        background-color: red;
+        border-radius: 3px;
+        background-color: white;
+        box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+        position: relative;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        display:flex;
+        flex-direction: row;
+        max-width: 100%;
+        width:750px;
+        height: auto;
+        margin:auto auto 20px auto;
+      }
+
+      .walker-info1-container{
+        display:flex;
+        flex-direction:column;
+        width:auto;
+        max-width: 300px;
+        height:auto;
+     }
+
+}
+
+
+   .walker-info2-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0px 20px;
+   }
+
+   .walker-summary{
+    position:relative;
+    font-size: 26px;
+    line-height: 1.3;
+    font-weight:700;
+    color:rgb(64, 67, 71);
+    margin-right: 4px;
+    overflow-wrap: break-word;
+    margin-bottom:10px;
+    font-family: Averta, Avenir, "Helvetica Neue", Calibri, Helvetica, Roboto, sans-serif;
+   }
+
+   .walker-location{
+    font-size: 12px;
+    font-family: Averta, Avenir, "Helvetica Neue", Calibri, Helvetica, Roboto, sans-serif;
+    font-style: italic;
+    line-height:1.3;
+    color: rgb(31, 33, 36);
+
+
+   }
+
+   .walker-description{
+    padding: 10px 0px;
+    color: #5A5A5A;
+    font-size: 14px;
+    hyphens: auto;
+    margin-bottom: 4px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.3;
+    color: rgb(31, 33, 36);
+    font-family: Averta, Avenir, "Helvetica Neue", Calibri, Helvetica, Roboto, sans-serif;
+
+   }
+
+   .walker-info3-container{
+       display:flex;
+       flex-direction:row;
+       justify-content: center;
+       align-items: center;
+    }
