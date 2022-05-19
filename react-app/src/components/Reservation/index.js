@@ -58,7 +58,7 @@ function Reservation({ reservation }) {
     return pet?.name
   }
 
-
+//console.log("DATE FORMAT HERE ----", reservation.date)
 
   // const routeChange = () => {
   //   let path = "/home";

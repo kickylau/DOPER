@@ -114,7 +114,7 @@ function BookReservationModal({ walker }) {
                     setTaskLength("30 Minutes");
                     setAddress("");
                     setComment("");
-                    setDate("");
+                    setDate(new Date());
                     setTime("6:00AM-9:00AM");
                     setPetName(pets[0]?.name)
                     history.push('/reservations')

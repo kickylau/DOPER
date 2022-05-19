@@ -2,20 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { editReservation, loadAllUserRelatedReservations } from '../../store/reservation'
+import DatePicker from 'react-date-picker';
 //import './EditTrip.css';
 
 function EditReservationForm({ hideModal, reservation }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
-    let holder = new Date(reservation.date)
+    //let holder = new Date(reservation.date)
     const [taskType, setTaskType] = useState(reservation.taskType);
     const [taskLength, setTaskLength] = useState(reservation.taskLength);
     const [address, setAddress] = useState(reservation.address);
     const [comment, setComment] = useState(reservation.comment);
-    //const [date, setDate] = useState(reservation.date);
+    const [date, setDate] = useState(new Date(reservation.date));
 
-    const [date, setDate] = useState(+holder.getFullYear() + "-" + (holder.getMonth() + 1) + "-" + (holder.getDate() + 1));
+    //const [date, setDate] = useState(+holder.getFullYear() + "-" + (holder.getMonth() + 1) + "-" + (holder.getDate() + 1));
     //console.log("TYPE OF DATE", typeof [date])
     const [time, setTime] = useState(reservation.time);
     //const [hasSubmitted, setHasSubmitted] = useState(false)
@@ -120,7 +121,8 @@ function EditReservationForm({ hideModal, reservation }) {
                     <label className='reservationlabel'>
                         Please Pick A Date:
                     </label>
-                    <input onChange={e => setDate(e.target.value)} type="date" className="new-task-date" value={date} />
+                    <DatePicker selected={date} value={date} minDate={new Date()} onChange={e => setDate(new Date(e))}/>
+                    {/* <input onChange={e => setDate(e.target.value)} type="date" className="new-task-date" value={date} /> */}
                     <label className='reservationlabel'>
                         Please Pick A Time Frame:
                     </label>
