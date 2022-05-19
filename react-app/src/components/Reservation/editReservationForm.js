@@ -15,10 +15,10 @@ function EditReservationForm({ hideModal, reservation }) {
     const [comment, setComment] = useState(reservation.comment);
     //const [date, setDate] = useState(reservation.date);
 
-    const [date, setDate] = useState(+holder.getFullYear()+"-"+(holder.getMonth()+1)+"-"+(holder.getDate()+1));
-    console.log("TYPE OF DATE",typeof[date])
+    const [date, setDate] = useState(+holder.getFullYear() + "-" + (holder.getMonth() + 1) + "-" + (holder.getDate() + 1));
+    console.log("TYPE OF DATE", typeof [date])
     const [time, setTime] = useState(reservation.time);
-    const [hasSubmitted, setHasSubmitted] = useState(false)
+    //const [hasSubmitted, setHasSubmitted] = useState(false)
     const [errors, setErrors] = useState([]);
 
     useEffect(() => {
@@ -26,22 +26,23 @@ function EditReservationForm({ hideModal, reservation }) {
     }, [sessionUser])
 
 
-    useEffect(() => {
-        let errors = [];
-        if (!taskType.length) errors.push("Please choose one task type.")
-        if (taskLength.length === 0) errors.push("Please choose the task length.")
-        if (!address.length) errors.push("Please enter an address.")
-        if (!comment.length) errors.push("Please leave a message for the dog walker.")
-        if (!date.length) errors.push("Please enter a date.")
-        if (!time.length) errors.push("Please enter a time frame.")
+    // useEffect(() => {
+    //     let errors = [];
+    //     if (!taskType.length) errors.push("Please choose one task type.")
+    //     if (taskLength.length === 0) errors.push("Please choose the task length.")
+    //     if (!address.length) errors.push("Please enter an address.")
+    //     if (!comment.length) errors.push("Please leave a message for the dog walker.")
+    //     if (!date.length) errors.push("Please enter a date.")
+    //     if (!time.length) errors.push("Please enter a time frame.")
 
-        setErrors(errors)
-    }, [taskType, taskLength, address, comment, date, time])
+    //     setErrors(errors)
+    // }, [taskType, taskLength, address, comment, date, time])
 
-    const submitReservationEdits = (e) => {
+    const submitReservationEdits = async (e) => {
         e.preventDefault();
-        setHasSubmitted(true)
-        if (errors.length > 0) return;
+        
+        //setHasSubmitted(true)
+        //if (errors.length > 0) return;
 
         const editedReservationData = reservation
         editedReservationData.taskType = taskType
@@ -52,15 +53,23 @@ function EditReservationForm({ hideModal, reservation }) {
         editedReservationData.time = time
 
         dispatch(editReservation(editedReservationData))
-            .then(() => {
-                dispatch((loadAllUserRelatedReservations()))
-            })
-            .then(() => hideModal())
-            .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
-            });
-    };
+        .then((res)=>{
+            if (res) setErrors(res)
+            else{
+                dispatch(loadAllUserRelatedReservations()).then(()=>{
+                    hideModal()
+                })
+            }
+        })
+    //         .then(() => {
+    //             dispatch((loadAllUserRelatedReservations())).then(() => hideModal())
+    //         })
+
+    //         .catch(async (res) => {
+    //             const data = await res.json();
+    //             if (data && data.errors) setErrors(data.errors);
+    //         });
+     };
 
     const handleCancelClick = (e) => {
         e.preventDefault()
@@ -73,7 +82,7 @@ function EditReservationForm({ hideModal, reservation }) {
             <form
                 onSubmit={submitReservationEdits}>
                 <ul className="new-reservation-errors">
-                    {hasSubmitted && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
                 <div>
 

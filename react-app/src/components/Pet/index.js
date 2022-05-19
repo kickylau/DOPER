@@ -16,8 +16,12 @@ function PetPage() {
 
     useEffect(() => {
         if (!sessionUser) history.push('/')
-        if (sessionUser) dispatch(petActions.loadAllPets())
+        // if (sessionUser) dispatch(petActions.loadAllPets())
     }, [sessionUser])
+
+    useEffect(() => {
+        dispatch(petActions.loadAllPets())
+    }, [dispatch])
 
     return (
         <>
@@ -25,8 +29,9 @@ function PetPage() {
             <div className="page-container">
                 <div className="trip-gallery">
 
-                    {pets && pets.map(pet =>
-                        <Pet key={pet.id} pet={pet} />
+                    {pets?.map(pet =>
+                        <>
+                            <Pet key={pet.id} pet={pet} /></>
                     )}
                     {(pets.length === 0) &&
                         <div className="trip-container">

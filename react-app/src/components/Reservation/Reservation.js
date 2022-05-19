@@ -18,8 +18,12 @@ function ReservationPage() {
 
     useEffect(() => {
         if (!sessionUser) history.push('/')
-        if (sessionUser) dispatch(reservationActions.loadAllUserRelatedReservations())
+        // if (sessionUser) dispatch(reservationActions.loadAllUserRelatedReservations())
     }, [sessionUser])
+
+    useEffect(() => {
+        dispatch(reservationActions.loadAllUserRelatedReservations())
+    }, [dispatch])
 
     const routeChange = () => {
         let path = "/home";
@@ -32,7 +36,7 @@ function ReservationPage() {
             <div className="page-container">
                 <div className="trip-gallery">
 
-                    {reservations && reservations.map(reservation =>
+                    {reservations?.map(reservation =>
                         <Reservation key={reservation.id} reservation={reservation} />
                     )}
                     {(reservations.length === 0) &&

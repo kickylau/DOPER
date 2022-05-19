@@ -34,13 +34,13 @@ const deleteReservationAction = (id) => {
 // thunks return a function that returns an action
 
 export const newReservation = (newReservation) => async (dispatch) => {
-    const { userId, walkerId, taskType, taskLength, address, comment, date, time , petId } = newReservation
+    const { userId, walkerId, taskType, taskLength, address, comment, date, time, petId } = newReservation
     //console.log("DOES IT GOT AN PET ID ??", petId)
     //console.log("NEW RESERVATION HERE ", newReservation)
     const response = await fetch('/api/reservations/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify( { userId, walkerId, taskType, taskLength, address, comment, date, time, petId })
+        body: JSON.stringify({ userId, walkerId, taskType, taskLength, address, comment, date, time, petId })
     });
 
     //console.log("NEW RESERVATION!!!", response)
@@ -60,33 +60,35 @@ export const loadAllUserRelatedReservations = () => async (dispatch) => {
     if (res.ok) {
         const reservations = await res.json();
         //console.log("HOW ABOUT HERE -------", reservations)
-        await dispatch(loadReservations(reservations))
+         dispatch(loadReservations(reservations))
     }
 }
 
-// export const loadInvitedUserTrips = (userId) => async (dispatch) => {
-//     const res = await fetch(`/api/invited_users/${userId}/trips`)
 
-//     if (res.ok) {
-//         const data = await res.json();
-//         dispatch(getInvitedUsers(data))
-//     }
-// }
 
 export const editReservation = (editedReservation) => async (dispatch) => {
     const { userId, walkerId, taskType, taskLength, address, comment, date, time, petId } = editedReservation
     const id = parseInt(editedReservation.id, 10)
     //console.log("SO WHAT IS THIS EDIT RESERVAITON ID HERE ", id )
     const res = await fetch(`/api/reservations/${id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userId, walkerId, taskType, taskLength, address, comment, date, time, petId })
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId, walkerId, taskType, taskLength, address, comment, date, time, petId })
     });
 
-    if(res.ok) {
+    if (res.ok) {
+
         const reservation = await res.json()
-        await dispatch(addReservation(reservation))
+        //console.log("RESSSSSS",reservation)
+        dispatch(addReservation(reservation))
+        return null;
+    } else if (res.status < 500) {
+        const data = await res.json()
+        if (data.errors) {
+            return data.errors
+        }
     }
+    else return ["errors: failed"]
 }
 
 export const deleteReservation = (id) => async (dispatch) => {
@@ -97,23 +99,13 @@ export const deleteReservation = (id) => async (dispatch) => {
         method: 'DELETE',
     })
 
-    if(res.ok) {
+    if (res.ok) {
         //console.log("\n\n\n\n\n\n\n DISPATCH THE REDUCER HERE V------------\n\n\n\n\n"  )
         await dispatch(deleteReservationAction(id))
     }
 }
 
-//could be wrong -
-// export const loadAReservation = (id) => async (dispatch) => {
-//     const res = await fetch(`/api/reservations/${id}`);
 
-//     if (res.ok) {
-//         const data = await res.json();
-//         if (data.errors) return data.errors
-//         dispatch(addReservation(data))
-//     }
-//     else return ['An error occurred. Please try again.']
-// }
 
 
 // end of thunks
@@ -129,12 +121,13 @@ const reservationsReducer = (state = initialState, action) => {
             newState[action.payload.id] = action.payload
             return newState
         case LOAD_ALL_USER_RELATED_RESERVATIONS:
-            newState = action.payload.reservations
+            newState = { ...action.payload.reservations }
+            //console.log("THIS IS THE NEW STAE----",newState)
             return newState
         case DELETE_RESERVATION:
             //console.log("THIS IS THE DELETE REDUCER --------", action.payload)
             delete newState[action.payload]
-            return {...newState }
+            return { ...newState }
         default:
             return state;
     }

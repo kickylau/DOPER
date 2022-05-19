@@ -15,9 +15,9 @@ import booking from "./booking.png";
 function Reservation({ reservation }) {
 
   //const [reservation, setReservation] = useState({});
-  const { reservationId } = useParams();
-  const reservationsObj = useSelector(state => state.reservations)
-  const reservations = Object.values(reservationsObj)
+  //const { reservationId } = useParams();
+  //const reservationsObj = useSelector(state => state.reservations)
+  //const reservations = Object.values(reservationsObj)
   //console.log("HOW ABOUT HERE FOR ALL RESERVATIONS----", reservations)
   const history = useHistory()
   const sessionUser = useSelector(state => state.session.user);
@@ -36,17 +36,17 @@ function Reservation({ reservation }) {
   }, [sessionUser])
 
 
-  useEffect(() => {
-    if (sessionUser) {
-      dispatch(reservationActions.loadAllUserRelatedReservations());
-      dispatch(petActions.loadAllPets());
-    }
-  }, [sessionUser]);
+  // useEffect(() => {
+  //   if (sessionUser) {
+  //     dispatch(reservationActions.loadAllUserRelatedReservations());
+  //     dispatch(petActions.loadAllPets());
+  //   }
+  // }, [sessionUser]);
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-  }, [reservations]);
+  // }, [reservations]);
 
 
 
@@ -60,10 +60,10 @@ function Reservation({ reservation }) {
 
 
 
-  const routeChange = () => {
-    let path = "/home";
-    history.push(path);
-  }
+  // const routeChange = () => {
+  //   let path = "/home";
+  //   history.push(path);
+  // }
 
   return (
     <>
@@ -76,11 +76,11 @@ function Reservation({ reservation }) {
           <h3 id="task-length">{reservation.taskLength}</h3>
           <h3 id="task-length">{reservation.address}</h3>
           <h3 id="task-length">{reservation.comment}</h3>
-          <h3 id="task-length">{reservation.date}</h3>
+          <h3 id="task-length">{reservation.date.slice(0, 17)}</h3>
           <h3 id="task-length">{reservation.time}</h3>
 
           <div>
-            <button className="button5" onClick={e => setShowEditModal(!showEditModal)}>Edit Reservation</button>
+            <button className="button5" onClick={e => setShowEditModal(true)}>Edit Reservation</button>
             {showEditModal && (
               <Modal onClose={() => setShowEditModal(false)}>
                 <EditReservationForm hideModal={() => setShowEditModal(false)} reservation={reservation} />

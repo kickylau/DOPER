@@ -13,21 +13,17 @@ function EditPetForm({ hideModal, pet }) {
     const [size, setSize] = useState(pet.size);
     const [ageYear, setAgeYear] = useState(pet.ageYear);
     const [ageMonth, setAgeMonth] = useState(pet.ageMonth);
-    const [hasMicrochipped, setHasMicrochipped] = useState(pet.hasMicrochipped? "Yes":"No");
-    const [hasSpayed, setHasSpayed] = useState(pet.hasSpayed? "Yes":"No");
-    const [hasTrained, setHasTrained] = useState(pet.hasTrained? "Yes":"No");
+    const [hasMicrochipped, setHasMicrochipped] = useState(pet.hasMicrochipped ? "Yes" : "No");
+    const [hasSpayed, setHasSpayed] = useState(pet.hasSpayed ? "Yes" : "No");
+    const [hasTrained, setHasTrained] = useState(pet.hasTrained ? "Yes" : "No");
     const [isFriendlyWithChildren, setIsFriendlyWithChildren] = useState(pet.isFriendlyWithChildren);
     const [isFriendlyWithDogs, setIsFriendlyWithDogs] = useState(pet.isFriendlyWithDogs);
-    const [sex,setSex]= useState(pet.sex)
-    const [breed,setBreed]= useState(pet.breed)
-    const [description, setDescription]= useState(pet.description)
-    const [vetInfo, setVetInfo]= useState(pet.vetInfo)
+    const [sex, setSex] = useState(pet.sex)
+    const [breed, setBreed] = useState(pet.breed)
+    const [description, setDescription] = useState(pet.description)
+    const [vetInfo, setVetInfo] = useState(pet.vetInfo)
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [errors, setErrors] = useState([]);
-
-    useEffect(() => {
-        if (!sessionUser) history.push('/')
-    }, [sessionUser])
 
 
     // useEffect(() => {
@@ -52,6 +48,7 @@ function EditPetForm({ hideModal, pet }) {
 
     const submitPetEdits = async (e) => {
         e.preventDefault();
+        // hideModal()  WE GOT RID OF THIS JUST IN CASE!! NOT TESTED
         //setHasSubmitted(true)
         //if (errors.length > 0) return;
 
@@ -67,28 +64,39 @@ function EditPetForm({ hideModal, pet }) {
         editedPetData.isFriendlyWithChildren = isFriendlyWithChildren
         editedPetData.isFriendlyWithDogs = isFriendlyWithDogs
         editedPetData.sex = sex
-        editedPetData.breed= breed
+        editedPetData.breed = breed
         editedPetData.vetInfo = vetInfo
         editedPetData.description = description
 
 
-
-        const data = await dispatch(editPet(editedPetData))
-        console.log("THIS IS DATA------", data)
-            // .then(() => {
-            //     dispatch((loadAllPets()))
-            // })
-            //.then(() => hideModal())
-            if (data) setErrors(data)
+        dispatch(editPet(editedPetData)).then((res) => {
+            if (res) setErrors(res)
             else {
-                setErrors([])
-                await dispatch(loadAllPets())
-                hideModal()
+                dispatch(loadAllPets()).then(() => {
+                    hideModal()
+                })
+
+
             }
-            // .catch( (res) => {
-            //     const data =  res.json();
-            //     if (data && data.errors) setErrors(data.errors);
-            // });
+
+        })
+        // const data = await dispatch(editPet(editedPetData))
+        // console.log("THIS IS DATA------", data)
+        //     // .then(() => {
+        //     //     dispatch((loadAllPets()))
+        //     // })
+        //     //.then(() => hideModal())
+        //     if (data) setErrors(data)
+        //     else {
+        //         setErrors([])
+        //         dispatch(loadAllPets()).then(()=>{
+        //            hideModal()
+        //         })
+        //     }
+        // .catch( (res) => {
+        //     const data =  res.json();
+        //     if (data && data.errors) setErrors(data.errors);
+        // });
     };
 
     const handleCancelClick = (e) => {
@@ -105,7 +113,6 @@ function EditPetForm({ hideModal, pet }) {
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
                 <div>
-
                     <label className='petlabel'>
                         Name:
                     </label>
@@ -117,7 +124,7 @@ function EditPetForm({ hideModal, pet }) {
                     <label className='petlabel'>
                         Size:
                     </label>
-                    <input onChange={e => setSize(e.target.value)} type="integer" className="new-pet-size" value={size} min={0}/>
+                    <input onChange={e => setSize(e.target.value)} type="integer" className="new-pet-size" value={size} min={0} />
                     <label className='petlabel'>
                         Age in Year:
                     </label>
@@ -125,7 +132,7 @@ function EditPetForm({ hideModal, pet }) {
                     <label className='petlabel'>
                         Age in Month:
                     </label>
-                    <input onChange={e => setAgeMonth(e.target.value)} type="number" className="new-pet-age-month" min="0" value={ageMonth} />
+                    <input onChange={e => setAgeMonth(e.target.value)} type="integer" className="new-pet-age-month" min={0} value={ageMonth} />
                     <label className='petlabel'>
                         Has Microchipped:
                     </label>

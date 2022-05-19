@@ -1,4 +1,5 @@
 from flask import Blueprint, request, render_template, redirect
+from flask_login import current_user
 from ..forms import NewReservation, EditReservation
 from ..models import db, Pet, User, Reservation, Walker, reservation_invites
 from datetime import date
@@ -36,6 +37,25 @@ def reservations():
         #print("..................")
         form['csrf_token'].data = request.cookies['csrf_token']
         #print("FORM OF THE WALKER ID-----------------------------", form.data)
+
+
+        # exist_reservation = Reservation.query.filter((Reservation.user_id == current_user.id)).all()
+        # exist_reservation_check = [res.to_dict() for res in exist_reservation]
+        # date_check = []
+        # for res in exist_reservation_check:
+        #     if res["date"] == reservation_data["date"]:
+        #         date_check.append("True")
+        # print("EXIST RESER--------------------------------------------------------------", date_check)
+
+        # if len(date_check) > 0 :
+        #     return {'error': ['2 Reservation Found']}
+        # else:
+
+
+        # print("EXIST RESER--------------------------------------------------------------", reservation_data["date"])
+        # print("EXIST RESER--------------------------------------------------------------", exist_reservation_check)
+
+
         if form.validate_on_submit():
             new_reservation = Reservation(
                 user_id=form.data["userId"],
@@ -48,7 +68,7 @@ def reservations():
                 time=form.data["time"],
                 pet_id=reservation_data["petId"]
             )
-            #print("NEW RESERVATION", new_reservation)
+                #print("NEW RESERVATION", new_reservation)
             db.session.add(new_reservation)
             db.session.commit()
             return new_reservation.to_dict()

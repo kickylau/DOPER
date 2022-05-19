@@ -60,9 +60,9 @@ function CreatePetModal() {
     //     setErrors(errors)
     // }, [name, profileImage, size, ageYear, ageMonth, hasMicrochipped, hasTrained, hasSpayed, isFriendlyWithDogs, isFriendlyWithChildren, sex, breed, vetInfo, description])
 
-    const submitNewPet = async (e) => {
+    const submitNewPet = (e) => {
         e.preventDefault();
-        // setHasSubmitted(true)
+        setHasSubmitted(true)
         // if (errors.length > 0) return;
 
         const newPetData = {};
@@ -84,30 +84,64 @@ function CreatePetModal() {
         newPetData.description = description
         newPetData.vetInfo = vetInfo
 
-        const data = await dispatch(petActions.newPet(newPetData))
-        if (data) setErrors(data)
-        else {
-            setErrors([])
-            //await dispatch(petActions.loadAllPets())
-            // hideModal()
-            setName("");
-            setProfileImage("");
-            setSize("");
-            setAgeYear("");
-            setAgeMonth("");
-            setHasMicrochipped("");
-            setHasSpayed("");
-            setHasTrained("");
-            setIsFriendlyWithChildren("");
-            setIsFriendlyWithDogs("");
-            setSex("");
-            setBreed("");
-            setDescription("");
-            setVetInfo("");
-            setErrors([]);
-            setShowModal(false);
-            history.push('/pets')
-        }
+        dispatch(petActions.newPet(newPetData))
+        // .then(() => {
+        //     console.log("DID NOT CATCH HERE ----------")
+        //     setErrors([])
+        //     setName("");
+        //     setProfileImage("");
+        //     setSize("");
+        //     setAgeYear("");
+        //     setAgeMonth("");
+        //     setHasMicrochipped("");
+        //     setHasSpayed("");
+        //     setHasTrained("");
+        //     setIsFriendlyWithChildren("");
+        //     setIsFriendlyWithDogs("");
+        //     setSex("");
+        //     setBreed("");
+        //     setDescription("");
+        //     setVetInfo("");
+        //     //setShowModal(false);
+        // })
+            .then( (res) => {
+                //console.log("HELLLLLLLLLLLLLO CATCH")
+                //console.log("res is here ------", res)
+                //const data = await res.json();
+                if (res) {
+                    setErrors(res)
+                    console.log("CHECK IT OUT --- ", "1",hasMicrochipped, "2",hasSpayed, "3",hasTrained, "4",isFriendlyWithChildren,"5",isFriendlyWithDogs, "6",sex)
+
+                }
+                else{
+                    setShowModal(false);
+                    setErrors([]);
+                    setName("");
+                    setProfileImage("");
+                    setSize("");
+                    setAgeYear("");
+                    setAgeMonth("");
+                    setHasMicrochipped("Yes");
+                    setHasSpayed("Yes");
+                    setHasTrained("Yes");
+                    setIsFriendlyWithChildren("Yes");
+                    setIsFriendlyWithDogs("Yes");
+                    setSex("Male");
+                    setBreed("");
+                    setDescription("");
+                    setVetInfo("");
+                    history.push('/pets')
+                }
+
+                //console.log("DATA IS HERERERERERERE", data)
+                //if (data && data.errors) setErrors(data.errors)
+            })
+
+        // if (data) setErrors(data)
+        // else {
+
+        //     history.push('/pets')
+        // }
         // .then(() => {
 
         // need a .then and redirect IF you add a new trip while on another trip details page
@@ -138,7 +172,7 @@ function CreatePetModal() {
                             <h1> Create A Pet Profile </h1>
                             <form className="form" onSubmit={submitNewPet}>
                                 <div className="new-pet-errors">
-                                    {hasSubmitted && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                                 </div>
                                 <div>
                                     <label className='label'>
@@ -165,7 +199,7 @@ function CreatePetModal() {
                                         Is it microchipped?
                                     </label>
                                     {/* <input onChange={e => setHasMicrochipped(e.target.value)} type="boolean" className="new-pet-micro" value={hasMicrochipped} /> */}
-                                    <select className="options" onChange={e => setHasMicrochipped(e.target.value)} value={hasMicrochipped} >
+                                    <select className="option" onChange={e => {setHasMicrochipped(e.target.value)}} value={hasMicrochipped} >
                                         <option value="Yes">
                                             Yes
                                         </option>
@@ -177,7 +211,7 @@ function CreatePetModal() {
                                         Is it spayed?
                                     </label>
                                     {/* <input onChange={e => setHasMicrochipped(e.target.value)} type="boolean" className="new-pet-micro" value={hasMicrochipped} /> */}
-                                    <select onChange={e => setHasSpayed(e.target.value)} className="options" value={hasSpayed} >
+                                    <select onChange={e => setHasSpayed(e.target.value)} className="option" value={hasSpayed} >
                                         <option value="Yes">
                                             Yes
                                         </option>
@@ -189,7 +223,7 @@ function CreatePetModal() {
                                         Is it trained?
                                     </label>
                                     {/* <input onChange={e => setHasTrained(e.target.value)} type="boolean" className="new-pet-trained" value={hasTrained} /> */}
-                                    <select onChange={e => setHasTrained(e.target.value)} value={hasTrained} >
+                                    <select onChange={e => setHasTrained(e.target.value)} className="option" value={hasTrained} >
                                         <option value="Yes">
                                             Yes
                                         </option>
@@ -200,7 +234,7 @@ function CreatePetModal() {
                                     <label className='label'>
                                         Is it friendly with children?
                                     </label>
-                                    <select onChange={e => setIsFriendlyWithChildren(e.target.value)} value={isFriendlyWithChildren} >
+                                    <select onChange={e => setIsFriendlyWithChildren(e.target.value)} className="option" value={isFriendlyWithChildren} >
                                         <option value="Yes">
                                             Yes
                                         </option>
@@ -218,7 +252,7 @@ function CreatePetModal() {
                                     <label className='label'>
                                         Is it friendly with dogs?
                                     </label>
-                                    <select onChange={e => setIsFriendlyWithDogs(e.target.value)} value={isFriendlyWithDogs} >
+                                    <select onChange={e => setIsFriendlyWithDogs(e.target.value)} className="option" value={isFriendlyWithDogs} >
                                         <option value="Yes">
                                             Yes
                                         </option>
@@ -236,7 +270,7 @@ function CreatePetModal() {
                                     <label className='label'>
                                         Sex:
                                     </label>
-                                    <select className="options" onChange={e => setSex(e.target.value)} value={sex} >
+                                    <select className="option" onChange={e => setSex(e.target.value)} value={sex} >
                                         <option value="Male">
                                             Male
                                         </option>
@@ -248,15 +282,15 @@ function CreatePetModal() {
                                     <label className='label'>
                                         Breed:
                                     </label>
-                                    <input onChange={e => setBreed(e.target.value)} type="text" className="new-pet-breed" placeholder="Breed" value={breed} />
+                                    <input onChange={e => setBreed(e.target.value)} type="text" className="input" placeholder="Breed" value={breed} />
                                     <label className='label'>
                                         Tell us a bit about your dog!
                                     </label>
-                                    <input onChange={e => setDescription(e.target.value)} type="text" className="new-pet-description" placeholder="Description" value={description} />
+                                    <input onChange={e => setDescription(e.target.value)} type="text" className="input" placeholder="Description" value={description} />
                                     <label className='label'>
                                         Tell us about your pet's vet info:
                                     </label>
-                                    <input onChange={e => setVetInfo(e.target.value)} type="text" className="new-pet-vet" placeholder="Vet Info" value={vetInfo} />
+                                    <input onChange={e => setVetInfo(e.target.value)} type="text" className="input" placeholder="Vet Info" value={vetInfo} />
 
                                     <button id="loginButton" type='submit' >Submit</button>
                                 </div>
