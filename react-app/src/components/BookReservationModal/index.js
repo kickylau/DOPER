@@ -91,6 +91,7 @@ function BookReservationModal({ walker }) {
         newReservationData.date = date
         newReservationData.time = time
         newReservationData.petName = petName
+        console.log("NEW RESERVATION DATA -----", newReservationData)
 
         dispatch(reservationActions.newReservation(newReservationData))
             .then((res) => {
