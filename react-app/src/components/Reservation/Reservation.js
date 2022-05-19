@@ -45,7 +45,14 @@ function ReservationPage() {
 
     return (
         <>
-            <BookReservationModal />
+
+
+            <h1>YOUR COMING UP RESERVATIONS </h1>
+            <h1>YOUR COMING UP RESERVATIONS </h1>
+            <h1>YOUR COMING UP RESERVATIONS </h1>
+            <h1>YOUR COMING UP RESERVATIONS </h1>
+            <h1>YOUR COMING UP RESERVATIONS </h1>
+            
             <div className="page-container">
                 <div className="trip-gallery">
 
