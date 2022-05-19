@@ -30,7 +30,7 @@ def seed_pets():
         profile_image="https://images.unsplash.com/photo-1598135753163-6167c1a1ad65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",
         size=25,
         age_year=3,
-        age_month=0,
+        age_month=1,
         has_microchipped="Yes",
         has_spayed="No",
         has_trained="No",

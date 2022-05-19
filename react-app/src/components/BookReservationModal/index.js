@@ -202,7 +202,7 @@ function BookReservationModal({ walker }) {
                                         {
                                             pets?.map(pet => {
                                                 return (
-                                                    <option ket={pet.id} value={pet.id}>{pet.name}</option>
+                                                    <option key={pet.id} value={pet.id}>{pet.name}</option>
                                                 )
                                             })
                                         }
