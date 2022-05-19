@@ -121,12 +121,12 @@ function CreatePetModal() {
                     setSize("");
                     setAgeYear("");
                     setAgeMonth("");
-                    setHasMicrochipped("");
-                    setHasSpayed("");
-                    setHasTrained("");
-                    setIsFriendlyWithChildren("");
-                    setIsFriendlyWithDogs("");
-                    setSex("");
+                    setHasMicrochipped("Yes");
+                    setHasSpayed("Yes");
+                    setHasTrained("Yes");
+                    setIsFriendlyWithChildren("Yes");
+                    setIsFriendlyWithDogs("Yes");
+                    setSex("Male");
                     setBreed("");
                     setDescription("");
                     setVetInfo("");

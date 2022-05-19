@@ -18,13 +18,17 @@ function ReservationPage() {
 
     useEffect(() => {
         if (!sessionUser) history.push('/')
-        if (sessionUser) dispatch(reservationActions.loadAllUserRelatedReservations())
+        // if (sessionUser) dispatch(reservationActions.loadAllUserRelatedReservations())
     }, [sessionUser])
 
-    const routeChange = () => {
-        let path = "/home";
-        history.push(path);
-      }
+    useEffect(() => {
+        dispatch(reservationActions.loadAllUserRelatedReservations())
+    }, [dispatch])
+
+    // const routeChange = () => {
+    //     let path = "/home";
+    //     history.push(path);
+    //   }
 
     return (
         <>
@@ -32,16 +36,16 @@ function ReservationPage() {
             <div className="page-container">
                 <div className="trip-gallery">
 
-                    {reservations && reservations.map(reservation =>
+                    {reservations?.map(reservation =>
                         <Reservation key={reservation.id} reservation={reservation} />
                     )}
-                    {(reservations.length === 0) &&
+                    {/* {(reservations.length === 0) &&
                         <div className="trip-container">
                             <h3 id="no-trip">Oops You have no current available reservations</h3>
                             <img src={booking} alt="Booking" className="icon-booking" />
                             <button onClick={routeChange}> Make a reservation now!</button>
                         </div>
-                    }
+                    } */}
                 </div>
             </div>
         </>
