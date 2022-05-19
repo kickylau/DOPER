@@ -9,6 +9,8 @@ import EditReservationForm from "./editReservationForm";
 import * as reservationActions from "../../store/reservation";
 import * as petActions from "../../store/pet";
 import booking from "./booking.png";
+import * as walkersActions from "../../store/walker";
+
 
 
 
@@ -24,6 +26,20 @@ function Reservation({ reservation }) {
   const petsObj = useSelector(state => state.pets);
   const pets = Object.values(petsObj)
   //console.log("IF THERE IS ANY PET HERE ----", pets)
+
+  const walkersObj = useSelector(state => state.walkers);
+  const walkers = Object.values(walkersObj)
+  //const theWalker = walker[0].name
+
+ //console.log("what is this walker format ---", walker[0]?.name)
+  //console.log(reservation.walkerId)
+  //console.log(walkers)
+  //console.log(walkers[reservation.walkerId-1]?.name)
+
+  const theWalker = walkers[reservation.walkerId-1]?.name
+
+
+
 
 
   //const { currentReservation, setCurrentReservation } = useContext(TripContext);
@@ -48,6 +64,9 @@ function Reservation({ reservation }) {
 
   // }, [reservations]);
 
+  useEffect(() => {
+    dispatch(walkersActions.loadAllWalkers())
+}, [dispatch])
 
 
   const findPetName = (petId) => {
@@ -58,6 +77,19 @@ function Reservation({ reservation }) {
     return pet?.name
   }
 
+  const findPetImage = (petId) => {
+    //console.log("WHAT IS THE PETID HERE", petId)
+    let pet = pets.find(pet => {
+      return pet.id === petId
+    })
+    return pet?.profileImage
+  }
+
+
+  //console.log("CHECK THIS OUT", findPetImage(reservation.petId))
+
+  const thePetImage = findPetImage(reservation.petId)
+
 //console.log("DATE FORMAT HERE ----", reservation.date)
 
   // const routeChange = () => {
@@ -67,13 +99,16 @@ function Reservation({ reservation }) {
 
   return (
     <>
+      
       <div className="trip-container">
         <div key={reservation.id}>
           <div className="gallary-info">
+            <img src={thePetImage} height={300} width={300} />
             <h4 id="task-type">Pet Name:{findPetName(reservation.petId)}</h4>
             <h4 id="task-type">Service: {reservation.taskType}</h4>
           </div>
           <div className="gallary-info">
+            <h4 id="task-length">Walker:{theWalker} </h4>
             <h4 id="task-length">Length: {reservation.taskLength}</h4>
             <h4 id="task-length">Address: {reservation.address}</h4>
             <h4 id="task-length">Comment: {reservation.comment}</h4>

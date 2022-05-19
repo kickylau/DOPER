@@ -28,7 +28,20 @@ function ReservationPage() {
     const routeChange = () => {
         let path = "/home";
         history.push(path);
-      }
+    }
+
+
+    //   {this.state.activities
+    //     .sort(
+    //       (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    //     )
+    //     .map((activity, i) => (
+    //       <Activity
+    //         key={i}
+    //         data={activity}
+    //         handleDelete={this.handleDelete}
+    //       />
+    //     ))}
 
     return (
         <>
@@ -36,9 +49,12 @@ function ReservationPage() {
             <div className="page-container">
                 <div className="trip-gallery">
 
-                    {reservations?.map(reservation =>
-                        <Reservation key={reservation.id} reservation={reservation} />
-                    )}
+                    {reservations?.sort(
+                        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+                    )
+                        .map(reservation =>
+                            <Reservation key={reservation.id} reservation={reservation} />
+                        )}
                     {(reservations.length === 0) &&
                         <div className="trip-container">
                             <h3 id="no-trip">Oops You have no current available reservations</h3>

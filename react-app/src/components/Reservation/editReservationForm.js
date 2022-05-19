@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { editReservation, loadAllUserRelatedReservations } from '../../store/reservation'
 import DatePicker from 'react-date-picker';
-//import './EditTrip.css';
+
+
+
 
 function EditReservationForm({ hideModal, reservation }) {
     const dispatch = useDispatch();
