@@ -142,6 +142,7 @@ const petsReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case LOAD_SINGLE_PET:
+            newState = {...state}
             newState[action.payload.id] = action.payload
             //console.log("CHECK NEW STATE HERE IN LOAD SINGLE PET", newState)
             return newState
@@ -161,13 +162,14 @@ const petsReducer = (state = initialState, action) => {
             return newState
         case EDIT_PET:
             newState={...state}
-            console.log("EDIT PET REDUCER HERE ---", action.payload)
-            console.log("EDIT PET REDUCER HERE ---", newState)
+            //console.log("EDIT PET REDUCER HERE ---", action.payload)
+            //console.log("EDIT PET REDUCER HERE ---", newState)
 
             newState[action.payload.id] = action.payload
             return newState
         case DELETE_PET:
-            delete newState[action.payload]
+            newState = {...state}
+            delete newState[action.payload.id]
             return {...newState}
         default:
             return state;
