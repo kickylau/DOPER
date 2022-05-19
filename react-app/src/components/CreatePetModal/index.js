@@ -60,9 +60,9 @@ function CreatePetModal() {
     //     setErrors(errors)
     // }, [name, profileImage, size, ageYear, ageMonth, hasMicrochipped, hasTrained, hasSpayed, isFriendlyWithDogs, isFriendlyWithChildren, sex, breed, vetInfo, description])
 
-    const submitNewPet = async (e) => {
+    const submitNewPet = (e) => {
         e.preventDefault();
-        // setHasSubmitted(true)
+        setHasSubmitted(true)
         // if (errors.length > 0) return;
 
         const newPetData = {};
@@ -84,30 +84,64 @@ function CreatePetModal() {
         newPetData.description = description
         newPetData.vetInfo = vetInfo
 
-        const data = await dispatch(petActions.newPet(newPetData))
-        if (data) setErrors(data)
-        else {
-            setErrors([])
-            //await dispatch(petActions.loadAllPets())
-            // hideModal()
-            setName("");
-            setProfileImage("");
-            setSize("");
-            setAgeYear("");
-            setAgeMonth("");
-            setHasMicrochipped("");
-            setHasSpayed("");
-            setHasTrained("");
-            setIsFriendlyWithChildren("");
-            setIsFriendlyWithDogs("");
-            setSex("");
-            setBreed("");
-            setDescription("");
-            setVetInfo("");
-            setErrors([]);
-            setShowModal(false);
-            history.push('/pets')
-        }
+        dispatch(petActions.newPet(newPetData))
+        // .then(() => {
+        //     console.log("DID NOT CATCH HERE ----------")
+        //     setErrors([])
+        //     setName("");
+        //     setProfileImage("");
+        //     setSize("");
+        //     setAgeYear("");
+        //     setAgeMonth("");
+        //     setHasMicrochipped("");
+        //     setHasSpayed("");
+        //     setHasTrained("");
+        //     setIsFriendlyWithChildren("");
+        //     setIsFriendlyWithDogs("");
+        //     setSex("");
+        //     setBreed("");
+        //     setDescription("");
+        //     setVetInfo("");
+        //     //setShowModal(false);
+        // })
+            .then( (res) => {
+                //console.log("HELLLLLLLLLLLLLO CATCH")
+                //console.log("res is here ------", res)
+                //const data = await res.json();
+                if (res) {
+                    setErrors(res)
+                    console.log("CHECK IT OUT --- ", "1",hasMicrochipped, "2",hasSpayed, "3",hasTrained, "4",isFriendlyWithChildren,"5",isFriendlyWithDogs, "6",sex)
+
+                }
+                else{
+                    setShowModal(false);
+                    setErrors([]);
+                    setName("");
+                    setProfileImage("");
+                    setSize("");
+                    setAgeYear("");
+                    setAgeMonth("");
+                    setHasMicrochipped("");
+                    setHasSpayed("");
+                    setHasTrained("");
+                    setIsFriendlyWithChildren("");
+                    setIsFriendlyWithDogs("");
+                    setSex("");
+                    setBreed("");
+                    setDescription("");
+                    setVetInfo("");
+                    history.push('/pets')
+                }
+
+                //console.log("DATA IS HERERERERERERE", data)
+                //if (data && data.errors) setErrors(data.errors)
+            })
+
+        // if (data) setErrors(data)
+        // else {
+
+        //     history.push('/pets')
+        // }
         // .then(() => {
 
         // need a .then and redirect IF you add a new trip while on another trip details page
@@ -138,7 +172,7 @@ function CreatePetModal() {
                             <h1> Create A Pet Profile </h1>
                             <form className="form" onSubmit={submitNewPet}>
                                 <div className="new-pet-errors">
-                                    {hasSubmitted && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                                 </div>
                                 <div>
                                     <label className='label'>
@@ -165,7 +199,7 @@ function CreatePetModal() {
                                         Is it microchipped?
                                     </label>
                                     {/* <input onChange={e => setHasMicrochipped(e.target.value)} type="boolean" className="new-pet-micro" value={hasMicrochipped} /> */}
-                                    <select className="option" onChange={e => setHasMicrochipped(e.target.value)} value={hasMicrochipped} >
+                                    <select className="option" onChange={e => {setHasMicrochipped(e.target.value)}} value={hasMicrochipped} >
                                         <option value="Yes">
                                             Yes
                                         </option>
