@@ -65,15 +65,6 @@ export const newPet = (newPet) => async (dispatch) => {
     } else return ['An error occurred. Please try again.']
 }
 
-//COULD BE WRONG
-// export const loadAllUserRelatedPets = (petId) => async (dispatch) => {
-//     const res = await fetch(`/api/pets/${petId}`)
-//     if (res.ok) {
-//         const pets = await res.json();
-//         dispatch(loadPets(pets))
-//     }
-// }
-
 export const loadSinglePet = (pet) => async (dispatch) => {
     const id = parseInt(pet.id,10)
     const res = await fetch(`/api/pets/${id}`)

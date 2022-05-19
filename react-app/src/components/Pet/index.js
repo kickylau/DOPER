@@ -33,11 +33,11 @@ function PetPage() {
                         <>
                             <Pet key={pet.id} pet={pet} /></>
                     )}
-                    {/* {(pets.length === 0) &&
+                    {(pets.length === 0) &&
                         <div className="trip-container">
                             <h3 id="no-trip">Oops you dont have any pet profile now, please create one to make any reservation.</h3>
                         </div>
-                    } */}
+                    }
                 </div>
             </div>
         </>

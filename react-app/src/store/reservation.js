@@ -64,14 +64,7 @@ export const loadAllUserRelatedReservations = () => async (dispatch) => {
     }
 }
 
-// export const loadInvitedUserTrips = (userId) => async (dispatch) => {
-//     const res = await fetch(`/api/invited_users/${userId}/trips`)
 
-//     if (res.ok) {
-//         const data = await res.json();
-//         dispatch(getInvitedUsers(data))
-//     }
-// }
 
 export const editReservation = (editedReservation) => async (dispatch) => {
     const { userId, walkerId, taskType, taskLength, address, comment, date, time, petId } = editedReservation
@@ -112,17 +105,7 @@ export const deleteReservation = (id) => async (dispatch) => {
     }
 }
 
-//could be wrong -
-// export const loadAReservation = (id) => async (dispatch) => {
-//     const res = await fetch(`/api/reservations/${id}`);
 
-//     if (res.ok) {
-//         const data = await res.json();
-//         if (data.errors) return data.errors
-//         dispatch(addReservation(data))
-//     }
-//     else return ['An error occurred. Please try again.']
-// }
 
 
 // end of thunks
