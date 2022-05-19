@@ -40,7 +40,7 @@ function EditReservationForm({ hideModal, reservation }) {
 
     const submitReservationEdits = async (e) => {
         e.preventDefault();
-        
+
         //setHasSubmitted(true)
         //if (errors.length > 0) return;
 
@@ -53,23 +53,24 @@ function EditReservationForm({ hideModal, reservation }) {
         editedReservationData.time = time
 
         dispatch(editReservation(editedReservationData))
-        .then((res)=>{
-            if (res) setErrors(res)
-            else{
-                dispatch(loadAllUserRelatedReservations()).then(()=>{
+            .then((res) => {
+                if (res) setErrors(res)
+                else {
+                    // dispatch(loadAllUserRelatedReservations()).then(() => {
+                    // })
                     hideModal()
-                })
-            }
-        })
-    //         .then(() => {
-    //             dispatch((loadAllUserRelatedReservations())).then(() => hideModal())
-    //         })
+                }
+            })
 
-    //         .catch(async (res) => {
-    //             const data = await res.json();
-    //             if (data && data.errors) setErrors(data.errors);
-    //         });
-     };
+        //         .then(() => {
+        //             dispatch((loadAllUserRelatedReservations())).then(() => hideModal())
+        //         })
+
+        //         .catch(async (res) => {
+        //             const data = await res.json();
+        //             if (data && data.errors) setErrors(data.errors);
+        //         });
+    };
 
     const handleCancelClick = (e) => {
         e.preventDefault()

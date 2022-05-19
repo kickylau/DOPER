@@ -72,9 +72,9 @@ function EditPetForm({ hideModal, pet }) {
         dispatch(editPet(editedPetData)).then((res) => {
             if (res) setErrors(res)
             else {
-                dispatch(loadAllPets()).then(() => {
+                // dispatch(loadAllPets()).then(() => {
                     hideModal()
-                })
+                // })
 
 
             }

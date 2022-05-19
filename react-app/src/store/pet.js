@@ -3,6 +3,7 @@
 const LOAD_SINGLE_PET = "pet/loadSinglePet"
 const DELETE_PET = "pet/deletePet"
 const LOAD_ALL_PETS = "pet/loadAllPets"
+const EDIT_PET = "pet/editPet"
 
 // CONSTANTS display text in actions log
 /////////////////////////////////////////
@@ -14,6 +15,13 @@ const addPet = (pet) => {
         type: LOAD_SINGLE_PET,
         payload: pet
     };
+}
+
+const updatePet = (pet) => {
+    return {
+        type:EDIT_PET,
+        payload:pet
+    }
 }
 
 const loadOnePet = (pet) => {
@@ -96,7 +104,8 @@ export const editPet = (editedPet) => async (dispatch) => {
 
     if(res.ok) {
         const pet = await res.json()
-        dispatch(addPet(pet))
+        console.log("EDITED PET PET INFO ---", pet)
+        dispatch(updatePet(pet))
         return null;
     }
     else if (res.status<500){
@@ -129,17 +138,33 @@ export const removePet = (idString) => async (dispatch) => {
 
 const initialState = {pets:[]};
 const petsReducer = (state = initialState, action) => {
-    let newState = Object.assign({}, state)
+    //let newState = Object.assign({}, state)
+    let newState;
     switch (action.type) {
         case LOAD_SINGLE_PET:
             newState[action.payload.id] = action.payload
+            //console.log("CHECK NEW STATE HERE IN LOAD SINGLE PET", newState)
             return newState
         // case LOAD_ALL_USER_RELATED_PETS:
         //     newState = action.payload
         //     return newState
         case LOAD_ALL_PETS:
-            newState = {...action.payload.pets}
+            //newState = {...action.payload.pets}
+            newState={}
+            console.log(action.payload)
+            action.payload.pets.map(pet=>(
+                newState[pet.id]=pet
+            )
+            )
+            console.log("CHECK THE NEW STATE HERE IN LOAD ALL PETS", newState)
             //newState.pets = [...action.payload.pets]
+            return newState
+        case EDIT_PET:
+            newState={...state}
+            console.log("EDIT PET REDUCER HERE ---", action.payload)
+            console.log("EDIT PET REDUCER HERE ---", newState)
+
+            newState[action.payload.id] = action.payload
             return newState
         case DELETE_PET:
             delete newState[action.payload]
