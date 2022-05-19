@@ -48,10 +48,6 @@ jobs:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku container:release -a ${{ secrets.HEROKU_APP_NAME }} web
 
-   - name: Email Validation
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku run -a ${{ secrets.HEROKU_APP_NAME }} install email_validator
 
     - name: Run DB Migration
       env:
