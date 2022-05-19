@@ -7,6 +7,7 @@ import DeletePetForm from './deletePetForm';
 import EditPetForm from './editPetForm';
 import * as petActions from "../../store/pet";
 import CreatePetModal from '../CreatePetModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Pet({ pet }) {
   const history = useHistory()
@@ -31,41 +32,61 @@ function Pet({ pet }) {
 
 
   return (
-
-    <div className="trip-container">
-      <div className="gallary">
-        <h3> Pet: {pet.name} </h3>
-        <div className="gallary-info">
-          <img src={pet.profileImage} height={200} width={200} />
-          <h4>Size: {pet.size} pounds </h4>
-          <h5>Age: {pet.ageYear} Year(s) {pet.ageMonth} Month(s)</h5>
-          <h6> Is it microchipped? {pet.hasMicrochipped} </h6>
-          <h6> Is it spayed? {pet.hasSpayed} </h6>
-          <h6> Is it trained? {pet.hasTrained} </h6>
-          {/* ? "True":"False" */}
-          <h6> Is it friendly with children? {pet.isFriendlyWithChildren} </h6>
-          <h6> Is it friendly with dogs? {pet.isFriendlyWithDogs}</h6>
-          <h6> Sex: {pet.sex}</h6>
-          <h6> Breed: {pet.breed}</h6>
-          <h6> Description: {pet.description}</h6>
-          <h6> Vet Info: {pet.vetInfo}</h6>
+    <>
+      {/* <div className="cardd">
+        <div className="content">
+          <div className="front">
+            <img src={pet.profileImage} height={300} width={300} />
+          </div>
+          <div className="back">
+            <div>
+              <span className="backstyle"> {pet.breed}</span>
+              <span className="backstyle"> {pet.sex}</span>
+              <span className="backstyle"> {pet.size} pounds </span>
+              <span className="backstyle"> {pet.ageYear} Year(s) {pet.ageMonth} Month(s)</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div>
-        <button id="button5" onClick={e => setShowEditModal(true)}>Edit Pet Profile </button>
-        {showEditModal && (
-          <Modal onClose={() => setShowEditModal(false)}>
-            <EditPetForm hideModal={() => setShowEditModal(false)} pet={pet} />
-          </Modal>
-        )}
-        <button id="button6" onClick={e => setShowDeleteModal(true)}>Delete Pet Profile</button>
-        {showDeleteModal && (
-          <Modal onClose={() => setShowDeleteModal(false)}>
-            <DeletePetForm hideModal={() => setShowDeleteModal(false)} pet={pet} />
-          </Modal>
-        )}
-      </div>
-    </div>
+      </div> */}
+
+      <div className="trip-container">
+        <div className="gallary">
+          <div className="style" style={{ color: "grey", fontSize: "30px" }}>
+            <i class="fa-solid fa-paw"> {pet.name} </i>
+          </div>
+          <div className="gallary-info">
+            <img src={pet.profileImage} height={200} width={200} />
+            <h4 > {pet.breed}</h4>
+            <h4 > {pet.sex}</h4>
+            <h4 > {pet.size} pounds </h4>
+            <h4 > {pet.ageYear} Year(s) {pet.ageMonth} Month(s)</h4>
+            <h5> Microchipped? {pet.hasMicrochipped} </h5>
+            <h5> Sspayed? {pet.hasSpayed} </h5>
+            <h5> Trained? {pet.hasTrained} </h5>
+            {/* ? "True":"False" */}
+            <h5> Friendly with children? {pet.isFriendlyWithChildren} </h5>
+            <h5> Friendly with dogs? {pet.isFriendlyWithDogs}</h5>
+
+            <h5> Description: {pet.description}</h5>
+            <h5> Vet Info: {pet.vetInfo}</h5>
+          </div>
+        </div>
+        <div>
+          <button id="button5" onClick={e => setShowEditModal(true)}>Edit Pet Profile </button>
+          {showEditModal && (
+            <Modal onClose={() => setShowEditModal(false)}>
+              <EditPetForm hideModal={() => setShowEditModal(false)} pet={pet} />
+            </Modal>
+          )}
+          <button id="button6" onClick={e => setShowDeleteModal(true)}>Delete Pet Profile</button>
+          {showDeleteModal && (
+            <Modal onClose={() => setShowDeleteModal(false)}>
+              <DeletePetForm hideModal={() => setShowDeleteModal(false)} pet={pet} />
+            </Modal>
+          )}
+        </div>
+      </div >
+    </>
   );
 }
 export default Pet;

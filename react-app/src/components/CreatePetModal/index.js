@@ -3,8 +3,6 @@ import { Modal } from "../../context/Modal";
 import { useDispatch, useSelector } from 'react-redux';
 import * as petActions from "../../store/pet"
 import { useHistory } from "react-router-dom";
-import { SelectButton } from 'primereact/selectbutton';
-import Select from 'react-select';
 import "./CreatePet.css"
 
 
@@ -110,7 +108,7 @@ function CreatePetModal() {
                 //const data = await res.json();
                 if (res) {
                     setErrors(res)
-                    console.log("CHECK IT OUT --- ", "1", hasMicrochipped, "2", hasSpayed, "3", hasTrained, "4", isFriendlyWithChildren, "5", isFriendlyWithDogs, "6", sex)
+                    //console.log("CHECK IT OUT --- ", "1", hasMicrochipped, "2", hasSpayed, "3", hasTrained, "4", isFriendlyWithChildren, "5", isFriendlyWithDogs, "6", sex)
 
                 }
                 else {
