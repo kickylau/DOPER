@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as reservationActions from "../../store/reservation"
 import { useHistory, useParams } from "react-router-dom";
 import * as petActions from "../../store/pet";
+import DatePicker from 'react-date-picker';
 import "./BookReservation.css"
 
 
@@ -24,7 +25,7 @@ function BookReservationModal({ walker }) {
     const [taskLength, setTaskLength] = useState("30 Minutes");
     const [address, setAddress] = useState("");
     const [comment, setComment] = useState("");
-    const [date, setDate] = useState("");
+    const [date, setDate] = useState(new Date());
     const [time, setTime] = useState("6:00AM-9:00AM");
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -34,9 +35,19 @@ function BookReservationModal({ walker }) {
 
 
 
+
+    // const yesterday = moment().subtract(1, 'day');
+    // const disablePastDt = current => {
+    //   return current.isAfter(yesterday);
+    // };
+
+
     const updatePet = e => {
-        setPetId(e.target.value)
-        //console.log("check the value here in pet reserevation ----", e.target.value)
+        setPetName(e.target.value);
+        setPetId(e.target.value);
+
+
+        console.log("check the value here in pet reserevation ----", e.target.value)
     }
 
 
@@ -171,7 +182,8 @@ function BookReservationModal({ walker }) {
                                     <label className='label'>
                                         Please Pick A Date:
                                     </label>
-                                    <input onChange={e => setDate(e.target.value)} type="date" className="input" value={date} />
+                                    <DatePicker selected={date} value={date} minDate={new Date()} onChange={e => setDate(new Date(e))}/>
+                                    {/* <input onChange={e => setDate(e.target.value)} minDate={new Date()} type="date" className="input" value={date} /> */}
                                     <label className='label'>
                                         Please Pick A Time Frame:
                                     </label>

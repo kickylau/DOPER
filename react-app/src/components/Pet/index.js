@@ -26,7 +26,7 @@ function PetPage() {
     return (
         <>
             <div className="hello"> <CreatePetModal /></div>
-
+            
             <div className="page-container">
                 <div className="trip-gallery">
 

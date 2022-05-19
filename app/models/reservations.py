@@ -14,7 +14,7 @@ class Reservation(db.Model):
     task_length = db.Column(db.String, nullable=False)
     address = db.Column(db.String(255), nullable=False)
     comment = db.Column(db.String(255), nullable=False)
-    date = db.Column(db.Date, nullable=False)
+    date = db.Column(db.DateTime, nullable=False)
     time = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
