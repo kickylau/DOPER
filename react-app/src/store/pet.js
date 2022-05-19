@@ -104,7 +104,7 @@ export const editPet = (editedPet) => async (dispatch) => {
 
     if(res.ok) {
         const pet = await res.json()
-        console.log("EDITED PET PET INFO ---", pet)
+        //console.log("EDITED PET PET INFO ---", pet)
         dispatch(updatePet(pet))
         return null;
     }
@@ -152,12 +152,12 @@ const petsReducer = (state = initialState, action) => {
         case LOAD_ALL_PETS:
             //newState = {...action.payload.pets}
             newState={}
-            console.log(action.payload)
+            //console.log(action.payload)
             action.payload.pets.map(pet=>(
                 newState[pet.id]=pet
             )
             )
-            console.log("CHECK THE NEW STATE HERE IN LOAD ALL PETS", newState)
+            //console.log("CHECK THE NEW STATE HERE IN LOAD ALL PETS", newState)
             //newState.pets = [...action.payload.pets]
             return newState
         case EDIT_PET:

@@ -1,6 +1,7 @@
 const LOAD_ALL_USER_RELATED_RESERVATIONS = "reservation/loadAllUserRelatedReservations"
 const LOAD_SINGLE_RESERVATION = "reservation/loadSingleReservation"
 const DELETE_RESERVATION = "reservation/deleteReservation"
+const EDIT_RESERVATION = "reservation/editReservation"
 
 
 // CONSTANTS display text in actions log
@@ -27,6 +28,13 @@ const deleteReservationAction = (id) => {
         type: DELETE_RESERVATION,
         payload: id
     };
+}
+
+const updateReservation = (reservation) => {
+    return {
+        type:EDIT_RESERVATION,
+        payload:reservation
+    }
 }
 
 // end of actions
@@ -80,7 +88,7 @@ export const editReservation = (editedReservation) => async (dispatch) => {
 
         const reservation = await res.json()
         //console.log("RESSSSSS",reservation)
-        dispatch(addReservation(reservation))
+        dispatch(updateReservation(reservation))
         return null;
     } else if (res.status < 500) {
         const data = await res.json()
@@ -115,17 +123,29 @@ export const deleteReservation = (id) => async (dispatch) => {
 
 const initialState = {};
 const reservationsReducer = (state = initialState, action) => {
-    let newState = Object.assign({}, state)
+    //let newState = Object.assign({}, state)
+    let newState;
     switch (action.type) {
         case LOAD_SINGLE_RESERVATION:
+            newState = {...state}
             newState[action.payload.id] = action.payload
             return newState
         case LOAD_ALL_USER_RELATED_RESERVATIONS:
-            newState = { ...action.payload.reservations }
+            newState={}
+            //console.log("RESERVATION MAP", action.payload)
+            action.payload.reservations.map(reservation=>(
+
+                newState[reservation.id]=reservation
+            ))
             //console.log("THIS IS THE NEW STAE----",newState)
+            return newState
+        case EDIT_RESERVATION:
+            newState = {...state}
+            newState[action.payload.id] = action.payload
             return newState
         case DELETE_RESERVATION:
             //console.log("THIS IS THE DELETE REDUCER --------", action.payload)
+            newState={...state}
             delete newState[action.payload]
             return { ...newState }
         default:

@@ -29,7 +29,7 @@ function BookReservationModal({ walker }) {
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [petName, setPetName] = useState(pets[0]?.name);
-    console.log("PET FIRST NAME IS HERE-------", pets[0]?.name)
+    //console.log("PET FIRST NAME IS HERE-------", pets[0]?.name)
     const [loaded, setLoaded] = useState(false);
 
 
@@ -91,7 +91,7 @@ function BookReservationModal({ walker }) {
         newReservationData.date = date
         newReservationData.time = time
         newReservationData.petName = petName
-        console.log("NEW RESERVATION DATA -----", newReservationData)
+        //console.log("NEW RESERVATION DATA -----", newReservationData)
 
         dispatch(reservationActions.newReservation(newReservationData))
             .then((res) => {

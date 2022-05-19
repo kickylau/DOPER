@@ -16,7 +16,7 @@ function EditReservationForm({ hideModal, reservation }) {
     //const [date, setDate] = useState(reservation.date);
 
     const [date, setDate] = useState(+holder.getFullYear() + "-" + (holder.getMonth() + 1) + "-" + (holder.getDate() + 1));
-    console.log("TYPE OF DATE", typeof [date])
+    //console.log("TYPE OF DATE", typeof [date])
     const [time, setTime] = useState(reservation.time);
     //const [hasSubmitted, setHasSubmitted] = useState(false)
     const [errors, setErrors] = useState([]);
