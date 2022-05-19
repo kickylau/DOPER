@@ -1,11 +1,11 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField, SelectField, BooleanField, DateField, RadioField
-from wtforms.validators import DataRequired, InputRequired, NumberRange, URL
+from wtforms.validators import DataRequired, InputRequired, NumberRange, URL, Length
 
 
 class NewPet(FlaskForm):
     userId = IntegerField("User", validators=[DataRequired()])
-    name = StringField("Name", validators=[DataRequired(message="Please provide a name for your pet")])
+    name = StringField("Name", validators=[DataRequired(message="Please provide a name between 2-50 length for your pet"), Length(min=2, max=50)])
     profileImage = StringField("Profile Image", validators=[DataRequired(), URL(require_tld=True, message="Please provide a valid image URL")])
     size = IntegerField("Size", validators=[InputRequired(), NumberRange(min=1,message="Size has to be a positive integer")])
     ageYear = IntegerField("Age(Year)", validators=[InputRequired(), NumberRange(min=0,message="Age has to be 0 or a positive integer")])
@@ -17,13 +17,13 @@ class NewPet(FlaskForm):
     isFriendlyWithDogs = SelectField("Is it friendly with other dogs?", choices=["Yes","No","Unsure","Depends"], validators=[InputRequired(message="Please respond this field")])
     sex = SelectField("Sex", choices=["Male","Female"], validators=[InputRequired("Please respond this field")])
     breed = StringField("Breed", validators=[DataRequired(message="Please provide the breed for your pet")])
-    description = StringField("Description", validators=[DataRequired(message="Please provide a description for your pet")])
-    vetInfo = StringField("Vet Information", validators=[DataRequired(message="Please provide the vet info for your pet")])
-    #submit = SubmitField("Submit")
+    description = StringField("Description", validators=[DataRequired(message="Please provide a description between 5-500 length for your pet"), Length(min=5, max=500)])
+    vetInfo = StringField("Vet Information", validators=[DataRequired(message="Please provide the vet info between 2-500 length for your pet, if no vet info just type NO"), Length(min=2, max=500)])
+
 
 
 class EditPet(FlaskForm):
-    name = StringField("Name", validators=[DataRequired(message="Please provide a name for your pet")])
+    name = StringField("Name", validators=[DataRequired(message="Please provide a name between 2-50 length for your pet"), Length(min=2, max=50)])
     profileImage = StringField("Profile Image", validators=[DataRequired(), URL(require_tld=True, message="Please provide a valid image URL")])
     size = IntegerField("Size", validators=[InputRequired(), NumberRange(min=1,message="Size has to be a positive integer")])
     ageYear = IntegerField("Age(Year)", validators=[InputRequired(), NumberRange(min=0,message="Age has to be 0 or a positive integer")])
@@ -35,5 +35,5 @@ class EditPet(FlaskForm):
     isFriendlyWithDogs = SelectField("Is it friendly with other dogs?", choices=["Yes","No","Unsure","Depends"], validators=[InputRequired(message="Please respond this field")])
     sex = SelectField("Sex", choices=["Male","Female"], validators=[InputRequired("Please respond this field")])
     breed = StringField("Breed", validators=[DataRequired(message="Please provide the breed for your pet")])
-    description = StringField("Description", validators=[DataRequired(message="Please provide a description for your pet")])
-    vetInfo = StringField("Vet Information", validators=[DataRequired(message="Please provide the vet info for your pet")])
+    description = StringField("Description", validators=[DataRequired(message="Please provide a description between 5-500 length for your pet"), Length(min=5, max=500)])
+    vetInfo = StringField("Vet Information", validators=[DataRequired(message="Please provide the vet info between 2-500 length for your pet, if no vet info just type NO"), Length(min=2, max=500)])

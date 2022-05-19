@@ -3,8 +3,6 @@ import { Modal } from "../../context/Modal";
 import { useDispatch, useSelector } from 'react-redux';
 import * as petActions from "../../store/pet"
 import { useHistory } from "react-router-dom";
-import { SelectButton } from 'primereact/selectbutton';
-import Select from 'react-select';
 import "./CreatePet.css"
 
 
@@ -85,35 +83,35 @@ function CreatePetModal() {
         newPetData.vetInfo = vetInfo
 
         dispatch(petActions.newPet(newPetData))
-        // .then(() => {
-        //     console.log("DID NOT CATCH HERE ----------")
-        //     setErrors([])
-        //     setName("");
-        //     setProfileImage("");
-        //     setSize("");
-        //     setAgeYear("");
-        //     setAgeMonth("");
-        //     setHasMicrochipped("");
-        //     setHasSpayed("");
-        //     setHasTrained("");
-        //     setIsFriendlyWithChildren("");
-        //     setIsFriendlyWithDogs("");
-        //     setSex("");
-        //     setBreed("");
-        //     setDescription("");
-        //     setVetInfo("");
-        //     //setShowModal(false);
-        // })
-            .then( (res) => {
+            // .then(() => {
+            //     console.log("DID NOT CATCH HERE ----------")
+            //     setErrors([])
+            //     setName("");
+            //     setProfileImage("");
+            //     setSize("");
+            //     setAgeYear("");
+            //     setAgeMonth("");
+            //     setHasMicrochipped("");
+            //     setHasSpayed("");
+            //     setHasTrained("");
+            //     setIsFriendlyWithChildren("");
+            //     setIsFriendlyWithDogs("");
+            //     setSex("");
+            //     setBreed("");
+            //     setDescription("");
+            //     setVetInfo("");
+            //     //setShowModal(false);
+            // })
+            .then((res) => {
                 //console.log("HELLLLLLLLLLLLLO CATCH")
                 //console.log("res is here ------", res)
                 //const data = await res.json();
                 if (res) {
                     setErrors(res)
-                    console.log("CHECK IT OUT --- ", "1",hasMicrochipped, "2",hasSpayed, "3",hasTrained, "4",isFriendlyWithChildren,"5",isFriendlyWithDogs, "6",sex)
+                    //console.log("CHECK IT OUT --- ", "1", hasMicrochipped, "2", hasSpayed, "3", hasTrained, "4", isFriendlyWithChildren, "5", isFriendlyWithDogs, "6", sex)
 
                 }
-                else{
+                else {
                     setShowModal(false);
                     setErrors([]);
                     setName("");
@@ -158,13 +156,12 @@ function CreatePetModal() {
 
         <>
 
-            <h1> Create A Pet Profile
-                Create A Pet Profile
-                Create A Pet Profile</h1>
-            <button className="PetProfileButton" onClick={() => setShowModal(true)}>
-                Create A Pet Profile
+            <div className="putitdown">
+                <button className="PetProfileButton" onClick={() => setShowModal(true)}>
+                    Create A Pet Profile
+                </button>
+            </div>
 
-            </button>
             {
                 showModal && (
                     <Modal onClose={() => setShowModal(false)}>
@@ -199,7 +196,7 @@ function CreatePetModal() {
                                         Is it microchipped?
                                     </label>
                                     {/* <input onChange={e => setHasMicrochipped(e.target.value)} type="boolean" className="new-pet-micro" value={hasMicrochipped} /> */}
-                                    <select className="option" onChange={e => {setHasMicrochipped(e.target.value)}} value={hasMicrochipped} >
+                                    <select className="option" onChange={e => { setHasMicrochipped(e.target.value) }} value={hasMicrochipped} >
                                         <option value="Yes">
                                             Yes
                                         </option>

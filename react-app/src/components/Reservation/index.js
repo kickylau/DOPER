@@ -68,17 +68,18 @@ function Reservation({ reservation }) {
   return (
     <>
       <div className="trip-container">
-
-
-        <div key={reservation.id} className="reservation-container">
-          <h2 id="task-type">{findPetName(reservation.petId)}</h2>
-          <h2 id="task-type">{reservation.taskType}</h2>
-          <h3 id="task-length">{reservation.taskLength}</h3>
-          <h3 id="task-length">{reservation.address}</h3>
-          <h3 id="task-length">{reservation.comment}</h3>
-          <h3 id="task-length">{reservation.date.slice(0, 17)}</h3>
-          <h3 id="task-length">{reservation.time}</h3>
-
+        <div key={reservation.id}>
+          <div className="gallary-info">
+            <h4 id="task-type">Pet Name:{findPetName(reservation.petId)}</h4>
+            <h4 id="task-type">Service: {reservation.taskType}</h4>
+          </div>
+          <div className="gallary-info">
+            <h4 id="task-length">Length: {reservation.taskLength}</h4>
+            <h4 id="task-length">Address: {reservation.address}</h4>
+            <h4 id="task-length">Comment: {reservation.comment}</h4>
+            <h4 id="task-length">Date: {reservation.date.slice(0, 17)}</h4>
+            <h4 id="task-length">Time: {reservation.time}</h4>
+          </div>
           <div>
             <button className="button5" onClick={e => setShowEditModal(true)}>Edit Reservation</button>
             {showEditModal && (

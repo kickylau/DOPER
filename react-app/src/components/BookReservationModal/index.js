@@ -28,7 +28,8 @@ function BookReservationModal({ walker }) {
     const [time, setTime] = useState("6:00AM-9:00AM");
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
-    const [petName, setPetName] = useState("");
+    const [petName, setPetName] = useState(pets[0]?.name);
+    console.log("PET FIRST NAME IS HERE-------", pets[0]?.name)
     const [loaded, setLoaded] = useState(false);
 
 
@@ -57,23 +58,25 @@ function BookReservationModal({ walker }) {
     }, [])
 
 
-    useEffect(() => {
-        let errors = [];
-        if (!taskType.length) errors.push("Please choose one task type.")
-        if (!taskLength.length) errors.push("Please choose the task length.")
-        if (!address.length) errors.push("Please enter an address.")
-        if (!comment.length) errors.push("Please leave a message for the dog walker.")
-        if (!date.length) errors.push("Please enter a date.")
-        if (!time.length) errors.push("Please enter a time frame.")
+    // useEffect(() => {
+    //     let errors = [];
+    //     if (!taskType.length) errors.push("Please choose one task type.")
+    //     if (!taskLength.length) errors.push("Please choose the task length.")
+    //     if (!address.length) errors.push("Please enter an address.")
+    //     if (!comment.length) errors.push("Please leave a message for the dog walker.")
+    //     if (!date.length) errors.push("Please enter a date.")
+    //     if (!time.length) errors.push("Please enter a time frame.")
 
-        setErrors(errors)
-    }, [taskType, taskLength, address, comment, date, time])
+    //     setErrors(errors)
+    // }, [taskType, taskLength, address, comment, date, time])
 
 
 
-    const submitNewReservation = () => {
-        setHasSubmitted(true)
-        if (errors.length > 0) return;
+    const submitNewReservation = (e) => {
+         e.preventDefault();
+         setHasSubmitted(true)
+
+        //if (errors.length > 0) return;
 
         const newReservationData = {};
         setUserId(sessionUser.id)
@@ -90,22 +93,25 @@ function BookReservationModal({ walker }) {
         newReservationData.petName = petName
 
         dispatch(reservationActions.newReservation(newReservationData))
-            .then(() => {
-                setTaskType("");
-                setTaskLength("");
-                setAddress("");
-                setComment("");
-                setDate("");
-                setTime("");
-                setPetName("")
-                setErrors([]);
-                setShowModal(false)
-                history.push('/reservations')
+            .then((res) => {
+                if (res) setErrors(res)
+                else {
+                    setShowModal(false);
+                    setErrors([]);
+                    setTaskType("Dog Walking");
+                    setTaskLength("30 Minutes");
+                    setAddress("");
+                    setComment("");
+                    setDate("");
+                    setTime("6:00AM-9:00AM");
+                    setPetName(pets[0]?.name)
+                    history.push('/reservations')
+                }
             })
-            .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
-            });
+        // .catch(async (res) => {
+        //     const data = await res.json();
+        //     if (data && data.errors) setErrors(data.errors);
+        // });
     }
 
 
@@ -125,18 +131,16 @@ function BookReservationModal({ walker }) {
                         <div className="formContainer">
                             <h1> Book A Walk </h1>
 
-                            <form className="form" onSubmit={e => {
-                                e.preventDefault();
-                                submitNewReservation();
-                            }}>
+                            <form className="form" onSubmit={submitNewReservation}>
                                 <ul className="new-reservation-errors">
-                                    {hasSubmitted && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                                    {/* {hasSubmitted && errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
                                 </ul>
                                 <div>
                                     <label className='label'>
                                         Please Pick A Task Type:
                                     </label>
-                                    <select onChange={e => setTaskType(e.target.value)} className="option"  value={taskType} >
+                                    <select onChange={e => setTaskType(e.target.value)} className="option" value={taskType} >
                                         <option value="Dog Walking">
                                             Dog Walking
                                         </option>
