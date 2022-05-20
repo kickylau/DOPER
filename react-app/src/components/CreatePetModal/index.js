@@ -156,10 +156,10 @@ function CreatePetModal() {
 
         <>
 
-            <i class="fa-solid fa-paw-claws"></i>
+            <i className="fa-solid fa-dog"></i>
             <button id="PetProfileButton" onClick={() => setShowModal(true)}>
                 Create A Pet Profile
-            </button><i class="fa-solid fa-paw-claws"></i>
+            </button><i className="fa-solid fa-dog"></i>
 
 
             {
@@ -177,19 +177,19 @@ function CreatePetModal() {
                                     </label>
                                     <input onChange={e => setName(e.target.value)} type="text" className="input" placeholder='Name' value={name} />
                                     <label className='label'>
-                                        Please upload your pet image:
+                                        Please upload a valid URL for pet image:
                                     </label>
                                     <input onChange={e => setProfileImage(e.target.value)} type="text" className="input" placeholder='Profile Image' value={profileImage} />
                                     <label className='label'>
-                                        Pet Size:
+                                        Pet Size (pounds):
                                     </label>
                                     <input onChange={e => setSize(e.target.value)} type="integer" min={0} className="input" placeholder='Size' value={size} />
                                     <label className='label'>
-                                        Your Dog Age in Year:
+                                        Pet Age (Year):
                                     </label>
                                     <input onChange={e => setAgeYear(e.target.value)} type="integer" min={0} className="input" placeholder="Age Year" value={ageYear} />
                                     <label className='label'>
-                                        Your Dog Age in Month:
+                                        Pet Age (Month):
                                     </label>
                                     <input onChange={e => setAgeMonth(e.target.value)} type="integer" min={0} className="input" placeholder="Age Month" value={ageMonth} />
                                     <label className='label'>

@@ -66,6 +66,8 @@ function Reservation({ reservation }) {
 
   useEffect(() => {
     dispatch(walkersActions.loadAllWalkers())
+    dispatch(petActions.loadAllPets())
+    //console.log("PETS ------", pets)
 }, [dispatch])
 
 
@@ -99,7 +101,7 @@ function Reservation({ reservation }) {
 
   return (
     <>
-      
+
       <div className="trip-container">
         <div key={reservation.id}>
           <div className="gallary-info">

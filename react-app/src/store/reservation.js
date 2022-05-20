@@ -49,7 +49,7 @@ export const newReservation = (newReservation) => async (dispatch) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId, walkerId, taskType, taskLength, address, comment, date, time, petId })
-        
+
 
     });
     console.log("NEW RESERVATION!!!", response)
@@ -132,8 +132,8 @@ const reservationsReducer = (state = initialState, action) => {
             newState[action.payload.id] = action.payload
             return newState
         case LOAD_ALL_USER_RELATED_RESERVATIONS:
-            newState={}
-            //console.log("RESERVATION MAP", action.payload)
+            newState={...state}
+            //console.log("RESERVATION STATE", newState)
             action.payload.reservations.map(reservation=>(
 
                 newState[reservation.id]=reservation

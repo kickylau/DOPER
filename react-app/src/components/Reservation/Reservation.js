@@ -13,6 +13,9 @@ function ReservationPage() {
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const reservationsObj = useSelector(state => state.reservations)
+    const petsObj = useSelector(state => state.pets)
+    const pets = Object.values(petsObj)
+    //console.log("WHAT FORMAT FOR PET HERE =-----", pets)
     const reservations = Object.values(reservationsObj)
 
 
@@ -56,7 +59,7 @@ function ReservationPage() {
                         )}
                     {(reservations.length === 0) &&
                         <div className="trip-container">
-                            <h3 id="no-trip">Oops You have no current available reservations</h3>
+                            <h3 id="no-trip">Oops you have no current available reservations</h3>
                             <img src={booking} alt="Booking" className="icon-booking" />
                             <button onClick={routeChange}> Make a reservation now!</button>
                         </div>

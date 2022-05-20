@@ -33,11 +33,13 @@ function BookReservationModal({ walker }) {
     const [time, setTime] = useState("6:00AM-9:00AM");
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
-    const [petName, setPetName] = useState(pets[0]?.name);
+    // const [petName, setPetName] = useState(pets[0]?.name);
+    const [petName, setPetName] = useState("");
+
     //console.log("PET FIRST NAME IS HERE-------", pets[0]?.name)
     const [loaded, setLoaded] = useState(false);
 
-    petId = petId || 3
+    //petId = petId || 3
 
     // const yesterday = moment().subtract(1, 'day');
     // const disablePastDt = current => {
@@ -49,7 +51,7 @@ function BookReservationModal({ walker }) {
 
     const updatePet = (e) => {
         e.preventDefault();
-        //setPetName(e.target.value)
+        setPetName(e.target.value)
         setPetId(e.target.value)
         //.then(()=>setPetId(e.target.value));
 
@@ -150,14 +152,12 @@ function BookReservationModal({ walker }) {
         // });
     }
 
-
     if (!loaded) return null
 
 
     return (
 
         <>
-
             <button className="BookReservationButton" onClick={() => setShowModal(true)}>
                 Book a walk now!
             </button>
@@ -234,7 +234,7 @@ function BookReservationModal({ walker }) {
                                     <label className='label'>
                                         Please Pick A Pet:
                                     </label>
-                                    <select onChange={(e)=> updatePet(e)} className="option" value={petsObj[petId]?.name} >
+                                    <select onChange={(e)=> updatePet(e)} className="option" value={petName} >
                                         {
                                             pets?.map(pet => {
                                                 return (

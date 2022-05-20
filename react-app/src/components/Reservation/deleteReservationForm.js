@@ -25,7 +25,7 @@ function DeleteReservationForm ({ hideModal, reservation }) {
 
   return (
     <div className="formContainer6">
-      <form onSubmit={handleSubmit}>
+      <form id="delete_reservation_form" onSubmit={handleSubmit}>
         <h3>Are you sure you want to delete this reservation?</h3>
         <div id="delete_reservation_buttons">
           <button id="delete" className="deleteButton" type="submit">Confirm Delete</button>

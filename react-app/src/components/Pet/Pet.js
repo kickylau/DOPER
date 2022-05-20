@@ -55,7 +55,7 @@ function Pet({ pet }) {
       <div className="trip-container">
         <div className="gallary">
           <div className="style" style={{ color: "grey", fontSize: "30px" }}>
-            <i class="fa-solid fa-paw"> {pet.name} </i> <i class="fa-solid fa-paw"></i>
+            <i className="fa-solid fa-paw"> {pet.name} </i> <i className="fa-solid fa-paw"></i>
           </div>
           <div className="gallary-info">
             <img src={pet.profileImage} height={200} width={200} className="pet-image"/>
