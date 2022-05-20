@@ -19,8 +19,12 @@ function BookReservationModal({ walker }) {
     const [walkerId, setWalkerId] = useState(walker?.id);
     const petsObj = useSelector(state => state.pets)
     const pets = Object.values(petsObj)
+    //console.log("use state here ---", useState(pets))
+    //console.log("THIS IS THE PET OBJ----", pets)
     //console.log("TRY OUT THIS PET ID ----", pets[0]?.id)
-    const [petId, setPetId] = useState(pets[0]?.id);
+    let [petId, setPetId] = useState(pets[0]?.id);
+    //console.log("PET ID HERE ------", petId )
+    //console.log('PRINT OUT THE USE STATE OF PET ID ', useState(pets[0]?.id))
     const [taskType, setTaskType] = useState("Dog Walking");
     const [taskLength, setTaskLength] = useState("30 Minutes");
     const [address, setAddress] = useState("");
@@ -33,8 +37,7 @@ function BookReservationModal({ walker }) {
     //console.log("PET FIRST NAME IS HERE-------", pets[0]?.name)
     const [loaded, setLoaded] = useState(false);
 
-
-
+    petId = petId || 3
 
     // const yesterday = moment().subtract(1, 'day');
     // const disablePastDt = current => {
@@ -42,13 +45,34 @@ function BookReservationModal({ walker }) {
     // };
 
 
-    const updatePet = e => {
-        setPetName(e.target.value);
-        setPetId(e.target.value);
+    //onChange={e => setAddress(e.target.value)}
+
+    const updatePet = (e) => {
+        e.preventDefault();
+        //setPetName(e.target.value)
+        setPetId(e.target.value)
+        //.then(()=>setPetId(e.target.value));
 
 
-        console.log("check the value here in pet reserevation ----", e.target.value)
+
+        //console.log("check the value here in pet reserevation ----", e.target.value)
     }
+
+
+
+    // const handleSubmit = async (e) => {
+    //     //similar format for edit
+    //     e.preventDefault();
+    //       dispatch(deleteReservation(reservation.id))
+    //       //console.log("CHECK ID HERE ------", reservation.id)
+    //       .then(()=>{
+    //         dispatch((loadAllUserRelatedReservations()))
+    //       })
+    //       .then(()=>{
+    //          hideModal()
+    //       })
+
+    //   }
 
 
     useEffect(() => {
@@ -210,7 +234,7 @@ function BookReservationModal({ walker }) {
                                     <label className='label'>
                                         Please Pick A Pet:
                                     </label>
-                                    <select onChange={updatePet} className="option" value={petsObj[petId]?.name} >
+                                    <select onChange={(e)=> updatePet(e)} className="option" value={petsObj[petId]?.name} >
                                         {
                                             pets?.map(pet => {
                                                 return (

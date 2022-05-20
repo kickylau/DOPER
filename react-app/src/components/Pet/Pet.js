@@ -31,31 +31,34 @@ function Pet({ pet }) {
   // }, [sessionUser]);
 
 
+  // <div className="cardd">
+  //       <div className="content">
+  //         <div className="front">
+  //           <img src={pet.profileImage} height={300} width={300} />
+  //         </div>
+  //         <div className="back">
+  //           <div>
+  //           <span className="backstyle"> HI</span>
+  //             {/* <span className="backstyle"> {pet.breed}</span>
+  //             <span className="backstyle"> {pet.sex}</span>
+  //             <span className="backstyle"> {pet.size} pounds </span>
+  //             <span className="backstyle"> {pet.ageYear} Year(s) {pet.ageMonth} Month(s)</span> */}
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+
   return (
     <>
-      {/* <div className="cardd">
-        <div className="content">
-          <div className="front">
-            <img src={pet.profileImage} height={300} width={300} />
-          </div>
-          <div className="back">
-            <div>
-              <span className="backstyle"> {pet.breed}</span>
-              <span className="backstyle"> {pet.sex}</span>
-              <span className="backstyle"> {pet.size} pounds </span>
-              <span className="backstyle"> {pet.ageYear} Year(s) {pet.ageMonth} Month(s)</span>
-            </div>
-          </div>
-        </div>
-      </div> */}
+
 
       <div className="trip-container">
         <div className="gallary">
           <div className="style" style={{ color: "grey", fontSize: "30px" }}>
-            <i class="fa-solid fa-paw"> {pet.name} </i>
+            <i class="fa-solid fa-paw"> {pet.name} </i> <i class="fa-solid fa-paw"></i>
           </div>
           <div className="gallary-info">
-            <img src={pet.profileImage} height={200} width={200} />
+            <img src={pet.profileImage} height={200} width={200} className="pet-image"/>
             <h4 > {pet.breed}</h4>
             <h4 > {pet.sex}</h4>
             <h4 > {pet.size} pounds </h4>
@@ -71,7 +74,7 @@ function Pet({ pet }) {
             <h5> Vet Info: {pet.vetInfo}</h5>
           </div>
         </div>
-        <div>
+        <div className="gallary">
           <button id="button5" onClick={e => setShowEditModal(true)}>Edit Pet Profile </button>
           {showEditModal && (
             <Modal onClose={() => setShowEditModal(false)}>

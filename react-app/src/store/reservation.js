@@ -49,9 +49,10 @@ export const newReservation = (newReservation) => async (dispatch) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId, walkerId, taskType, taskLength, address, comment, date, time, petId })
-    });
+        
 
-    //console.log("NEW RESERVATION!!!", response)
+    });
+    console.log("NEW RESERVATION!!!", response)
 
     if (response.ok) {
         const data = await response.json();

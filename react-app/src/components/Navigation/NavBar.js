@@ -20,31 +20,30 @@ const NavBar = () => {
   let sessionLinks;
   if (user) {
     sessionLinks = (
-      <header>
+
         <ul className="logged-in-nav">
           <li className="nav button4">
             <AboutButton />
           </li>
-          <li className="nav">
-            <NavLink to="/reservations" exact={true} id="buttonbutton">
+          <li className="nav button1">
+            <NavLink to="/reservations" exact={true} className="trips">
               Reservations
             </NavLink>
           </li>
-          <li className="nav">
-            <NavLink to="/pets" exact={true} id="buttonbutton">
+          <li className="nav button2">
+            <NavLink to="/pets" exact={true} className="trips">
               Your Pets
             </NavLink>
           </li>
-
           <li className="nav button3">
             <ProfileButton />
           </li>
         </ul>
-      </header>
+
     );
   } else {
     sessionLinks = (
-      <header>
+
         <ul className="logged-out-nav">
           <li className="nav button4">
             <AboutButton />
@@ -59,7 +58,7 @@ const NavBar = () => {
             <SignUpFormModal />
           </li>
         </ul>
-      </header>
+
     );
   }
 
@@ -74,7 +73,6 @@ const NavBar = () => {
           </NavLink>
         </li>
       </ul>
-
 
       <ul className="nav-bar-right">
         <li>{sessionLinks}</li>

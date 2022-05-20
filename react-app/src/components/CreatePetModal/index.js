@@ -156,11 +156,11 @@ function CreatePetModal() {
 
         <>
 
-            <div className="putitdown">
-                <button className="PetProfileButton" onClick={() => setShowModal(true)}>
-                    Create A Pet Profile
-                </button>
-            </div>
+            <i class="fa-solid fa-paw-claws"></i>
+            <button id="PetProfileButton" onClick={() => setShowModal(true)}>
+                Create A Pet Profile
+            </button><i class="fa-solid fa-paw-claws"></i>
+
 
             {
                 showModal && (
