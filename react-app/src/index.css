@@ -48,6 +48,7 @@ body {
     text-decoration: none;
     list-style-type: none;
 
+
 }
 
 .logged-out-nav {
@@ -60,7 +61,7 @@ body {
 .nav {
     color: #666666;
     border-bottom: 4px solid transparent;
-    font-size: 15px;
+    font-size: 21px;
 }
 
 
@@ -77,6 +78,7 @@ body {
 
 #buttonbutton{
     border-radius: 3px;
+    padding-top: 20px;
     padding: 15px 15px 0 15px;
     text-decoration: none;
     /* background: none; */
@@ -86,7 +88,7 @@ body {
 	cursor: pointer;
 	outline: inherit;
     font-weight: bold;
-    /* margin-top:50px; */
+    margin-top:50px;
     top:50px;
 }
 
@@ -184,7 +186,73 @@ h2{
 
 /* Pet page css */
 
+ .create-pet-button{
+     margin:100px auto;
+     display: flex;
+     flex-direction: row;
+     
+     font-size:22px;
+    /* text-align: center;
+    align-items: center;
+    padding: 16px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white;
+    border: 5px solid #e7e7e7;
+    margin: 100px auto;
+    width: 60%;
+    display:flex;
+    border: 5px solid #FFFF00; */
+}
 
+ #petProfileButton{
+     /* margin-top:500px; */
+    /* text-align: center;
+    align-items: center;
+    flex-direction: flex;
+    margin-left: 400px; */
+}
+
+.create-pet-button:hover {
+    font-size:larger;
+}
+
+
+.trip-container{
+    /* max-width: 400px; */
+    width:400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto 20px auto;
+    padding: 2em;
+    border-radius: 1em;
+    border: 1px solid transparentize(white, 0.5);
+    text-shadow: 0 0 1em transparentize(black, 0.5);
+    background: transparentize(white, 0.8);
+    backdrop-filter: blur(20px);
+    transform: perspective(500px);
+    transform-style: preserve-3d;
+    box-shadow: 0 19px 8px rgba(0,0,0,0.30), 0 5px 12px rgba(0,0,0,0.22);
+}
+
+.pet-image {
+    transition: 2s ease;
+    margin: 5px 0 5px 0;
+    border-radius: 1em;
+    box-shadow: 0 4px 5px rgba(0,0,0,0.30), 0 3px 5px rgba(0,0,0,0.22);
+}
+
+.pet-image:hover{
+    -webkit-transform: scale(1.04);
+    -ms-transform: scale(1.04);
+    transform: scale(1.04);
+    transition: 2s ease;
+}
 
 
 .cardd {
@@ -221,7 +289,7 @@ h2{
     background: white;
     line-height: 300px;
     color: #03446A;
-    font-size: 10px;
+    font-size: 40px;
     border-radius: 5px;
     backface-visibility: hidden;
   }
@@ -256,9 +324,15 @@ h2{
 
 
 
+.gallary{
+    text-align: center;
+}
+
+
 .gallary-info{
     text-align: center;
     align-items: center;
+
 
 
 }
@@ -282,8 +356,6 @@ h2{
     justify-content: flex-start;
     flex-wrap: wrap;
 }
-
-
 
 
 

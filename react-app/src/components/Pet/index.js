@@ -25,14 +25,15 @@ function PetPage() {
 
     return (
         <>
-            <div className="hello"> <CreatePetModal /></div>
+            <div className="create-pet-button"> <CreatePetModal />
+            </div>
 
             <div className="page-container">
                 <div className="trip-gallery">
-
                     {pets?.map(pet =>
                         <>
-                            <Pet key={pet.id} pet={pet} /></>
+                            <Pet key={pet.id} pet={pet} />
+                        </>
                     )}
                     {(pets.length === 0) &&
                         <div className="trip-container">

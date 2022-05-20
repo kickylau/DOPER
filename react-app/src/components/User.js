@@ -44,18 +44,19 @@ function User() {
     <>
       <ul>
         <li>
-          <strong>User Id</strong> {userId}
+          <strong>User Id???</strong> {userId}
         </li>
         <li>
           <strong>Username</strong> {user.username}
         </li>
         <li>
-          <strong>Email</strong> {user.email}
+          <strong>Email??</strong> {user.email}
         </li>
         <li>
           <strong>Pet</strong>
         </li>
       </ul>
+      <p>Pet</p>
 
       {/* <div>
         {pets && pets.map(pet => { pet.name }

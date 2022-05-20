@@ -12,7 +12,8 @@ def seed_reservations():
         task_length="30 minutes",
         address="15 hudson yards, new york, #78c",
         comment="Georgie is very active!",
-        date=date(2022,5,12),
+        # date="date(2022,5,12),"
+        date="2022-05-27",
         time="6:00AM-9:00AM",
         created_at=today,
         updated_at=today )

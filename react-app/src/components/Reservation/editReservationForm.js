@@ -2,20 +2,23 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { editReservation, loadAllUserRelatedReservations } from '../../store/reservation'
-//import './EditTrip.css';
+import DatePicker from 'react-date-picker';
+
+
+
 
 function EditReservationForm({ hideModal, reservation }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
-    let holder = new Date(reservation.date)
+    //let holder = new Date(reservation.date)
     const [taskType, setTaskType] = useState(reservation.taskType);
     const [taskLength, setTaskLength] = useState(reservation.taskLength);
     const [address, setAddress] = useState(reservation.address);
     const [comment, setComment] = useState(reservation.comment);
-    //const [date, setDate] = useState(reservation.date);
+    const [date, setDate] = useState(new Date(reservation.date));
 
-    const [date, setDate] = useState(+holder.getFullYear() + "-" + (holder.getMonth() + 1) + "-" + (holder.getDate() + 1));
+    //const [date, setDate] = useState(+holder.getFullYear() + "-" + (holder.getMonth() + 1) + "-" + (holder.getDate() + 1));
     //console.log("TYPE OF DATE", typeof [date])
     const [time, setTime] = useState(reservation.time);
     //const [hasSubmitted, setHasSubmitted] = useState(false)
@@ -78,30 +81,30 @@ function EditReservationForm({ hideModal, reservation }) {
     };
 
     return (
-        <div className="formContainer3">
+        <div className="formContainer">
             <h1> Edit An Reservation </h1>
             <form
-                onSubmit={submitReservationEdits}>
+                onSubmit={submitReservationEdits} className="form">
                 <ul className="new-reservation-errors">
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
                 <div>
 
-                    <label className='reservationlabel'>
+                    <label className='label'>
                         Please Pick A Task Type:
                     </label>
-                    <select onChange={e => setTaskType(e.target.value)} value={taskType} >
-                        <option value="Dog Walking">
+                    <select onChange={e => setTaskType(e.target.value)} className="option" value={taskType} >
+                        <option value="Dog Walking" >
                             Dog Walking
                         </option>
                         <option value="Drop-In Visit">
                             Drop In Visit
                         </option>
                     </select>
-                    <label className='reservationlabel'>
+                    <label className='label'>
                         Please Pick Your Task Length:
                     </label>
-                    <select onChange={e => setTaskLength(e.target.value)} value={taskLength} >
+                    <select className="option" onChange={e => setTaskLength(e.target.value)} value={taskLength} >
                         <option value="30 Minutes">
                             30 Minutes
                         </option>
@@ -109,22 +112,23 @@ function EditReservationForm({ hideModal, reservation }) {
                             60 Minutes
                         </option>
                     </select>
-                    <label className='reservationlabel'>
+                    <label className='label'>
                         Your Address:
                     </label>
-                    <input onChange={e => setAddress(e.target.value)} type="text" className="new-task-address" placeholder='Address' value={address} />
+                    <input className="input" onChange={e => setAddress(e.target.value)} type="text"  placeholder='Address' value={address} />
                     <label className='reservationlabel'>
                         Message for Dog Walker:
                     </label>
-                    <input onChange={e => setComment(e.target.value)} type="text" className="new-task-comment" placeholder="Comment" value={comment} />
-                    <label className='reservationlabel'>
+                    <input onChange={e => setComment(e.target.value)} type="text" className="input" placeholder="Comment" value={comment} />
+                    <label className='label'>
                         Please Pick A Date:
                     </label>
-                    <input onChange={e => setDate(e.target.value)} type="date" className="new-task-date" value={date} />
-                    <label className='reservationlabel'>
+                    <DatePicker selected={date} value={date} minDate={new Date()} onChange={e => setDate(new Date(e))}/>
+                    {/* <input onChange={e => setDate(e.target.value)} type="date" className="new-task-date" value={date} /> */}
+                    <label className='label'>
                         Please Pick A Time Frame:
                     </label>
-                    <select onChange={e => setTime(e.target.value)} value={time} >
+                    <select className="option" onChange={e => setTime(e.target.value)} value={time} >
                         <option value="6:00AM-9:00AM">
                             6:00AM-9:00AM
                         </option>
@@ -144,8 +148,8 @@ function EditReservationForm({ hideModal, reservation }) {
                             9:00PM-12:00AM
                         </option>
                     </select>
-                    <button id="new-reservation-submit" type='submit' >Submit</button>
-                    <button id="cancel" className="cancel" onClick={handleCancelClick}>Cancel</button>
+                    <button id="loginButton" type='submit' >Submit</button>
+                    <button id="loginButton" className="cancel" onClick={handleCancelClick}>Cancel</button>
                 </div>
             </form>
         </div>

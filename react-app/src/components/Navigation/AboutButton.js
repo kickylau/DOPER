@@ -21,6 +21,7 @@ function AboutButton() {
     }, [showMenu]);
 
     return (
+        
         <>
             <button src={githublogo} className="about-me" onClick={() => setShowModal(true)}>
                 About Me

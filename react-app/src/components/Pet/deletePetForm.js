@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { removePet, loadAllPets } from '../../store/pet'
-//import './DeleteTrip.css';
+import { loadAllUserRelatedReservations } from "../../store/reservation";
 
 function DeletePetForm ({ hideModal, pet }) {
   const dispatch = useDispatch();
@@ -9,6 +9,9 @@ function DeletePetForm ({ hideModal, pet }) {
     //similar format for edit
     e.preventDefault();
       dispatch(removePet(pet.id))
+      .then(()=>{
+        dispatch((loadAllUserRelatedReservations()))
+      })
       .then(()=>{
         dispatch((loadAllPets()))
       })

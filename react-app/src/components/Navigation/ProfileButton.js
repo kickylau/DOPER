@@ -5,9 +5,13 @@ import { useHistory } from "react-router-dom";
 import './Navigation.css'
 import LogoutButton from "../auth/LogoutButton";
 import { ProfileModal } from "../../context/ProfileModal";
+import * as petActions from "../../store/pet";
+
 
 function ProfileButton() {
     const user = useSelector(state => state.session.user);
+    const petsObj = useSelector(state => state.pets)
+    const pets = Object.values(petsObj)
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -15,6 +19,11 @@ function ProfileButton() {
         if (showMenu) return;
         setShowMenu(true);
     };
+
+    useEffect(() => {
+        dispatch(petActions.loadAllPets())
+    }, [dispatch])
+
 
     useEffect(() => {
         if (!showMenu) return;
@@ -40,13 +49,16 @@ function ProfileButton() {
                     <div className="formContainer11">
                         <ul className="profile-dropdown">
                             <li className="dropdown-list">
-                                <strong>User Id</strong> {user.id}
+                                <strong>Userid</strong> {user.id}
                             </li>
                             <li className="dropdown-list">
                                 <strong>Username</strong> {user.username}
                             </li>
                             <li className="dropdown-list">
                                 <strong>Email</strong> {user.email}
+                            </li>
+                            <li className="dropdown-list">
+                                <strong>Pet</strong> 
                             </li>
                             <li className="logout">
                                 <LogoutButton/>

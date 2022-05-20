@@ -49,8 +49,9 @@ export const newReservation = (newReservation) => async (dispatch) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId, walkerId, taskType, taskLength, address, comment, date, time, petId })
-    });
 
+
+    });
     //console.log("NEW RESERVATION!!!", response)
 
     if (response.ok) {
@@ -132,7 +133,8 @@ const reservationsReducer = (state = initialState, action) => {
             return newState
         case LOAD_ALL_USER_RELATED_RESERVATIONS:
             newState={}
-            //console.log("RESERVATION MAP", action.payload)
+            //console.log("RESERVATION STATE", newState)
+            //console.log("\n\n\n HELLO FROM YOUR LOADING RESERVATIONS \n\n\n")
             action.payload.reservations.map(reservation=>(
 
                 newState[reservation.id]=reservation
