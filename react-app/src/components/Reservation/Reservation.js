@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import Reservation from "./index";
-import * as reservationActions from "../../store/reservation"
+import * as reservationActions from "../../store/reservation";
+import * as petActions from "../../store/pet";
 import BookReservationModal from '../BookReservationModal';
 import booking from "./booking.png";
 
@@ -19,6 +20,7 @@ function ReservationPage() {
     const reservations = Object.values(reservationsObj)
 
 
+
     useEffect(() => {
         if (!sessionUser) history.push('/')
         // if (sessionUser) dispatch(reservationActions.loadAllUserRelatedReservations())
@@ -26,7 +28,15 @@ function ReservationPage() {
 
     useEffect(() => {
         dispatch(reservationActions.loadAllUserRelatedReservations())
-    }, [dispatch])
+        console.log("CHECK OUT THE RESERVATION HERE -----", reservations)
+    }, [dispatch, petsObj])
+
+
+   useEffect(()=>{
+    console.log("CHECK OUT THE RESERVATION HERE 2 -----", reservations)
+    console.log("CHECK OUT THE RESERVATION HERE 3 -----", petsObj)
+
+   },[reservations,petsObj])
 
     const routeChange = () => {
         let path = "/home";
