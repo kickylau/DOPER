@@ -105,7 +105,7 @@ function EditPetForm({ hideModal, pet }) {
     };
 
     return (
-        <div className="formContainer3">
+        <div className="formContainer">
             <h1> Edit Pet Profile </h1>
             <form
                 onSubmit={submitPetEdits}>
@@ -136,7 +136,7 @@ function EditPetForm({ hideModal, pet }) {
                     <label className='petlabel'>
                         Has Microchipped:
                     </label>
-                    <select onChange={e => setHasMicrochipped(e.target.value)} value={hasMicrochipped} >
+                    <select className="option" onChange={e => setHasMicrochipped(e.target.value)} value={hasMicrochipped} >
                         <option value="Yes">
                             Yes
                         </option>
@@ -147,7 +147,7 @@ function EditPetForm({ hideModal, pet }) {
                     <label className='petlabel'>
                         Has Trained:
                     </label>
-                    <select onChange={e => setHasTrained(e.target.value)} value={hasTrained} >
+                    <select className="option" onChange={e => setHasTrained(e.target.value)} value={hasTrained} >
                         <option value="Yes">
                             Yes
                         </option>
@@ -158,7 +158,7 @@ function EditPetForm({ hideModal, pet }) {
                     <label className='petlabel'>
                         Has Spayed:
                     </label>
-                    <select onChange={e => setHasSpayed(e.target.value)} value={hasSpayed} >
+                    <select className="option" onChange={e => setHasSpayed(e.target.value)} value={hasSpayed} >
                         <option value="Yes">
                             Yes
                         </option>
@@ -169,7 +169,7 @@ function EditPetForm({ hideModal, pet }) {
                     <label className='petlabel'>
                         Is it friendly with Children:
                     </label>
-                    <select onChange={e => setIsFriendlyWithChildren(e.target.value)} value={isFriendlyWithChildren} >
+                    <select className="option" onChange={e => setIsFriendlyWithChildren(e.target.value)} value={isFriendlyWithChildren} >
                         <option value="Yes">
                             Yes
                         </option>
@@ -186,7 +186,7 @@ function EditPetForm({ hideModal, pet }) {
                     <label className='petlabel'>
                         Is it friendly with Dogs:
                     </label>
-                    <select onChange={e => setIsFriendlyWithDogs(e.target.value)} value={isFriendlyWithDogs} >
+                    <select className="option" onChange={e => setIsFriendlyWithDogs(e.target.value)} value={isFriendlyWithDogs} >
                         <option value="Yes">
                             Yes
                         </option>
@@ -203,7 +203,7 @@ function EditPetForm({ hideModal, pet }) {
                     <label className='petlabel'>
                         Sex:
                     </label>
-                    <select onChange={e => setSex(e.target.value)} value={sex} >
+                    <select className="option" onChange={e => setSex(e.target.value)} value={sex} >
                         <option value="Male">
                             Male
                         </option>
@@ -214,7 +214,7 @@ function EditPetForm({ hideModal, pet }) {
                     <label className='petlabel'>
                         Breed:
                     </label>
-                    <input onChange={e => setBreed(e.target.value)} type="text" className="new-pet-breed" value={breed} />
+                    <input  onChange={e => setBreed(e.target.value)} type="text" className="new-pet-breed" value={breed} />
                     <label className='petlabel'>
                         Description:
                     </label>
@@ -224,8 +224,8 @@ function EditPetForm({ hideModal, pet }) {
                     </label>
                     <input onChange={e => setVetInfo(e.target.value)} type="text" className="new-pet-vet-info" value={vetInfo} />
 
-                    <button id="new-pet-submit" type='submit' >Submit</button>
-                    <button id="cancel" className="cancel" onClick={handleCancelClick}>Cancel</button>
+                    <button id="loginButton" type='submit' >Submit</button>
+                    {/* <button id="loginButton" className="cancel" onClick={handleCancelClick}>Cancel</button> */}
                 </div>
             </form>
         </div>

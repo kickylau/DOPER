@@ -84,7 +84,7 @@ function EditReservationForm({ hideModal, reservation }) {
         <div className="formContainer">
             <h1> Edit An Reservation </h1>
             <form
-                onSubmit={submitReservationEdits} className="form">
+                onSubmit={submitReservationEdits} className="edit-event-form">
                 <ul className="new-reservation-errors">
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
@@ -149,7 +149,7 @@ function EditReservationForm({ hideModal, reservation }) {
                         </option>
                     </select>
                     <button id="loginButton" type='submit' >Submit</button>
-                    <button id="loginButton" className="cancel" onClick={handleCancelClick}>Cancel</button>
+                    {/* <button id="loginButton" className="cancel" onClick={handleCancelClick}>Cancel</button> */}
                 </div>
             </form>
         </div>

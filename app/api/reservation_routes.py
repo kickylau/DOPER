@@ -34,16 +34,16 @@ def reservations():
         form = NewReservation()
         #this way is to grab data from the json body in the front end since the petId is not in the backend form data
         reservation_data = request.get_json(force=True)
-        print("WHAT IS THIS --------", request.get_json)
-        print("THIS IS THE RESERVATION DATA ------", reservation_data["petId"])
-        print("..................")
+        #print("WHAT IS THIS --------", request.get_json)
+        #print("THIS IS THE RESERVATION DATA ------", reservation_data["petId"])
+        #print("..................")
         form['csrf_token'].data = request.cookies['csrf_token']
-        print("FORM OF THE WALKER ID-----------------------------", form.data)
+        #print("FORM OF THE WALKER ID-----------------------------", form.data)
         if form.validate_on_submit():
 
             exist_reservation = Reservation.query.filter((Reservation.user_id == form.data["userId"])&(Reservation.date == form.data["date"])).all()
             #exist_reservation = Reservation.query.all()
-            print("CHECK EXIST RESERVATION  HERE ----------", exist_reservation)
+            #print("CHECK EXIST RESERVATION  HERE ----------", exist_reservation)
             #print("THIS IS THE PET ID HERE --------",reservation_data["petId"] )
             #data_pet_id=reservation_data["petId"]
 
@@ -58,7 +58,7 @@ def reservations():
                 time=form.data["time"],
                 pet_id=reservation_data["petId"]
             )
-            print("NEW RESERVATION", new_reservation)
+            #print("NEW RESERVATION", new_reservation)
             db.session.add(new_reservation)
             db.session.commit()
             return new_reservation.to_dict()

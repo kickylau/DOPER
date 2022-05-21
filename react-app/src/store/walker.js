@@ -37,7 +37,7 @@ export const newWalker = (newWalker) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        console.log("DATA", data)
+        //console.log("DATA", data)
         dispatch(addWalker(data))
     } else if (response.status < 500) {
         const data = await response.json();

@@ -14,7 +14,7 @@ function User() {
   const { petId } = useParams();
   const dispatch = useDispatch()
 
-  console.log("DO WE HAVE PET HERE", pets)
+  //console.log("DO WE HAVE PET HERE", pets)
 
   useEffect(() => {
     if (!userId) {

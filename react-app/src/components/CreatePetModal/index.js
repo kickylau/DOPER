@@ -167,32 +167,32 @@ function CreatePetModal() {
                     <Modal onClose={() => setShowModal(false)}>
                         <div className="formContainer">
                             <h1> Create A Pet Profile </h1>
-                            <form className="form" onSubmit={submitNewPet}>
+                            <form onSubmit={submitNewPet}>
                                 <div className="new-pet-errors">
                                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                                 </div>
                                 <div>
-                                    <label className='label'>
+                                    <label className='petlabel'>
                                         Pet Name:
                                     </label>
-                                    <input onChange={e => setName(e.target.value)} type="text" className="input" placeholder='Name' value={name} />
-                                    <label className='label'>
+                                    <input onChange={e => setName(e.target.value)} type="text"  placeholder='Name' value={name} />
+                                    <label className='petlabel'>
                                         Please upload a valid URL for pet image:
                                     </label>
-                                    <input onChange={e => setProfileImage(e.target.value)} type="text" className="input" placeholder='Profile Image' value={profileImage} />
-                                    <label className='label'>
+                                    <input onChange={e => setProfileImage(e.target.value)} type="text"  placeholder='Profile Image' value={profileImage} />
+                                    <label className='petlabel'>
                                         Pet Size (pounds):
                                     </label>
-                                    <input onChange={e => setSize(e.target.value)} type="integer" min={0} className="input" placeholder='Size' value={size} />
-                                    <label className='label'>
+                                    <input onChange={e => setSize(e.target.value)} type="integer" min={0}  placeholder='Size' value={size} />
+                                    <label className='petlabel'>
                                         Pet Age (Year):
                                     </label>
-                                    <input onChange={e => setAgeYear(e.target.value)} type="integer" min={0} className="input" placeholder="Age Year" value={ageYear} />
-                                    <label className='label'>
+                                    <input onChange={e => setAgeYear(e.target.value)} type="integer" min={0}  placeholder="Age Year" value={ageYear} />
+                                    <label className='petlabel'>
                                         Pet Age (Month):
                                     </label>
-                                    <input onChange={e => setAgeMonth(e.target.value)} type="integer" min={0} className="input" placeholder="Age Month" value={ageMonth} />
-                                    <label className='label'>
+                                    <input onChange={e => setAgeMonth(e.target.value)} type="integer" min={0}  placeholder="Age Month" value={ageMonth} />
+                                    <label className='petlabel'>
                                         Is it microchipped?
                                     </label>
                                     {/* <input onChange={e => setHasMicrochipped(e.target.value)} type="boolean" className="new-pet-micro" value={hasMicrochipped} /> */}
@@ -204,7 +204,7 @@ function CreatePetModal() {
                                             No
                                         </option>
                                     </select>
-                                    <label className='label'>
+                                    <label className='petlabel'>
                                         Is it spayed?
                                     </label>
                                     {/* <input onChange={e => setHasMicrochipped(e.target.value)} type="boolean" className="new-pet-micro" value={hasMicrochipped} /> */}
@@ -216,7 +216,7 @@ function CreatePetModal() {
                                             No
                                         </option>
                                     </select>
-                                    <label className='label'>
+                                    <label className='petlabel'>
                                         Is it trained?
                                     </label>
                                     {/* <input onChange={e => setHasTrained(e.target.value)} type="boolean" className="new-pet-trained" value={hasTrained} /> */}
@@ -228,7 +228,7 @@ function CreatePetModal() {
                                             No
                                         </option>
                                     </select>
-                                    <label className='label'>
+                                    <label className='petlabel'>
                                         Is it friendly with children?
                                     </label>
                                     <select onChange={e => setIsFriendlyWithChildren(e.target.value)} className="option" value={isFriendlyWithChildren} >
@@ -246,7 +246,7 @@ function CreatePetModal() {
                                         </option>
                                     </select>
                                     {/* <Select options={childrenSelectItems} /> */}
-                                    <label className='label'>
+                                    <label className='petlabel'>
                                         Is it friendly with dogs?
                                     </label>
                                     <select onChange={e => setIsFriendlyWithDogs(e.target.value)} className="option" value={isFriendlyWithDogs} >
@@ -264,7 +264,7 @@ function CreatePetModal() {
                                         </option>
                                     </select>
                                     {/* <Select options={dogSelectItems} /> */}
-                                    <label className='label'>
+                                    <label className='petlabel'>
                                         Sex:
                                     </label>
                                     <select className="option" onChange={e => setSex(e.target.value)} value={sex} >
@@ -276,18 +276,18 @@ function CreatePetModal() {
                                         </option>
                                     </select>
                                     {/* <Select options={sexSelectItems} /> */}
-                                    <label className='label'>
+                                    <label className='petlabel'>
                                         Breed:
                                     </label>
-                                    <input onChange={e => setBreed(e.target.value)} type="text" className="input" placeholder="Breed" value={breed} />
-                                    <label className='label'>
+                                    <input onChange={e => setBreed(e.target.value)} type="text"  placeholder="Breed" value={breed} />
+                                    <label className='petlabel'>
                                         Tell us a bit about your dog!
                                     </label>
-                                    <input onChange={e => setDescription(e.target.value)} type="text" className="input" placeholder="Description" value={description} />
-                                    <label className='label'>
+                                    <input onChange={e => setDescription(e.target.value)} type="text"  placeholder="Description" value={description} />
+                                    <label className='petlabel'>
                                         Tell us about your pet's vet info:
                                     </label>
-                                    <input onChange={e => setVetInfo(e.target.value)} type="text" className="input" placeholder="Vet Info" value={vetInfo} />
+                                    <input onChange={e => setVetInfo(e.target.value)} type="text"  placeholder="Vet Info" value={vetInfo} />
 
                                     <button id="loginButton" type='submit' >Submit</button>
                                 </div>

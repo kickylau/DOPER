@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { deleteReservation, loadAllUserRelatedReservations } from '../../store/reservation'
-//import './DeleteTrip.css';
+import './Reservation.css';
 
 function DeleteReservationForm ({ hideModal, reservation }) {
   const dispatch = useDispatch();

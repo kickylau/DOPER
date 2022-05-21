@@ -28,13 +28,13 @@ function ReservationPage() {
 
     useEffect(() => {
         dispatch(reservationActions.loadAllUserRelatedReservations())
-        console.log("CHECK OUT THE RESERVATION HERE -----", reservations)
+        //console.log("CHECK OUT THE RESERVATION HERE -----", reservations)
     }, [dispatch, petsObj])
 
 
    useEffect(()=>{
-    console.log("CHECK OUT THE RESERVATION HERE 2 -----", reservations)
-    console.log("CHECK OUT THE RESERVATION HERE 3 -----", petsObj)
+    //console.log("CHECK OUT THE RESERVATION HERE 2 -----", reservations)
+    //console.log("CHECK OUT THE RESERVATION HERE 3 -----", petsObj)
 
    },[reservations,petsObj])
 
