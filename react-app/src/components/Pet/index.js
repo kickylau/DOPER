@@ -12,7 +12,7 @@ function PetPage() {
     const sessionUser = useSelector(state => state.session.user);
     const petsObj = useSelector(state => state.pets)
     const pets = Object.values(petsObj)
-    console.log("WHAT THE PET FORMAT HERE LOOK LIKE --------", pets)
+    //console.log("WHAT THE PET FORMAT HERE LOOK LIKE --------", pets)
 
 
     useEffect(() => {

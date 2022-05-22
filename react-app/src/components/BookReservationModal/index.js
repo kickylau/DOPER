@@ -23,7 +23,7 @@ function BookReservationModal({ walker }) {
     const petsObj = useSelector(state => state.pets)
     const pets = Object.values(petsObj)
     //console.log("use state here ---", useState(pets))
-    console.log("THIS IS THE PET OBJ----", pets)
+    //console.log("THIS IS THE PET OBJ----", pets)
     //console.log("TRY OUT THIS PET ID ----", pets[0]?.id)
      //let [petId, setPetId] = useState(pets[0]?.id);
      let [petId, setPetId] = useState("");
