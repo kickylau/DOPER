@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function Pet({ pet }) {
   const history = useHistory()
   const sessionUser = useSelector(state => state.session.user);
+  console.log("WHAT IS THIS SESSIONUSER HERE -----", sessionUser)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
   // const petsObj = useSelector(state => state.pets)
@@ -47,49 +48,51 @@ function Pet({ pet }) {
   //         </div>
   //       </div>
   //     </div>
+  if (sessionUser.id == pet.userId) {
+    return (
+      <>
+        <div className="trip-container">
+          <div className="gallary">
+            <div className="style" style={{ color: "grey", fontSize: "30px" }}>
+              <i className="fa-solid fa-paw"> {pet.name} </i> <i className="fa-solid fa-paw"></i>
+            </div>
+            <div className="gallary-info">
+              <img src={pet.profileImage} height={200} width={200} className="pet-image" />
+              <h4 > {pet.breed}</h4>
+              <h4 > {pet.sex}</h4>
+              <h4 > {pet.size} pounds </h4>
+              <h4 > {pet.ageYear} Year(s) {pet.ageMonth} Month(s)</h4>
+              <h5> Microchipped? {pet.hasMicrochipped} </h5>
+              <h5> Sspayed? {pet.hasSpayed} </h5>
+              <h5> Trained? {pet.hasTrained} </h5>
+              {/* ? "True":"False" */}
+              <h5> Friendly with children? {pet.isFriendlyWithChildren} </h5>
+              <h5> Friendly with dogs? {pet.isFriendlyWithDogs}</h5>
 
-  return (
-    <>
-
-
-      <div className="trip-container">
-        <div className="gallary">
-          <div className="style" style={{ color: "grey", fontSize: "30px" }}>
-            <i className="fa-solid fa-paw"> {pet.name} </i> <i className="fa-solid fa-paw"></i>
+              <h5> Description: {pet.description}</h5>
+              <h5> Vet Info: {pet.vetInfo}</h5>
+            </div>
           </div>
-          <div className="gallary-info">
-            <img src={pet.profileImage} height={200} width={200} className="pet-image"/>
-            <h4 > {pet.breed}</h4>
-            <h4 > {pet.sex}</h4>
-            <h4 > {pet.size} pounds </h4>
-            <h4 > {pet.ageYear} Year(s) {pet.ageMonth} Month(s)</h4>
-            <h5> Microchipped? {pet.hasMicrochipped} </h5>
-            <h5> Sspayed? {pet.hasSpayed} </h5>
-            <h5> Trained? {pet.hasTrained} </h5>
-            {/* ? "True":"False" */}
-            <h5> Friendly with children? {pet.isFriendlyWithChildren} </h5>
-            <h5> Friendly with dogs? {pet.isFriendlyWithDogs}</h5>
-
-            <h5> Description: {pet.description}</h5>
-            <h5> Vet Info: {pet.vetInfo}</h5>
+          <div className="gallary">
+            <button id="button5" onClick={e => setShowEditModal(true)}>Edit Pet Profile </button>
+            {showEditModal && (
+              <Modal onClose={() => setShowEditModal(false)}>
+                <EditPetForm hideModal={() => setShowEditModal(false)} pet={pet} />
+              </Modal>
+            )}
+            <button id="button6" onClick={e => setShowDeleteModal(true)}>Delete Pet Profile</button>
+            {showDeleteModal && (
+              <Modal onClose={() => setShowDeleteModal(false)}>
+                <DeletePetForm hideModal={() => setShowDeleteModal(false)} pet={pet} />
+              </Modal>
+            )}
           </div>
-        </div>
-        <div className="gallary">
-          <button id="button5" onClick={e => setShowEditModal(true)}>Edit Pet Profile </button>
-          {showEditModal && (
-            <Modal onClose={() => setShowEditModal(false)}>
-              <EditPetForm hideModal={() => setShowEditModal(false)} pet={pet} />
-            </Modal>
-          )}
-          <button id="button6" onClick={e => setShowDeleteModal(true)}>Delete Pet Profile</button>
-          {showDeleteModal && (
-            <Modal onClose={() => setShowDeleteModal(false)}>
-              <DeletePetForm hideModal={() => setShowDeleteModal(false)} pet={pet} />
-            </Modal>
-          )}
-        </div>
-      </div >
-    </>
-  );
+        </div >
+      </>
+    );
+  } else {
+    return <></>;
+  }
+
 }
 export default Pet;

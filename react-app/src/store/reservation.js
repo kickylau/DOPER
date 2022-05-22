@@ -60,7 +60,7 @@ export const newReservation = (newReservation) => async (dispatch) => {
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) return data.errors;
-    } else return ['An error occurred. Please try again.']
+    } else return ['Please pick a pet.']
 }
 
 export const loadAllUserRelatedReservations = () => async (dispatch) => {
