@@ -21,7 +21,7 @@ function AboutButton() {
     }, [showMenu]);
 
     return (
-        
+
         <>
             <button src={githublogo} className="about-me" onClick={() => setShowModal(true)}>
                 About Me
@@ -33,12 +33,12 @@ function AboutButton() {
                             <a>Kicky Liu : </a>
                         </div>
                         <div className="github">
-                            <img src={githublogo} alt="Github" />
-                            <a href="https://github.com/kickylau" target="_blank" rel="noreferrer noopener"></a>
+
+                            <a href="https://github.com/kickylau" target="_blank" rel="noreferrer noopener"> <img src={githublogo} alt="Github"  /></a>
                         </div>
                         <div className="github">
-                            <img src={linkedinlogo} alt="LinkedIn" />
-                            <a href="https://www.linkedin.com/in/kickyliu/" target="_blank" rel="noreferrer noopener"></a>
+                            
+                            <a href="https://www.linkedin.com/in/kickyliu/" target="_blank" rel="noreferrer noopener"><img src={linkedinlogo} alt="LinkedIn" /></a>
                         </div>
 
                     </div>
