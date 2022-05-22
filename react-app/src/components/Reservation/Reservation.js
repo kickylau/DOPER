@@ -67,7 +67,7 @@ function ReservationPage() {
                         .map(reservation =>
                             <Reservation key={reservation.id} reservation={reservation} />
                         )}
-                    {(reservations.length === 0) &&
+                    {(reservations.length === 0 || !reservations.some(reservation => reservation.userId == sessionUser.id)) &&
                         <div className="trip-container">
                             <h3 id="no-trip">Oops you have no current available reservations</h3>
                             <img src={booking} alt="Booking" className="icon-booking" />

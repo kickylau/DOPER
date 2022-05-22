@@ -31,12 +31,12 @@ function Reservation({ reservation }) {
   const walkers = Object.values(walkersObj)
   //const theWalker = walker[0].name
 
- //console.log("what is this walker format ---", walker[0]?.name)
+  //console.log("what is this walker format ---", walker[0]?.name)
   //console.log(reservation.walkerId)
   //console.log(walkers)
   //console.log(walkers[reservation.walkerId-1]?.name)
 
-  const theWalker = walkers[reservation.walkerId-1]?.name
+  const theWalker = walkers[reservation.walkerId - 1]?.name
 
 
 
@@ -68,7 +68,7 @@ function Reservation({ reservation }) {
     dispatch(walkersActions.loadAllWalkers())
     dispatch(petActions.loadAllPets())
     //console.log("PETS ------", pets)
-}, [dispatch])
+  }, [dispatch])
 
 
   const findPetName = (petId) => {
@@ -92,50 +92,54 @@ function Reservation({ reservation }) {
 
   const thePetImage = findPetImage(reservation.petId)
 
-//console.log("DATE FORMAT HERE ----", reservation.date)
+  //console.log("DATE FORMAT HERE ----", reservation.date)
 
   // const routeChange = () => {
   //   let path = "/home";
   //   history.push(path);
   // }
+  if (sessionUser.id == reservation.userId) {
 
-  return (
-    <>
+    return (
+      <>
 
-      <div className="trip-container">
-        <div key={reservation.id}>
-          <div className="gallary-info">
-            <img src={thePetImage} height={300} width={300} />
-            <h4 id="task-type">Pet Name:{findPetName(reservation.petId)}</h4>
-            <h4 id="task-type">Service: {reservation.taskType}</h4>
-          </div>
-          <div className="gallary-info">
-            <h4 id="task-length">Walker:{theWalker} </h4>
-            <h4 id="task-length">Length: {reservation.taskLength}</h4>
-            <h4 id="task-length">Address: {reservation.address}</h4>
-            <h4 id="task-length">Comment: {reservation.comment}</h4>
-            <h4 id="task-length">Date: {reservation.date.slice(0, 17)}</h4>
-            <h4 id="task-length">Time: {reservation.time}</h4>
-          </div>
-          <div>
-            <button className="button5" onClick={e => setShowEditModal(true)}>Edit Reservation</button>
-            {showEditModal && (
-              <Modal onClose={() => setShowEditModal(false)}>
-                <EditReservationForm hideModal={() => setShowEditModal(false)} reservation={reservation} />
-              </Modal>
-            )}
-            <button className="button6" onClick={e => setShowDeleteModal(true)}>Cancel Reservation</button>
+        <div className="trip-container">
+          <div key={reservation.id}>
+            <div className="gallary-info">
+              <img src={thePetImage} height={300} width={300} />
+              <h4 id="task-type">Pet Name:{findPetName(reservation.petId)}</h4>
+              <h4 id="task-type">Service: {reservation.taskType}</h4>
+            </div>
+            <div className="gallary-info">
+              <h4 id="task-length">Walker:{theWalker} </h4>
+              <h4 id="task-length">Length: {reservation.taskLength}</h4>
+              <h4 id="task-length">Address: {reservation.address}</h4>
+              <h4 id="task-length">Comment: {reservation.comment}</h4>
+              <h4 id="task-length">Date: {reservation.date.slice(0, 17)}</h4>
+              <h4 id="task-length">Time: {reservation.time}</h4>
+            </div>
+            <div>
+              <button className="button5" onClick={e => setShowEditModal(true)}>Edit Reservation</button>
+              {showEditModal && (
+                <Modal onClose={() => setShowEditModal(false)}>
+                  <EditReservationForm hideModal={() => setShowEditModal(false)} reservation={reservation} />
+                </Modal>
+              )}
+              <button className="button6" onClick={e => setShowDeleteModal(true)}>Cancel Reservation</button>
 
-            {showDeleteModal && (
-              <Modal onClose={() => setShowDeleteModal(false)}>
-                <DeleteReservationForm hideModal={() => setShowDeleteModal(false)} reservation={reservation} />
-              </Modal>
-            )}
+              {showDeleteModal && (
+                <Modal onClose={() => setShowDeleteModal(false)}>
+                  <DeleteReservationForm hideModal={() => setShowDeleteModal(false)} reservation={reservation} />
+                </Modal>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </>
-  )
+      </>
+    )
+  } else {
+    return <></>;
+  }
 }
 
 

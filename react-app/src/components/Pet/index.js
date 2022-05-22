@@ -12,6 +12,7 @@ function PetPage() {
     const sessionUser = useSelector(state => state.session.user);
     const petsObj = useSelector(state => state.pets)
     const pets = Object.values(petsObj)
+    console.log("WHAT THE PET FORMAT HERE LOOK LIKE --------", pets)
 
 
     useEffect(() => {
@@ -22,6 +23,8 @@ function PetPage() {
     useEffect(() => {
         dispatch(petActions.loadAllPets())
     }, [dispatch])
+
+
 
     return (
         <>
@@ -35,7 +38,7 @@ function PetPage() {
                             <Pet key={pet.id} pet={pet} />
                         </>
                     )}
-                    {(pets.length === 0) &&
+                    {(pets.length === 0 || !pets.some(pet => pet.userId == sessionUser.id)) &&
                         <div className="trip-container">
                             <h3 id="no-trip">Oops you dont have any pet profile now, please create one to make any reservation.</h3>
                         </div>

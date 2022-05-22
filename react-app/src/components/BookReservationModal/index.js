@@ -23,9 +23,12 @@ function BookReservationModal({ walker }) {
     const petsObj = useSelector(state => state.pets)
     const pets = Object.values(petsObj)
     //console.log("use state here ---", useState(pets))
-    //console.log("THIS IS THE PET OBJ----", pets)
+    console.log("THIS IS THE PET OBJ----", pets)
     //console.log("TRY OUT THIS PET ID ----", pets[0]?.id)
-    let [petId, setPetId] = useState(pets[0]?.id);
+     //let [petId, setPetId] = useState(pets[0]?.id);
+     let [petId, setPetId] = useState("");
+
+    //let [petId, setPetId] = useState(-1);
     //console.log("PET ID HERE ------", petId )
     //console.log('PRINT OUT THE USE STATE OF PET ID ', useState(pets[0]?.id))
     const [taskType, setTaskType] = useState("Dog Walking");
@@ -54,8 +57,10 @@ function BookReservationModal({ walker }) {
 
     const updatePet = (e) => {
         e.preventDefault();
+        // console.log("THIS IS THE EEEEEEE ----", e.target.value)
         setPetName(e.target.value)
         setPetId(e.target.value)
+        // console.log("WHAT HAPPENS HERE ----", setPetId)
         //.then(()=>setPetId(e.target.value));
 
 
@@ -88,12 +93,16 @@ function BookReservationModal({ walker }) {
 
 
     useEffect(() => {
-        let petsObj = { ...pets }
+        // let petsObj = { ...pets. }
+
         let array = [];
-        Object.keys(petsObj).forEach((key) => {
-            let pet = petsObj[key]
-            array.push(pet)
-        })
+        pets.forEach(pet => {if (pet.userId === sessionUser.id) array.push(pet)} )
+        setPetId(array[0]?.id)
+
+        // Object.keys(petsObj).forEach((key) => {
+        //     let pet = petsObj[key]
+        //     array.push(pet)
+        // })
         setLoaded(true)
     }, [])
 
@@ -113,6 +122,7 @@ function BookReservationModal({ walker }) {
 
 
     const submitNewReservation = (e) => {
+        //console.log("EEEEEEEEEEEEE", e.target.value)
         e.preventDefault();
         setHasSubmitted(true)
 
@@ -214,45 +224,47 @@ function BookReservationModal({ walker }) {
                                             {`.date-picker input {width: 100% color:black}`}
                                         </style>
                                         <DatePicker className="react-date-picker" selected={date} value={date} minDate={new Date()} onChange={e => setDate(new Date(e))} />
-                                        </div>
-                                        {/* <input onChange={e => setDate(e.target.value)} minDate={new Date()} type="date" className="input" value={date} /> */}
-                                        <label className='label'>
-                                            Please Pick A Time Frame:
-                                        </label>
-                                        <select onChange={e => setTime(e.target.value)} className="option" value={time} >
-                                            <option value="6:00AM-9:00AM">
-                                                6:00AM-9:00AM
-                                            </option>
-                                            <option value="9:00AM-12:00PM">
-                                                9:00AM-12:00PM
-                                            </option>
-                                            <option value="12:00PM-3:00PM">
-                                                12:00PM-3:00PM
-                                            </option>
-                                            <option value="3:00PM-6:00PM">
-                                                3:00PM-6:00PM
-                                            </option>
-                                            <option value="6:00PM-9:00PM">
-                                                6:00PM-9:00PM
-                                            </option>
-                                            <option value="9:00PM-12:00AM">
-                                                9:00PM-12:00AM
-                                            </option>
-                                        </select>
-                                        <label className='label'>
-                                            Please Pick A Pet:
-                                        </label>
-                                        <select onChange={(e) => updatePet(e)} className="option" value={petName} >
-                                            {
-                                                pets?.map(pet => {
-                                                    return (
-                                                        <option key={pet.id} value={pet.id}>{pet.name}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                        <button id="loginButton" type='submit' >Submit</button>
                                     </div>
+                                    {/* <input onChange={e => setDate(e.target.value)} minDate={new Date()} type="date" className="input" value={date} /> */}
+                                    <label className='label'>
+                                        Please Pick A Time Frame:
+                                    </label>
+                                    <select onChange={e => setTime(e.target.value)} className="option" value={time} >
+                                        <option value="6:00AM-9:00AM">
+                                            6:00AM-9:00AM
+                                        </option>
+                                        <option value="9:00AM-12:00PM">
+                                            9:00AM-12:00PM
+                                        </option>
+                                        <option value="12:00PM-3:00PM">
+                                            12:00PM-3:00PM
+                                        </option>
+                                        <option value="3:00PM-6:00PM">
+                                            3:00PM-6:00PM
+                                        </option>
+                                        <option value="6:00PM-9:00PM">
+                                            6:00PM-9:00PM
+                                        </option>
+                                        <option value="9:00PM-12:00AM">
+                                            9:00PM-12:00AM
+                                        </option>
+                                    </select>
+                                    <label className='label'>
+                                        Please Pick A Pet:
+                                    </label>
+                                    {/* <select onChange={e => setPetName(e.target.value)} className="option" value={petName} > */}
+                                    <select onChange={(e) => updatePet(e)} className="option" value={petId} >
+                                        {/* <option value={-1}>Choose Pet</option> */}
+                                        {
+                                            pets?.filter(pet => pet.userId == sessionUser.id).map(pet => {
+                                                return (
+                                                    <option key={pet.id} value={pet.id}>{pet.name}</option>
+                                                )
+                                            })
+                                        }
+                                    </select>
+                                    <button id="loginButton" type='submit' >Submit</button>
+                                </div>
                             </form>
                         </div>
                     </Modal >
