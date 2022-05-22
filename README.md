@@ -1,6 +1,6 @@
 ## Welcome to the DOPER wiki!
 
-Doper, the clone of Rover, allows you to book either a dog walk or a drop-in visit by 10 verified walkers with all your pets! 
+Doper, the clone of Rover, allows you to book either a dog walk or a drop-in visit service provided by 10 verified walkers for all your pets! 
 
 ## Application Architecture
 
