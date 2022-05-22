@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function Pet({ pet }) {
   const history = useHistory()
   const sessionUser = useSelector(state => state.session.user);
-  console.log("WHAT IS THIS SESSIONUSER HERE -----", sessionUser)
+  //console.log("WHAT IS THIS SESSIONUSER HERE -----", sessionUser)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
   // const petsObj = useSelector(state => state.pets)
