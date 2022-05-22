@@ -106,37 +106,37 @@ function EditPetForm({ hideModal, pet }) {
 
     return (
         <div className="formContainer">
-            <h1> Edit Pet Profile </h1>
-            <form
+            <h4> Edit Pet Profile </h4>
+            <form className="form"
                 onSubmit={submitPetEdits}>
                 <ul className="new-reservation-errors">
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
                 <div>
-                    <label className='petlabel'>
-                        Name:
+                    <label className='label'>
+                        Pet Name:
                     </label>
-                    <input onChange={e => setName(e.target.value)} type="text" className="new-pet-name" placeholder='Name' value={name} />
-                    <label className='petlabel'>
-                        Profile Image:
+                    <input onChange={e => setName(e.target.value)} type="text" className="new-pet" placeholder='Name' value={name} />
+                    <label className='label'>
+                        Please upload a valid URL for pet image:
                     </label>
-                    <input onChange={e => setProfileImage(e.target.value)} type="text" className="new-pet-image" placeholder="Image" value={profileImage} />
-                    <label className='petlabel'>
-                        Size:
+                    <input onChange={e => setProfileImage(e.target.value)} type="text" className="new-pet" placeholder="Image" value={profileImage} />
+                    <label className='label'>
+                        Pet Size (pounds):
                     </label>
-                    <input onChange={e => setSize(e.target.value)} type="integer" className="new-pet-size" value={size} min={0} />
-                    <label className='petlabel'>
-                        Age in Year:
+                    <input onChange={e => setSize(e.target.value)} type="integer" className="new-pet" value={size} min={0} />
+                    <label className='label'>
+                        Pet Age (Year):
                     </label>
-                    <input onChange={e => setAgeYear(e.target.value)} type="integer" className="new-pet-age-year" min={0} value={ageYear} />
-                    <label className='petlabel'>
-                        Age in Month:
+                    <input onChange={e => setAgeYear(e.target.value)} type="integer" className="new-pet" min={0} value={ageYear} />
+                    <label className='label'>
+                        Pet Age (Month):
                     </label>
-                    <input onChange={e => setAgeMonth(e.target.value)} type="integer" className="new-pet-age-month" min={0} value={ageMonth} />
-                    <label className='petlabel'>
-                        Has Microchipped:
+                    <input onChange={e => setAgeMonth(e.target.value)} type="integer" className="new-pet" min={0} value={ageMonth} />
+                    <label className='label'>
+                        Has Microchipped?
                     </label>
-                    <select className="option" onChange={e => setHasMicrochipped(e.target.value)} value={hasMicrochipped} >
+                    <select id="option" onChange={e => setHasMicrochipped(e.target.value)} value={hasMicrochipped} >
                         <option value="Yes">
                             Yes
                         </option>
@@ -144,10 +144,10 @@ function EditPetForm({ hideModal, pet }) {
                             No
                         </option>
                     </select>
-                    <label className='petlabel'>
-                        Has Trained:
+                      <label className='label'>
+                        Has Spayed?
                     </label>
-                    <select className="option" onChange={e => setHasTrained(e.target.value)} value={hasTrained} >
+                    <select id="option" onChange={e => setHasSpayed(e.target.value)} value={hasSpayed} >
                         <option value="Yes">
                             Yes
                         </option>
@@ -155,10 +155,10 @@ function EditPetForm({ hideModal, pet }) {
                             No
                         </option>
                     </select>
-                    <label className='petlabel'>
-                        Has Spayed:
+                    <label className='label'>
+                        Has Trained?
                     </label>
-                    <select className="option" onChange={e => setHasSpayed(e.target.value)} value={hasSpayed} >
+                    <select id="option" onChange={e => setHasTrained(e.target.value)} value={hasTrained} >
                         <option value="Yes">
                             Yes
                         </option>
@@ -166,27 +166,11 @@ function EditPetForm({ hideModal, pet }) {
                             No
                         </option>
                     </select>
-                    <label className='petlabel'>
-                        Is it friendly with Children:
+
+                    <label className='label'>
+                        Friendly with Children:
                     </label>
-                    <select className="option" onChange={e => setIsFriendlyWithChildren(e.target.value)} value={isFriendlyWithChildren} >
-                        <option value="Yes">
-                            Yes
-                        </option>
-                        <option value="No">
-                            No
-                        </option>
-                        <option value="Unsure">
-                            Unsure
-                        </option>
-                        <option value="Depends">
-                            Depends
-                        </option>
-                    </select>
-                    <label className='petlabel'>
-                        Is it friendly with Dogs:
-                    </label>
-                    <select className="option" onChange={e => setIsFriendlyWithDogs(e.target.value)} value={isFriendlyWithDogs} >
+                    <select id="option" onChange={e => setIsFriendlyWithChildren(e.target.value)} value={isFriendlyWithChildren} >
                         <option value="Yes">
                             Yes
                         </option>
@@ -200,10 +184,27 @@ function EditPetForm({ hideModal, pet }) {
                             Depends
                         </option>
                     </select>
-                    <label className='petlabel'>
+                    <label className='label'>
+                        Friendly with Dogs:
+                    </label>
+                    <select id="option" onChange={e => setIsFriendlyWithDogs(e.target.value)} value={isFriendlyWithDogs} >
+                        <option value="Yes">
+                            Yes
+                        </option>
+                        <option value="No">
+                            No
+                        </option>
+                        <option value="Unsure">
+                            Unsure
+                        </option>
+                        <option value="Depends">
+                            Depends
+                        </option>
+                    </select>
+                    <label className='label'>
                         Sex:
                     </label>
-                    <select className="option" onChange={e => setSex(e.target.value)} value={sex} >
+                    <select id="option" onChange={e => setSex(e.target.value)} value={sex} >
                         <option value="Male">
                             Male
                         </option>
@@ -211,18 +212,18 @@ function EditPetForm({ hideModal, pet }) {
                             Female
                         </option>
                     </select>
-                    <label className='petlabel'>
+                    <label className='label'>
                         Breed:
                     </label>
-                    <input  onChange={e => setBreed(e.target.value)} type="text" className="new-pet-breed" value={breed} />
-                    <label className='petlabel'>
+                    <input  onChange={e => setBreed(e.target.value)} type="text" className="new-pet" value={breed} />
+                    <label className='label'>
                         Description:
                     </label>
-                    <input onChange={e => setDescription(e.target.value)} type="text" className="new-pet-description" value={description} />
-                    <label className='petlabel'>
+                    <input onChange={e => setDescription(e.target.value)} type="text" className="new-pet" value={description} />
+                    <label className='label'>
                         Vet Information:
                     </label>
-                    <input onChange={e => setVetInfo(e.target.value)} type="text" className="new-pet-vet-info" value={vetInfo} />
+                    <input onChange={e => setVetInfo(e.target.value)} type="text" className="new-pet" value={vetInfo} />
 
                     <button id="loginButton" type='submit' >Submit</button>
                     {/* <button id="loginButton" className="cancel" onClick={handleCancelClick}>Cancel</button> */}

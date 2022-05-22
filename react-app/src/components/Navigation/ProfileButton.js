@@ -57,9 +57,6 @@ function ProfileButton() {
                             <li className="dropdown-list">
                                 <strong>Email</strong> {user.email}
                             </li>
-                            <li className="dropdown-list">
-                                <strong>Pet</strong> 
-                            </li>
                             <li className="logout">
                                 <LogoutButton/>
                             </li>

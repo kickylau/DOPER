@@ -6,6 +6,9 @@ import { useHistory, useParams } from "react-router-dom";
 import * as petActions from "../../store/pet";
 import DatePicker from 'react-date-picker';
 import "./BookReservation.css"
+import "react-datepicker/dist/react-datepicker.css";
+
+
 
 
 
@@ -110,8 +113,8 @@ function BookReservationModal({ walker }) {
 
 
     const submitNewReservation = (e) => {
-         e.preventDefault();
-         setHasSubmitted(true)
+        e.preventDefault();
+        setHasSubmitted(true)
 
         //if (errors.length > 0) return;
 
@@ -165,7 +168,7 @@ function BookReservationModal({ walker }) {
                 showModal && (
                     <Modal onClose={() => setShowModal(false)}>
                         <div className="formContainer">
-                            <h1> Book A Walk </h1>
+                            <h4> Book A Walk </h4>
 
                             <form className="form" onSubmit={submitNewReservation}>
                                 <ul className="new-reservation-errors">
@@ -196,7 +199,7 @@ function BookReservationModal({ walker }) {
                                         </option>
                                     </select>
                                     <label className='label'>
-                                        Your Address:
+                                        Your Pick Up Address:
                                     </label>
                                     <input onChange={e => setAddress(e.target.value)} type="text" className="input" placeholder='Address' value={address} />
                                     <label className='label'>
@@ -206,45 +209,50 @@ function BookReservationModal({ walker }) {
                                     <label className='label'>
                                         Please Pick A Date:
                                     </label>
-                                    <DatePicker selected={date} value={date} minDate={new Date()} onChange={e => setDate(new Date(e))}/>
-                                    {/* <input onChange={e => setDate(e.target.value)} minDate={new Date()} type="date" className="input" value={date} /> */}
-                                    <label className='label'>
-                                        Please Pick A Time Frame:
-                                    </label>
-                                    <select onChange={e => setTime(e.target.value)} className="option" value={time} >
-                                        <option value="6:00AM-9:00AM">
-                                            6:00AM-9:00AM
-                                        </option>
-                                        <option value="9:00AM-12:00PM">
-                                            9:00AM-12:00PM
-                                        </option>
-                                        <option value="12:00PM-3:00PM">
-                                            12:00PM-3:00PM
-                                        </option>
-                                        <option value="3:00PM-6:00PM">
-                                            3:00PM-6:00PM
-                                        </option>
-                                        <option value="6:00PM-9:00PM">
-                                            6:00PM-9:00PM
-                                        </option>
-                                        <option value="9:00PM-12:00AM">
-                                            9:00PM-12:00AM
-                                        </option>
-                                    </select>
-                                    <label className='label'>
-                                        Please Pick A Pet:
-                                    </label>
-                                    <select onChange={(e)=> updatePet(e)} className="option" value={petName} >
-                                        {
-                                            pets?.map(pet => {
-                                                return (
-                                                    <option key={pet.id} value={pet.id}>{pet.name}</option>
-                                                )
-                                            })
-                                        }
-                                    </select>
-                                    <button id="loginButton" type='submit' >Submit</button>
-                                </div>
+                                    <div>
+                                        <style>
+                                            {`.date-picker input {width: 100% color:black}`}
+                                        </style>
+                                        <DatePicker className="react-date-picker" selected={date} value={date} minDate={new Date()} onChange={e => setDate(new Date(e))} />
+                                        </div>
+                                        {/* <input onChange={e => setDate(e.target.value)} minDate={new Date()} type="date" className="input" value={date} /> */}
+                                        <label className='label'>
+                                            Please Pick A Time Frame:
+                                        </label>
+                                        <select onChange={e => setTime(e.target.value)} className="option" value={time} >
+                                            <option value="6:00AM-9:00AM">
+                                                6:00AM-9:00AM
+                                            </option>
+                                            <option value="9:00AM-12:00PM">
+                                                9:00AM-12:00PM
+                                            </option>
+                                            <option value="12:00PM-3:00PM">
+                                                12:00PM-3:00PM
+                                            </option>
+                                            <option value="3:00PM-6:00PM">
+                                                3:00PM-6:00PM
+                                            </option>
+                                            <option value="6:00PM-9:00PM">
+                                                6:00PM-9:00PM
+                                            </option>
+                                            <option value="9:00PM-12:00AM">
+                                                9:00PM-12:00AM
+                                            </option>
+                                        </select>
+                                        <label className='label'>
+                                            Please Pick A Pet:
+                                        </label>
+                                        <select onChange={(e) => updatePet(e)} className="option" value={petName} >
+                                            {
+                                                pets?.map(pet => {
+                                                    return (
+                                                        <option key={pet.id} value={pet.id}>{pet.name}</option>
+                                                    )
+                                                })
+                                            }
+                                        </select>
+                                        <button id="loginButton" type='submit' >Submit</button>
+                                    </div>
                             </form>
                         </div>
                     </Modal >

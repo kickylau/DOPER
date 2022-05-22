@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { editReservation, loadAllUserRelatedReservations } from '../../store/reservation'
 import DatePicker from 'react-date-picker';
+//import "react-datepicker/dist/react-datepicker.css";
 
 
 
@@ -82,9 +83,9 @@ function EditReservationForm({ hideModal, reservation }) {
 
     return (
         <div className="formContainer">
-            <h1> Edit An Reservation </h1>
+            <h4> Edit An Reservation </h4>
             <form
-                onSubmit={submitReservationEdits} className="edit-event-form">
+                onSubmit={submitReservationEdits} className="form">
                 <ul className="new-reservation-errors">
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>

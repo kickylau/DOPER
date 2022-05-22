@@ -36,6 +36,13 @@
     font-weight: 500;
 }
 
+.petlabel {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 6px;
+}
+
 .input {
     display: block;
     height: 50px;
@@ -46,6 +53,15 @@
     margin-top: 8px;
     font-size: 14px;
     font-weight: 300;
+}
+
+.new-pet{
+        display: block;
+        width: 100%;
+        background-color: rgba(255,255,255,0.07);
+        border-radius: 3px;
+        font-size: 13px;
+        font-weight: 300;
 }
 
 ::placeholder {

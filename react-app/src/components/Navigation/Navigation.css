@@ -100,14 +100,14 @@ a.trips{
 .logout{
     width: fit-content;
     color: black;
-    padding: 5px;
-    margin-top: 5px;
+    /* padding: 5px; */
+    /* margin-top: 5px; */
     border-radius: 5px;
     cursor: pointer;
 }
-
+/*
 .logout:hover,
 .logout:active {
     color: rgb(255, 255, 255);
     background-color: #ff0000;
-}
+} */
