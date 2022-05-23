@@ -27,7 +27,7 @@ Doper is built a React frontend with a Flask backend, using PostgreSQL as a data
 1. Clone this repository (only this branch)
 
    ```bash
-   git clone https://github.com/kickylau/DOPER/
+   git clone https://github.com/kickylau/DOPER.git
    ```
 
 2. Install dependencies
@@ -74,7 +74,7 @@ Doper is built a React frontend with a Flask backend, using PostgreSQL as a data
 2. Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed on your computer.
 3. Clone the repository (only this branch)
    ```bash
-   git clone https://github.com/kickylau/DOPER/
+   git clone https://github.com/kickylau/DOPER.git
    ```
 4. Open the repo in VS Code.
 5. Click "Open in Container" when VS Code prompts to open container in the bottom right hand corner.
