@@ -57,7 +57,7 @@ function Pet({ pet }) {
               <i className="fa-solid fa-paw"> {pet.name} </i> <i className="fa-solid fa-paw"></i>
             </div>
             <div className="gallary-info">
-              <img src={pet.profileImage} height={200} width={200} className="pet-image" />
+            <img src={pet.profileImage} onError={({currentTarget}) => { currentTarget.onerror = null; currentTarget.src="https://i.ibb.co/xFTcMpg/bad-Image-1.jpg"}} height={200} width={200} className="pet-image" />
               <h4 > {pet.breed}</h4>
               <h4 > {pet.sex}</h4>
               <h4 > {pet.size} pounds </h4>
