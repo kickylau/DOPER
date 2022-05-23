@@ -106,7 +106,8 @@ function Reservation({ reservation }) {
         <div className="trip-container">
           <div key={reservation.id}>
             <div className="gallary-info">
-              <img src={thePetImage} height={300} width={300} />
+              <img src={thePetImage} onError={({currentTarget}) => { currentTarget.onerror = null; currentTarget.src="https://i.ibb.co/xFTcMpg/bad-Image-1.jpg"}} height={300} width={300} />               
+
               <h4 id="task-type">Pet Name:{findPetName(reservation.petId)}</h4>
               <h4 id="task-type">Service: {reservation.taskType}</h4>
             </div>
