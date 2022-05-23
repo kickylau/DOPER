@@ -64,7 +64,7 @@ function Pet({ pet }) {
               <h4 > {pet.size} pounds </h4>
               <h4 > {pet.ageYear} Year(s) {pet.ageMonth} Month(s)</h4>
               <h5> Microchipped? {pet.hasMicrochipped} </h5>
-              <h5> Sspayed? {pet.hasSpayed} </h5>
+              <h5> Spayed/Neutered? {pet.hasSpayed} </h5>
               <h5> Trained? {pet.hasTrained} </h5>
               {/* ? "True":"False" */}
               <h5> Friendly with children? {pet.isFriendlyWithChildren} </h5>
