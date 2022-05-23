@@ -1,14 +1,14 @@
 ## Welcome to the DOPER wiki!
 
-Doper, the clone of Rover, allows you to book either a dog walk or a drop-in visit service provided by 10 verified walkers for all your pets! 
+Doper, the clone of Rover, allows you to book either a dog walk or a drop-in visit service provided by 10 verified walkers for all your pets!
 
 ## Application Architecture
 
-Doper is built a React frontend with a Flask backend, using PostgreSQL as a database. 
+Doper is built a React frontend with a Flask backend, using PostgreSQL as a database.
 
-## Technologies used 
+## Technologies used
 
-### Frontend 
+### Frontend
 
 * React
 * Redux
@@ -74,7 +74,7 @@ Doper is built a React frontend with a Flask backend, using PostgreSQL as a data
 2. Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed on your computer.
 3. Clone the repository (only this branch)
    ```bash
-   git clone https://github.com/YinYang117/Travel-Bucket.git
+   git clone https://github.com/kickylau/DOPER/
    ```
 4. Open the repo in VS Code.
 5. Click "Open in Container" when VS Code prompts to open container in the bottom right hand corner.
@@ -156,7 +156,7 @@ Doper is built a React frontend with a Flask backend, using PostgreSQL as a data
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Doper, a Rover clone, is a dog walking service website for users to reserver their dog walking service based on walkers, dogs and dates. Users are also able to create, edit, and delete any reservation towards the dog; able to create, delete any dog profiles for the dog; Make dog walking service more approachable and easier! 
+Doper, a Rover clone, is a dog walking service website for users to reserver their dog walking service based on walkers, dogs and dates. Users are also able to create, edit, and delete any reservation towards the dog; able to create, delete any dog profiles for the dog; Make dog walking service more approachable and easier!
 
 
 
@@ -222,4 +222,3 @@ Project Repo Link: [https://github.com/kickylau/DOPER/](https://github.com/kicky
 Project Link: [https://doper-kk.herokuapp.com/](https://doper-kk.herokuapp.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
