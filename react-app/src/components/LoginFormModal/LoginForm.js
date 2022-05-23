@@ -35,7 +35,7 @@ function LoginForm() {
 
     if (sessionUser) return ( <Redirect to="/Home" /> );
     return (
-        <div className="formContainer">
+        <div className="formContainer2">
             <form className="form" onSubmit={onLogin}>
                 <div>
                     {errors.map((error, ind) => (
