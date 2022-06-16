@@ -40,7 +40,7 @@ Doper is built a React frontend with a Flask backend, using PostgreSQL as a data
   <p align="center">
     A portfolio clone of Rover
     <br />
-    <a href="https://doper-kk.herokuapp.com/"><strong>Explore the docs »</strong></a>
+    <a href="https://doper-kk.herokuapp.com/"><strong>Explore the website »</strong></a>
     <br />
   </p>
 </div>
